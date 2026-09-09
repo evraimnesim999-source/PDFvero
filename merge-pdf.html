@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>دمج PDF - PDFora</title>
+
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            background: white;
+            margin: 50px auto;
+            padding: 40px 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            color: #222;
+        }
+
+        p {
+            color: #666;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        input[type="file"] {
+            margin: 25px 0;
+            max-width: 100%;
+        }
+
+        button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            margin: 8px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #downloadBtn {
+            display: none;
+            background: #16a34a;
+        }
+
+        .back {
+            background: #555;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>PDFora</h2>
+    </header>
+
+    <div class="container">
+
+        <h1>دمج ملفات PDF</h1>
+
+        <p>
+            اختر ملفين PDF أو أكثر لتحويلهم إلى ملف PDF واحد
+        </p>
+
+        <input
+            type="file"
+            id="pdfFiles"
+            accept=".pdf,application/pdf"
+            multiple
+        >
+
+        <br>
+
+        <button onclick="mergePDFs()">
+            دمج الملفات
+        </button>
+
+        <p id="message"></p>
+
+        <button id="downloadBtn">
+            تحميل الملف المدموج
+        </button>
+
+        <br>
+
+        <button class="back" onclick="location.href='index.html'">
+            العودة للرئيسية
+        </button>
+
+    </div>
+
+    <script>
+
+        async function mergePDFs() {
+
+            const input = document.getElementById("pdfFiles");
+            const message = document.getElementById("message");
+            const downloadBtn = document.getElementById("downloadBtn");
+
+            downloadBtn.style.display = "none";
+
+            if (input.files.length < 2) {
+                message.textContent =
+                    "من فضلك اختر ملفين PDF على الأقل";
+                return;
+            }
+
+            try {
+
+                message.textContent =
+                    "جاري دمج الملفات...";
+
+                const mergedPdf =
+                    await PDFLib.PDFDocument.create();
+
+                for (const file of input.files) {
+
+                    const bytes =
+                        await file.arrayBuffer();
+
+                    const pdf =
+                        await PDFLib.PDFDocument.load(bytes);
+
+                    const pages =
+                        await mergedPdf.copyPages(
+                            pdf,
+                            pdf.getPageIndices()
+                        );
+
+                    pages.forEach(page => {
+                        mergedPdf.addPage(page);
+                    });
+                }
+
+                const mergedBytes =
+                    await mergedPdf.save();
+
+                const blob =
+                    new Blob(
+                        [mergedBytes],
+                        { type: "application/pdf" }
+                    );
+
+                const url =
+                    URL.createObjectURL(blob);
+
+                message.textContent =
+                    "تم دمج " +
+                    input.files.length +
+                    " ملفات PDF بنجاح.";
+
+                downloadBtn.style.display =
+                    "inline-block";
+
+                downloadBtn.onclick = function () {
+
+                    const link =
+                        document.createElement("a");
+
+                    link.href = url;
+                    link.download = "merged-pdf.pdf";
+
+                    link.click();
+                };
+
+            } catch (error) {
+
+                console.error(error);
+
+                message.textContent =
+                    "حدث خطأ أثناء دمج ملفات PDF.";
+
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

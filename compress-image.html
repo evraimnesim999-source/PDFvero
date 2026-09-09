@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ضغط الصور - PDFora</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .box {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1, h2 {
+            color: #222;
+        }
+
+        p {
+            color: #666;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        input[type="file"] {
+            margin: 25px 0;
+            max-width: 100%;
+        }
+
+        button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            margin: 8px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #downloadBtn {
+            display: none;
+            background: #16a34a;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .back {
+            background: #555;
+        }
+
+        .how-to {
+            margin-top: 25px;
+            background: #eef4ff;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: right;
+        }
+
+        .how-to h2 {
+            margin-top: 0;
+        }
+
+        .how-to ol {
+            padding-right: 25px;
+            color: #444;
+            line-height: 2;
+            font-size: 16px;
+        }
+
+        .note {
+            margin-top: 20px;
+            background: #fff7e6;
+            border-right: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>PDFora</h2>
+    </header>
+
+    <div class="container">
+
+        <div class="box">
+
+            <h1>ضغط الصور</h1>
+
+            <p>
+                قلل حجم الصور لتسهيل تخزينها ومشاركتها.
+            </p>
+
+            <input
+                type="file"
+                id="imageFile"
+                accept="image/*"
+            >
+
+            <br>
+
+            <button onclick="compressImage()">
+                ضغط الصورة
+            </button>
+
+            <p id="message"></p>
+
+            <button id="downloadBtn">
+                تحميل الصورة المضغوطة
+            </button>
+
+            <br>
+
+            <button
+                class="back"
+                onclick="location.href='index.html'"
+            >
+                العودة للرئيسية
+            </button>
+
+        </div>
+
+        <div class="how-to">
+
+            <h2>📖 طريقة الاستخدام</h2>
+
+            <ol>
+                <li>اضغط على «اختيار ملف».</li>
+                <li>اختر الصورة من جهازك.</li>
+                <li>اضغط «ضغط الصورة».</li>
+                <li>انتظر حتى تنتهي المعالجة.</li>
+                <li>اضغط «تحميل الصورة المضغوطة».</li>
+            </ol>
+
+            <div class="note">
+                <strong>ملاحظة مهمة:</strong>
+                <p>
+                    الضغط قد يقلل جودة الصورة بدرجة بسيطة حسب الصورة وحجمها الأصلي.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function compressImage() {
+
+            const input =
+                document.getElementById("imageFile");
+
+            const message =
+                document.getElementById("message");
+
+            const downloadBtn =
+                document.getElementById("downloadBtn");
+
+            downloadBtn.style.display = "none";
+
+            if (!input.files.length) {
+
+                message.textContent =
+                    "من فضلك اختر صورة أولاً";
+
+                return;
+            }
+
+            const file = input.files[0];
+
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+
+                const img = new Image();
+
+                img.onload = function() {
+
+                    const canvas =
+                        document.createElement("canvas");
+
+                    const ctx =
+                        canvas.getContext("2d");
+
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+
+                    ctx.drawImage(
+                        img,
+                        0,
+                        0,
+                        img.width,
+                        img.height
+                    );
+
+                    canvas.toBlob(
+                        function(blob) {
+
+                            if (!blob) {
+
+                                message.textContent =
+                                    "حدث خطأ أثناء ضغط الصورة.";
+
+                                return;
+                            }
+
+                            const url =
+                                URL.createObjectURL(blob);
+
+                            const oldSize =
+                                (file.size / 1024).toFixed(1);
+
+                            const newSize =
+                                (blob.size / 1024).toFixed(1);
+
+                            message.textContent =
+                                "الحجم: " +
+                                oldSize +
+                                " KB → " +
+                                newSize +
+                                " KB";
+
+                            downloadBtn.style.display =
+                                "inline-block";
+
+                            downloadBtn.onclick =
+                                function() {
+
+                                    const link =
+                                        document.createElement("a");
+
+                                    link.href = url;
+
+                                    link.download =
+                                        "compressed-image.jpg";
+
+                                    link.click();
+                                };
+
+                        },
+                        "image/jpeg",
+                        0.6
+                    );
+                };
+
+                img.src = event.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ضغط PDF - PDFora</title>
+
+    <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #fff7f7;
+            --card: #fff1f2;
+            --border: #fecdd3;
+            --main: #e53935;
+            --main2: #ef4444;
+            --dark: #7f1d1d;
+            --text: #1f2937;
+            --muted: #57534e;
+            --success: #16a34a;
+            --warning: #d97706;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        header {
+            background: linear-gradient(
+                135deg,
+                var(--main),
+                var(--main2)
+            );
+
+            color: white;
+
+            text-align: center;
+
+            padding: 25px;
+        }
+
+        header h2 {
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+
+            margin: 40px auto;
+        }
+
+        .box {
+            background: var(--card);
+
+            padding: 35px 25px;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            border: 1px solid var(--border);
+
+            box-shadow:
+                0 10px 30px
+                rgba(127, 29, 29, 0.08);
+        }
+
+        h1 {
+            color: var(--dark);
+        }
+
+        p {
+            color: var(--muted);
+
+            font-size: 17px;
+
+            line-height: 1.7;
+        }
+
+        input[type="file"] {
+            margin: 25px 0;
+
+            max-width: 100%;
+        }
+
+        button {
+            padding: 14px 30px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--main),
+                    var(--main2)
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            cursor: pointer;
+
+            margin: 8px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            background: #a8a29e;
+            cursor: not-allowed;
+        }
+
+        #downloadBtn {
+            display: none;
+            background: var(--success);
+        }
+
+        .back {
+            background: #57534e;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .result {
+            display: none;
+
+            margin-top: 20px;
+
+            padding: 18px;
+
+            border-radius: 12px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+        }
+
+        .result strong {
+            color: var(--dark);
+        }
+
+        .how-to {
+            margin-top: 25px;
+
+            background: #fee2e2;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            text-align: right;
+        }
+
+        .how-to h2 {
+            margin-top: 0;
+
+            color: var(--dark);
+        }
+
+        .how-to ol {
+            padding-right: 25px;
+
+            color: #44403c;
+
+            line-height: 2;
+
+            font-size: 16px;
+        }
+
+        .note {
+            margin-top: 20px;
+
+            background: #fff7ed;
+
+            border-right: 4px solid #f59e0b;
+
+            padding: 15px;
+
+            border-radius: 8px;
+        }
+
+        .note p {
+            margin-bottom: 0;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <h2>PDFora</h2>
+    </header>
+
+
+    <div class="container">
+
+        <div class="box">
+
+            <h1>ضغط ملفات PDF</h1>
+
+            <p>
+                اختر ملف PDF لمحاولة تقليل حجمه مع الحفاظ على محتواه.
+            </p>
+
+            <input
+                type="file"
+                id="pdfFile"
+                accept=".pdf,application/pdf"
+            >
+
+            <br>
+
+            <button
+                id="compressBtn"
+                onclick="compressPDF()"
+            >
+                ضغط الملف
+            </button>
+
+            <p id="message"></p>
+
+
+            <div
+                class="result"
+                id="result"
+            >
+
+                <p>
+                    <strong>الحجم الأصلي:</strong>
+                    <span id="oldSize"></span>
+                </p>
+
+                <p>
+                    <strong>الحجم بعد المعالجة:</strong>
+                    <span id="newSize"></span>
+                </p>
+
+                <p>
+                    <strong>النتيجة:</strong>
+                    <span id="saving"></span>
+                </p>
+
+            </div>
+
+
+            <button id="downloadBtn">
+                تحميل الملف
+            </button>
+
+
+            <br>
+
+            <button
+                class="back"
+                onclick="location.href='index.html'"
+            >
+                العودة للرئيسية
+            </button>
+
+        </div>
+
+
+        <div class="how-to">
+
+            <h2>📖 طريقة الاستخدام</h2>
+
+            <ol>
+                <li>اضغط على «اختيار ملف».</li>
+                <li>اختر ملف PDF من جهازك.</li>
+                <li>اضغط «ضغط الملف».</li>
+                <li>انتظر حتى انتهاء المعالجة.</li>
+                <li>راجع الحجم الأصلي والحجم الجديد.</li>
+                <li>اضغط «تحميل الملف» لتنزيل النتيجة.</li>
+            </ol>
+
+
+            <div class="note">
+
+                <strong>⚠️ ملاحظة مهمة:</strong>
+
+                <p>
+                    هذه النسخة تستخدم تحسينًا بدون فقد للمحتوى
+                    وإعادة تنظيم بعض مكونات PDF.
+                    لذلك ليس مضمونًا أن كل ملف سيصبح أصغر.
+                    ملفات PDF التي تحتوي على صور مضغوطة أصلًا
+                    قد لا ينخفض حجمها كثيرًا، وأحيانًا قد يصبح
+                    الملف الناتج أكبر.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function formatBytes(bytes) {
+
+            if (bytes === 0) {
+                return "0 Bytes";
+            }
+
+            const units = [
+                "Bytes",
+                "KB",
+                "MB",
+                "GB"
+            ];
+
+            const index =
+                Math.floor(
+                    Math.log(bytes) /
+                    Math.log(1024)
+                );
+
+            const value =
+                bytes /
+                Math.pow(1024, index);
+
+            return (
+                value.toFixed(2) +
+                " " +
+                units[index]
+            );
+        }
+
+
+        async function compressPDF() {
+
+            const input =
+                document.getElementById("pdfFile");
+
+            const message =
+                document.getElementById("message");
+
+            const compressBtn =
+                document.getElementById("compressBtn");
+
+            const downloadBtn =
+                document.getElementById("downloadBtn");
+
+            const result =
+                document.getElementById("result");
+
+            const oldSize =
+                document.getElementById("oldSize");
+
+            const newSize =
+                document.getElementById("newSize");
+
+            const saving =
+                document.getElementById("saving");
+
+
+            downloadBtn.style.display =
+                "none";
+
+            result.style.display =
+                "none";
+
+
+            if (!input.files.length) {
+
+                message.textContent =
+                    "من فضلك اختر ملف PDF أولاً.";
+
+                return;
+            }
+
+
+            try {
+
+                compressBtn.disabled =
+                    true;
+
+                message.textContent =
+                    "جاري معالجة ملف PDF...";
+
+
+                const file =
+                    input.files[0];
+
+                const bytes =
+                    await file.arrayBuffer();
+
+
+                const pdfDoc =
+                    await PDFLib.PDFDocument.load(
+                        bytes
+                    );
+
+
+                const optimizedBytes =
+                    await pdfDoc.save({
+
+                        useObjectStreams: true,
+
+                        addDefaultPage: false,
+
+                        useCompression: true
+
+                    });
+
+
+                const originalSize =
+                    file.size;
+
+                const finalSize =
+                    optimizedBytes.length;
+
+
+                oldSize.textContent =
+                    formatBytes(
+                        originalSize
+                    );
+
+                newSize.textContent =
+                    formatBytes(
+                        finalSize
+                    );
+
+
+                let percent;
+
+
+                if (finalSize < originalSize) {
+
+                    percent =
+                        (
+                            (
+                                (
+                                    originalSize -
+                                    finalSize
+                                ) /
+                                originalSize
+                            ) * 100
+                        ).toFixed(1);
+
+
+                    saving.textContent =
+                        "تم تقليل الحجم بنسبة " +
+                        percent +
+                        "% ✅";
+
+                    message.textContent =
+                        "تمت معالجة الملف بنجاح.";
+
+                } else if (finalSize === originalSize) {
+
+                    saving.textContent =
+                        "الحجم لم يتغير تقريبًا.";
+
+                    message.textContent =
+                        "تمت المعالجة، لكن لم يحدث توفير واضح.";
+
+                } else {
+
+                    const increase =
+                        (
+                            (
+                                (
+                                    finalSize -
+                                    originalSize
+                                ) /
+                                originalSize
+                            ) * 100
+                        ).toFixed(1);
+
+
+                    saving.textContent =
+                        "الحجم زاد بنسبة " +
+                        increase +
+                        "% ⚠️";
+
+                    message.textContent =
+                        "الملف الأصلي كان مضغوطًا بالفعل بدرجة جيدة.";
+
+                }
+
+
+                const blob =
+                    new Blob(
+                        [optimizedBytes],
+                        {
+                            type:
+                                "application/pdf"
+                        }
+                    );
+
+
+                const url =
+                    URL.createObjectURL(
+                        blob
+                    );
+
+
+                downloadBtn.style.display =
+                    "inline-block";
+
+
+                downloadBtn.onclick =
+                    function () {
+
+                        const link =
+                            document.createElement(
+                                "a"
+                            );
+
+                        link.href = url;
+
+                        link.download =
+                            file.name.replace(
+                                /\.pdf$/i,
+                                ""
+                            ) +
+                            "-optimized.pdf";
+
+                        link.click();
+
+                    };
+
+
+                result.style.display =
+                    "block";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                message.textContent =
+                    "حدث خطأ أثناء معالجة ملف PDF. تأكد أن الملف صالح وغير تالف.";
+
+            } finally {
+
+                compressBtn.disabled =
+                    false;
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

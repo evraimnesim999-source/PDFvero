@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Excel إلى PDF - PDFora</title>
+
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .box {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1,
+        h2 {
+            color: #222;
+        }
+
+        p {
+            color: #666;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        input[type="file"] {
+            margin: 25px 0;
+            max-width: 100%;
+        }
+
+        button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            margin: 8px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #message {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        #downloadBtn {
+            display: none;
+            background: #16a34a;
+        }
+
+        .back {
+            background: #555;
+        }
+
+        .how-to {
+            margin-top: 25px;
+            background: #eef4ff;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: right;
+        }
+
+        .how-to h2 {
+            margin-top: 0;
+        }
+
+        .how-to ol {
+            margin: 0;
+            padding-right: 25px;
+            color: #444;
+            line-height: 2;
+            font-size: 16px;
+        }
+
+        .note {
+            margin-top: 20px;
+            background: #fff7e6;
+            border-right: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>PDFora</h2>
+    </header>
+
+    <div class="container">
+
+        <div class="box">
+
+            <h1>تحويل Excel إلى PDF</h1>
+
+            <p>
+                اختر ملف Excel لتحويل بياناته إلى ملف PDF
+            </p>
+
+            <input
+                type="file"
+                id="excelFile"
+                accept=".xlsx,.xls,.csv"
+            >
+
+            <br>
+
+            <button onclick="convertExcel()">
+                تحويل إلى PDF
+            </button>
+
+            <p id="message"></p>
+
+            <button id="downloadBtn">
+                تحميل PDF
+            </button>
+
+            <br>
+
+            <button
+                class="back"
+                onclick="location.href='index.html'"
+            >
+                العودة للرئيسية
+            </button>
+
+        </div>
+
+
+        <div class="how-to">
+
+            <h2>📖 طريقة الاستخدام</h2>
+
+            <ol>
+                <li>اضغط على «اختيار ملف».</li>
+                <li>اختر ملف Excel من جهازك.</li>
+                <li>اضغط «تحويل إلى PDF».</li>
+                <li>انتظر حتى انتهاء عملية التحويل.</li>
+                <li>اضغط «تحميل PDF» لتنزيل الملف.</li>
+            </ol>
+
+            <div class="note">
+
+                <strong>ملاحظة:</strong>
+
+                <p>
+                    يتم تحويل بيانات أول ورقة في ملف Excel
+                    إلى جدول داخل ملف PDF.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        async function convertExcel() {
+
+            const input =
+                document.getElementById("excelFile");
+
+            const message =
+                document.getElementById("message");
+
+            const downloadBtn =
+                document.getElementById("downloadBtn");
+
+            downloadBtn.style.display = "none";
+
+            if (!input.files.length) {
+
+                message.textContent =
+                    "من فضلك اختر ملف Excel أولاً";
+
+                return;
+            }
+
+            try {
+
+                message.textContent =
+                    "جاري قراءة ملف Excel...";
+
+                const file = input.files[0];
+
+                const data =
+                    await file.arrayBuffer();
+
+                const workbook =
+                    XLSX.read(data, {
+                        type: "array"
+                    });
+
+                const sheetName =
+                    workbook.SheetNames[0];
+
+                const worksheet =
+                    workbook.Sheets[sheetName];
+
+                const rows =
+                    XLSX.utils.sheet_to_json(
+                        worksheet,
+                        {
+                            header: 1,
+                            defval: ""
+                        }
+                    );
+
+                if (!rows.length) {
+
+                    message.textContent =
+                        "ملف Excel فارغ.";
+
+                    return;
+                }
+
+                const { jsPDF } =
+                    window.jspdf;
+
+                const pdf =
+                    new jsPDF({
+                        orientation: "landscape",
+                        unit: "mm",
+                        format: "a4"
+                    });
+
+                pdf.setFontSize(16);
+
+                pdf.text(
+                    "Excel to PDF",
+                    148,
+                    15,
+                    {
+                        align: "center"
+                    }
+                );
+
+                const head =
+                    [rows[0]];
+
+                const body =
+                    rows.slice(1);
+
+                pdf.autoTable({
+                    head: head,
+                    body: body,
+                    startY: 22,
+                    theme: "grid",
+                    styles: {
+                        fontSize: 8,
+                        cellPadding: 3
+                    },
+                    headStyles: {
+                        fontSize: 8
+                    },
+                    margin: {
+                        left: 10,
+                        right: 10
+                    }
+                });
+
+                const pdfBlob =
+                    pdf.output("blob");
+
+                const url =
+                    URL.createObjectURL(pdfBlob);
+
+                message.textContent =
+                    "تم تحويل ملف Excel إلى PDF بنجاح.";
+
+                downloadBtn.style.display =
+                    "inline-block";
+
+                downloadBtn.onclick =
+                    function () {
+
+                        const link =
+                            document.createElement("a");
+
+                        link.href = url;
+                        link.download =
+                            "excel-to-pdf.pdf";
+
+                        link.click();
+                    };
+
+            } catch (error) {
+
+                console.error(error);
+
+                message.textContent =
+                    "حدث خطأ أثناء تحويل ملف Excel.";
+
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

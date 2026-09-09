@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CSV إلى Excel - PDFora</title>
+
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #FFF7F7;
+            color: #1F2937;
+        }
+
+        header {
+            background: linear-gradient(135deg, #E53935, #EF4444);
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        header h2 {
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .box {
+            background: #FFF1F2;
+            padding: 35px 25px;
+            border-radius: 18px;
+            text-align: center;
+            border: 1px solid #FECDD3;
+            box-shadow: 0 8px 25px rgba(127, 29, 29, 0.08);
+        }
+
+        h1,
+        h2 {
+            color: #7F1D1D;
+        }
+
+        p {
+            color: #57534E;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        input[type="file"] {
+            margin: 25px 0;
+            max-width: 100%;
+        }
+
+        button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #E53935, #EF4444);
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            margin: 8px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            background: #A8A29E;
+            cursor: not-allowed;
+        }
+
+        #downloadBtn {
+            display: none;
+            background: #16A34A;
+        }
+
+        .back {
+            background: #57534E;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .how-to {
+            margin-top: 25px;
+            background: #FEE2E2;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: right;
+        }
+
+        .how-to h2 {
+            margin-top: 0;
+        }
+
+        .how-to ol {
+            padding-right: 25px;
+            color: #44403C;
+            line-height: 2;
+            font-size: 16px;
+        }
+
+        .note {
+            margin-top: 20px;
+            background: #FFF7ED;
+            border-right: 4px solid #F59E0B;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>PDFora</h2>
+    </header>
+
+    <div class="container">
+
+        <div class="box">
+
+            <h1>تحويل CSV إلى Excel</h1>
+
+            <p>
+                اختر ملف CSV لتحويله إلى ملف Excel قابل للفتح والتعديل.
+            </p>
+
+            <input
+                type="file"
+                id="csvFile"
+                accept=".csv,text/csv"
+            >
+
+            <br>
+
+            <button
+                id="convertBtn"
+                onclick="convertCSVToExcel()"
+            >
+                تحويل إلى Excel
+            </button>
+
+            <p id="message"></p>
+
+            <button id="downloadBtn">
+                تحميل ملف Excel
+            </button>
+
+            <br>
+
+            <button
+                class="back"
+                onclick="location.href='index.html'"
+            >
+                العودة للرئيسية
+            </button>
+
+        </div>
+
+
+        <div class="how-to">
+
+            <h2>📖 طريقة الاستخدام</h2>
+
+            <ol>
+                <li>اضغط على «اختيار ملف».</li>
+                <li>اختر ملف CSV من جهازك.</li>
+                <li>اضغط «تحويل إلى Excel».</li>
+                <li>انتظر حتى انتهاء التحويل.</li>
+                <li>اضغط «تحميل ملف Excel».</li>
+            </ol>
+
+            <div class="note">
+
+                <strong>⚠️ ملاحظة مهمة:</strong>
+
+                <p>
+                    ملف CSV يحتوي على بيانات مفصولة بعلامات، وليس
+                    على تنسيق Excel الكامل. لذلك سيتم تحويل البيانات
+                    إلى جدول Excel، بينما التنسيقات الأصلية غير موجودة
+                    أصلًا في CSV.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        async function convertCSVToExcel() {
+
+            const input =
+                document.getElementById("csvFile");
+
+            const message =
+                document.getElementById("message");
+
+            const convertBtn =
+                document.getElementById("convertBtn");
+
+            const downloadBtn =
+                document.getElementById("downloadBtn");
+
+            downloadBtn.style.display = "none";
+
+            if (!input.files.length) {
+
+                message.textContent =
+                    "من فضلك اختر ملف CSV أولاً";
+
+                return;
+            }
+
+            try {
+
+                convertBtn.disabled = true;
+
+                message.textContent =
+                    "جاري قراءة ملف CSV...";
+
+                const file = input.files[0];
+
+                const text =
+                    await file.text();
+
+                if (!text.trim()) {
+
+                    message.textContent =
+                        "ملف CSV فارغ.";
+
+                    return;
+                }
+
+                const workbook =
+                    XLSX.read(text, {
+                        type: "string"
+                    });
+
+                const sheetName =
+                    workbook.SheetNames[0];
+
+                const worksheet =
+                    workbook.Sheets[sheetName];
+
+                const newWorkbook =
+                    XLSX.utils.book_new();
+
+                XLSX.utils.book_append_sheet(
+                    newWorkbook,
+                    worksheet,
+                    "Sheet1"
+                );
+
+                const excelBytes =
+                    XLSX.write(
+                        newWorkbook,
+                        {
+                            bookType: "xlsx",
+                            type: "array"
+                        }
+                    );
+
+                const blob =
+                    new Blob(
+                        [excelBytes],
+                        {
+                            type:
+                                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                        }
+                    );
+
+                const url =
+                    URL.createObjectURL(blob);
+
+                message.textContent =
+                    "تم تحويل ملف CSV إلى Excel بنجاح.";
+
+                downloadBtn.style.display =
+                    "inline-block";
+
+                downloadBtn.onclick =
+                    function () {
+
+                        const link =
+                            document.createElement("a");
+
+                        link.href = url;
+
+                        link.download =
+                            file.name.replace(
+                                /\.csv$/i,
+                                ""
+                            ) + ".xlsx";
+
+                        link.click();
+                    };
+
+            } catch (error) {
+
+                console.error(error);
+
+                message.textContent =
+                    "حدث خطأ أثناء تحويل ملف CSV.";
+
+            } finally {
+
+                convertBtn.disabled = false;
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

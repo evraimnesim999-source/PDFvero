@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Word إلى PDF - PDFora</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 700px;
+            background: white;
+            margin: 50px auto;
+            padding: 40px 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            color: #222;
+        }
+
+        p {
+            color: #666;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        input[type="file"] {
+            margin: 25px 0;
+            max-width: 100%;
+        }
+
+        button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            margin: 8px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .back {
+            background: #555;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>PDFora</h2>
+    </header>
+
+    <div class="container">
+
+        <h1>تحويل Word إلى PDF</h1>
+
+        <p>
+            اختر ملف Word لتحويله إلى PDF
+        </p>
+
+        <input
+            type="file"
+            id="wordFile"
+            accept=".doc,.docx"
+        >
+
+        <br>
+
+        <button onclick="convertWord()">
+            تحويل إلى PDF
+        </button>
+
+        <p id="message"></p>
+
+        <button
+            class="back"
+            onclick="location.href='index.html'"
+        >
+            العودة للرئيسية
+        </button>
+
+    </div>
+
+    <script>
+
+        function convertWord() {
+
+            const input = document.getElementById("wordFile");
+            const message = document.getElementById("message");
+
+            if (!input.files.length) {
+                message.textContent =
+                    "من فضلك اختر ملف Word أولاً";
+                return;
+            }
+
+            const file = input.files[0];
+
+            message.textContent =
+                "تم اختيار الملف: " + file.name;
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تغيير حجم الصور - PDFora</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+        }
+
+        header {
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .box {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1,
+        h2 {
+            color: #222;
+        }
+
+        p {
+            color: #666;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        input {
+            margin: 15px 0;
+            max-width: 100%;
+        }
+
+        .size-box {
+            margin: 20px 0;
+        }
+
+        .size-box input {
+            width: 120px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            margin: 8px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        #downloadBtn {
+            display: none;
+            background: #16a34a;
+        }
+
+        .back {
+            background: #555;
+        }
+
+        #message {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .how-to {
+            margin-top: 25px;
+            background: #eef4ff;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: right;
+        }
+
+        .how-to h2 {
+            margin-top: 0;
+        }
+
+        .how-to ol {
+            padding-right: 25px;
+            color: #444;
+            line-height: 2;
+            font-size: 16px;
+        }
+
+        .note {
+            margin-top: 20px;
+            background: #fff7e6;
+            border-right: 4px solid #f59e0b;
+            padding: 15px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>PDFora</h2>
+    </header>
+
+    <div class="container">
+
+        <div class="box">
+
+            <h1>تغيير حجم الصور</h1>
+
+            <p>
+                غيّر عرض وارتفاع الصورة بسهولة.
+            </p>
+
+            <input
+                type="file"
+                id="imageFile"
+                accept="image/*"
+            >
+
+            <div class="size-box">
+
+                <div>
+                    <label>العرض:</label>
+
+                    <input
+                        type="number"
+                        id="width"
+                        placeholder="1200"
+                    >
+
+                    بكسل
+                </div>
+
+                <br>
+
+                <div>
+                    <label>الارتفاع:</label>
+
+                    <input
+                        type="number"
+                        id="height"
+                        placeholder="800"
+                    >
+
+                    بكسل
+                </div>
+
+            </div>
+
+            <button onclick="resizeImage()">
+                تغيير الحجم
+            </button>
+
+            <p id="message"></p>
+
+            <button id="downloadBtn">
+                تحميل الصورة
+            </button>
+
+            <br>
+
+            <button
+                class="back"
+                onclick="location.href='index.html'"
+            >
+                العودة للرئيسية
+            </button>
+
+        </div>
+
+        <div class="how-to">
+
+            <h2>📖 طريقة الاستخدام</h2>
+
+            <ol>
+                <li>اضغط على «اختيار ملف».</li>
+                <li>اختر الصورة من جهازك.</li>
+                <li>اكتب العرض الجديد بالبكسل.</li>
+                <li>اكتب الارتفاع الجديد بالبكسل.</li>
+                <li>اضغط «تغيير الحجم».</li>
+                <li>انتظر حتى يتم تجهيز الصورة.</li>
+                <li>اضغط «تحميل الصورة».</li>
+            </ol>
+
+            <div class="note">
+                <strong>💡 نصيحة:</strong>
+                <p>
+                    لو عايز تحافظ على تناسب الصورة،
+                    استخدم أبعاد متناسبة مع أبعاد الصورة الأصلية.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function resizeImage() {
+
+            const input =
+                document.getElementById("imageFile");
+
+            const widthInput =
+                document.getElementById("width");
+
+            const heightInput =
+                document.getElementById("height");
+
+            const message =
+                document.getElementById("message");
+
+            const downloadBtn =
+                document.getElementById("downloadBtn");
+
+            downloadBtn.style.display = "none";
+
+            if (!input.files.length) {
+
+                message.textContent =
+                    "من فضلك اختر صورة أولاً";
+
+                return;
+            }
+
+            const width =
+                Number(widthInput.value);
+
+            const height =
+                Number(heightInput.value);
+
+            if (
+                !width ||
+                !height ||
+                width <= 0 ||
+                height <= 0
+            ) {
+
+                message.textContent =
+                    "اكتب عرضًا وارتفاعًا صحيحين";
+
+                return;
+            }
+
+            const file = input.files[0];
+
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+
+                const img = new Image();
+
+                img.onload = function() {
+
+                    const canvas =
+                        document.createElement("canvas");
+
+                    const ctx =
+                        canvas.getContext("2d");
+
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    ctx.drawImage(
+                        img,
+                        0,
+                        0,
+                        width,
+                        height
+                    );
+
+                    canvas.toBlob(
+
+                        function(blob) {
+
+                            if (!blob) {
+
+                                message.textContent =
+                                    "حدث خطأ أثناء تغيير الحجم.";
+
+                                return;
+                            }
+
+                            const url =
+                                URL.createObjectURL(blob);
+
+                            message.textContent =
+                                "تم تغيير حجم الصورة إلى " +
+                                width +
+                                " × " +
+                                height +
+                                " بكسل";
+
+                            downloadBtn.style.display =
+                                "inline-block";
+
+                            downloadBtn.onclick =
+                                function() {
+
+                                    const link =
+                                        document.createElement("a");
+
+                                    link.href = url;
+
+                                    link.download =
+                                        "resized-image.jpg";
+
+                                    link.click();
+                                };
+
+                        },
+
+                        "image/jpeg",
+                        0.9
+                    );
+                };
+
+                img.src = event.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+    </script>
+
+</body>
+
+</html>

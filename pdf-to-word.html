@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDF إلى Word - PDFora</title>
+
+    <!-- PDF.js -->
+    <script type="module">
+        import * as pdfjsLib from
+            "https://cdn.jsdelivr.net/npm/pdfjs-dist@6.3.289/build/pdf.min.mjs";
+
+        window.pdfjsLib = pdfjsLib;
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            "https://cdn.jsdelivr.net/npm/pdfjs-dist@6.3.289/build/pdf.worker.min.mjs";
+    </script>
+
+    <!-- مكتبة إنشاء Word -->
+    <script src="https://cdn.jsdelivr.net/npm/docx@9.7.1/dist/index.iife.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #FFF7F7;
+            color: #1F2937;
+        }
+
+        header {
+            background: linear-gradient(135deg, #E53935, #EF4444);
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        header h2 {
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .box {
+            background: #FFF1F2;
+            padding: 35px 25px;
+            border-radius: 18px;
+            text-align: center;
+            border: 1px solid #FECDD3;
+            box-shadow: 0 8px 25px rgba(127, 29, 29, 0.08);
+        }
+
+        h1,
+        h2 {
+            color: #7F1D1D;
+        }
+
+        p {
+            color: #57534E;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        input[type="file"] {
+            margin: 25px 0;
+            max-width: 100%;
+        }
+
+        button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #E53935, #EF4444);
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+            margin: 8px;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        button:disabled {
+            background: #A8A29E;
+            cursor: not-allowed;
+        }
+
+        #downloadBtn {
+            display: none;
+            background: #16A34A;
+        }
+
+        .back {
+            background: #57534E;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .how-to {
+            margin-top: 25px;
+            background: #FEE2E2;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: right;
+        }
+
+        .how-to h2 {
+            margin-top: 0;
+        }
+
+        .how-to ol {
+            padding-right: 25px;
+            color: #44403C;
+            line-height: 2;
+            font-size: 16px;
+        }
+
+        .note {
+            margin-top: 20px;
+            background: #FFF7ED;
+            border-right: 4px solid #F59E0B;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .note p {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h2>PDFora</h2>
+    </header>
+
+    <div class="container">
+
+        <div class="box">
+
+            <h1>تحويل PDF إلى Word</h1>
+
+            <p>
+                اختر ملف PDF لاستخراج النص منه وإنشاء ملف Word
+            </p>
+
+            <input
+                type="file"
+                id="pdfFile"
+                accept=".pdf,application/pdf"
+            >
+
+            <br>
+
+            <button
+                id="convertBtn"
+                onclick="convertPDFToWord()"
+            >
+                تحويل إلى Word
+            </button>
+
+            <p id="message"></p>
+
+            <button id="downloadBtn">
+                تحميل ملف Word
+            </button>
+
+            <br>
+
+            <button
+                class="back"
+                onclick="location.href='index.html'"
+            >
+                العودة للرئيسية
+            </button>
+
+        </div>
+
+
+        <div class="how-to">
+
+            <h2>📖 طريقة الاستخدام</h2>
+
+            <ol>
+                <li>اضغط على «اختيار ملف».</li>
+                <li>اختر ملف PDF من جهازك.</li>
+                <li>اضغط «تحويل إلى Word».</li>
+                <li>انتظر حتى يتم استخراج النص.</li>
+                <li>عند انتهاء التحويل اضغط «تحميل ملف Word».</li>
+            </ol>
+
+            <div class="note">
+
+                <strong>⚠️ ملاحظات مهمة:</strong>
+
+                <p>
+                    • الأداة الحالية تستخرج النص القابل للقراءة من ملف PDF.
+                </p>
+
+                <p>
+                    • ملفات PDF الممسوحة ضوئيًا أو التي تحتوي على صور فقط
+                    قد لا يظهر نصها لأن هذا الإصدار لا يستخدم OCR.
+                </p>
+
+                <p>
+                    • قد لا يتم الحفاظ على التصميم الأصلي للصفحات،
+                    مثل الصور والجداول والأعمدة والخطوط والتنسيقات المعقدة.
+                </p>
+
+                <p>
+                    • للحصول على أفضل نتيجة، استخدم ملف PDF يحتوي على نص واضح وقابل للتحديد.
+                </p>
+
+                <p>
+                    • بعض الملفات قد تحتاج إلى تعديل بسيط داخل Word بعد التحويل.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        async function waitForPDFJS() {
+
+            while (!window.pdfjsLib) {
+
+                await new Promise(resolve =>
+                    setTimeout(resolve, 100)
+                );
+            }
+
+            return window.pdfjsLib;
+        }
+
+
+        async function convertPDFToWord() {
+
+            const input =
+                document.getElementById("pdfFile");
+
+            const message =
+                document.getElementById("message");
+
+            const convertBtn =
+                document.getElementById("convertBtn");
+
+            const downloadBtn =
+                document.getElementById("downloadBtn");
+
+            downloadBtn.style.display = "none";
+
+            if (!input.files.length) {
+
+                message.textContent =
+                    "من فضلك اختر ملف PDF أولاً";
+
+                return;
+            }
+
+            try {
+
+                convertBtn.disabled = true;
+
+                message.textContent =
+                    "جاري قراءة ملف PDF...";
+
+                const pdfjsLib =
+                    await waitForPDFJS();
+
+                const file =
+                    input.files[0];
+
+                const arrayBuffer =
+                    await file.arrayBuffer();
+
+                const pdf =
+                    await pdfjsLib.getDocument({
+                        data: arrayBuffer
+                    }).promise;
+
+                const paragraphs = [];
+
+                for (
+                    let pageNumber = 1;
+                    pageNumber <= pdf.numPages;
+                    pageNumber++
+                ) {
+
+                    message.textContent =
+                        "جاري استخراج الصفحة " +
+                        pageNumber +
+                        " من " +
+                        pdf.numPages;
+
+                    const page =
+                        await pdf.getPage(pageNumber);
+
+                    const textContent =
+                        await page.getTextContent();
+
+                    const pageText =
+                        textContent.items
+                            .map(item => item.str || "")
+                            .join(" ")
+                            .trim();
+
+                    if (pageText) {
+
+                        paragraphs.push(
+                            new docx.Paragraph({
+                                children: [
+                                    new docx.TextRun({
+                                        text: pageText
+                                    })
+                                ],
+                                spacing: {
+                                    after: 200
+                                }
+                            })
+                        );
+                    }
+
+                    if (
+                        pageNumber < pdf.numPages &&
+                        pageText
+                    ) {
+
+                        paragraphs.push(
+                            new docx.Paragraph({
+                                pageBreakBefore: true,
+                                children: []
+                            })
+                        );
+                    }
+                }
+
+                if (paragraphs.length === 0) {
+
+                    message.textContent =
+                        "لم يتم العثور على نص قابل للاستخراج.";
+
+                    return;
+                }
+
+                message.textContent =
+                    "جاري إنشاء ملف Word...";
+
+                const document =
+                    new docx.Document({
+                        sections: [
+                            {
+                                children: paragraphs
+                            }
+                        ]
+                    });
+
+                const blob =
+                    await docx.Packer.toBlob(document);
+
+                const url =
+                    URL.createObjectURL(blob);
+
+                downloadBtn.style.display =
+                    "inline-block";
+
+                downloadBtn.onclick =
+                    function () {
+
+                        const link =
+                            document.createElement("a");
+
+                        link.href = url;
+
+                        link.download =
+                            file.name.replace(
+                                /\.pdf$/i,
+                                ""
+                            ) + ".docx";
+
+                        link.click();
+                    };
+
+                message.textContent =
+                    "تم إنشاء ملف Word بنجاح.";
+
+            } catch (error) {
+
+                console.error(error);
+
+                message.textContent =
+                    "حدث خطأ أثناء تحويل PDF إلى Word.";
+
+            } finally {
+
+                convertBtn.disabled = false;
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
