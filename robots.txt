@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://evraimnesim999-source.github.io/PDFvero/sitemap.xml
