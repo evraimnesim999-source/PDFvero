@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://evraimnesim999-source.github.io/PDFvero/</loc>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>https://evraimnesim999-source.github.io/PDFvero/compress-pdf.html</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://evraimnesim999-source.github.io/PDFvero/merge-pdf.html</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://evraimnesim999-source.github.io/PDFvero/split-pdf.html</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://evraimnesim999-source.github.io/PDFvero/pdf-to-word.html</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <url>
+        <loc>https://evraimnesim999-source.github.io/PDFvero/compress-image.html</loc>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://evraimnesim999-source.github.io/PDFvero/resize-image.html</loc>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://evraimnesim999-source.github.io/PDFvero/convert-image.html</loc>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://evraimnesim999-source.github.io/PDFvero/images-to-pdf.html</loc>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://evraimnesim999-source.github.io/PDFvero/word-to-pdf.html</loc>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://evraimnesim999-source.github.io/PDFvero/excel-to-pdf.html</loc>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://evraimnesim999-source.github.io/PDFvero/csv-to-excel.html</loc>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://evraimnesim999-source.github.io/PDFvero/excel-to-csv.html</loc>
+        <priority>0.7</priority>
+    </url>
+
+</urlset>
