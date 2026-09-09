@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="l2UCtSrI8cbaCq5MuXtOjYLZrFOJynn7oybzt0jr46I" />
+
     <title>PDFvero - أدوات PDF والملفات أونلاين مجانًا</title>
 
     <meta name="description"
@@ -380,7 +383,6 @@
 
     </section>
 
-
     <div class="container">
 
         <!-- الأدوات الشائعة -->
@@ -421,7 +423,6 @@
             </div>
 
         </section>
-
 
         <!-- PDF -->
 
@@ -470,7 +471,6 @@
 
         </section>
 
-
         <!-- الصور -->
 
         <section class="section">
@@ -518,7 +518,6 @@
 
         </section>
 
-
         <!-- Word -->
 
         <section class="section">
@@ -541,7 +540,6 @@
             </div>
 
         </section>
-
 
         <!-- Excel -->
 
@@ -582,7 +580,6 @@
 
         </section>
 
-
         <div class="no-results" id="noResults">
             😕 مش لاقي الأداة دي.
             <br>
@@ -593,7 +590,6 @@
 
 </main>
 
-
 <footer>
 
     <p>
@@ -602,7 +598,6 @@
     </p>
 
 </footer>
-
 
 <script>
 
@@ -619,7 +614,6 @@
             .replace(/\s+/g, " ");
 
     }
-
 
     function searchTools() {
 
@@ -655,7 +649,6 @@
 
         });
 
-
         const noResults =
             document.getElementById("noResults");
 
@@ -665,7 +658,6 @@
                 : "none";
     }
 
-
     function toggleTheme() {
 
         document.body.classList.toggle("dark");
@@ -674,7 +666,7 @@
             document.body.classList.contains("dark");
 
         localStorage.setItem(
-            "pdfora-theme",
+            "pdfvero-theme",
             isDark ? "dark" : "light"
         );
 
@@ -682,11 +674,10 @@
             isDark ? "☀️" : "🌙";
     }
 
-
     document.addEventListener("DOMContentLoaded", function () {
 
         const savedTheme =
-            localStorage.getItem("pdfora-theme");
+            localStorage.getItem("pdfvero-theme");
 
         if (savedTheme === "dark") {
 
