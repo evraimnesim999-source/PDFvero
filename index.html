@@ -1,463 +1,306 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PDFora - أدواتك في مكان واحد</title>
+    <title>PDFvero - أدوات PDF والملفات أونلاين مجانًا</title>
+
+    <meta name="description"
+          content="PDFvero منصة مجانية لأدوات PDF والملفات أونلاين. ضغط ودمج وتقسيم وتحويل ملفات PDF والصور وWord وExcel بسهولة.">
+
+    <meta name="keywords"
+          content="PDFvero, PDF, أدوات PDF, ضغط PDF, دمج PDF, تقسيم PDF, PDF إلى Word, صور إلى PDF, ضغط الصور, Word, Excel, أدوات الملفات">
+
+    <meta name="author" content="PDFvero">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#e11d48">
+
+    <meta property="og:title" content="PDFvero - أدوات PDF والملفات أونلاين">
+    <meta property="og:description"
+          content="أدوات مجانية وسهلة لمعالجة ملفات PDF والصور وWord وExcel.">
+    <meta property="og:type" content="website">
 
     <style>
-
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
         }
 
         :root {
-            --bg: #fff7f7;
-            --hero: #ffffff;
-            --card: #fff1f2;
-            --card-hover: #ffe4e6;
-            --border: #fecdd3;
-
-            --main: #e53935;
-            --main-dark: #991b1b;
-            --main-light: #fff1f2;
-
-            --text: #1f2937;
-            --muted: #6b7280;
-
-            --input: #ffffff;
-            --footer: #7f1d1d;
+            --primary: #e11d48;
+            --primary-dark: #be123c;
+            --bg: #fff7f9;
+            --card: #ffffff;
+            --text: #18181b;
+            --muted: #71717a;
+            --border: #f1d5dc;
+            --soft: #ffe4e9;
+            --shadow: 0 10px 30px rgba(0, 0, 0, .07);
         }
 
         body.dark {
-            --bg: #18181b;
-            --hero: #27272a;
-            --card: #27272a;
-            --card-hover: #3f3f46;
-            --border: #52525b;
-
-            --main: #ef4444;
-            --main-dark: #fca5a5;
-            --main-light: #3f1d1d;
-
+            --bg: #111113;
+            --card: #1c1c20;
             --text: #f4f4f5;
-            --muted: #d4d4d8;
-
-            --input: #27272a;
-            --footer: #450a0a;
+            --muted: #a1a1aa;
+            --border: #303038;
+            --soft: #351923;
+            --shadow: 0 10px 30px rgba(0, 0, 0, .3);
         }
 
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Tahoma, sans-serif;
             background: var(--bg);
             color: var(--text);
-            transition: 0.3s;
+            line-height: 1.6;
+            transition: .3s;
         }
 
-        /* =========================
-           NAVBAR
-        ========================== */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
         .navbar {
-            width: 100%;
-            background: var(--hero);
-            border-bottom: 1px solid var(--border);
-            padding: 16px 5%;
             position: sticky;
             top: 0;
             z-index: 1000;
+            background: var(--card);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
 
+        .nav-container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 15px 20px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--main);
-        }
-
-        .logo span {
-            color: var(--text);
+            font-size: 27px;
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: -1px;
         }
 
         .nav-actions {
             display: flex;
-            gap: 10px;
             align-items: center;
+            gap: 10px;
         }
 
-        .theme-btn,
-        .home-btn {
+        .nav-btn {
             border: 1px solid var(--border);
-            background: var(--main-light);
-            color: var(--main-dark);
-
-            width: 42px;
-            height: 42px;
-
-            border-radius: 12px;
-
+            background: var(--card);
+            color: var(--text);
+            padding: 9px 14px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 19px;
+            font-size: 14px;
         }
 
-        .theme-btn:hover,
-        .home-btn:hover {
-            transform: translateY(-2px);
+        .nav-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
         }
-
-        /* =========================
-           HERO
-        ========================== */
 
         .hero {
-            background:
-                radial-gradient(
-                    circle at top right,
-                    #ffe4e6 0%,
-                    var(--hero) 45%
-                );
-
-            padding: 75px 20px 55px;
+            max-width: 1150px;
+            margin: auto;
+            padding: 70px 20px 45px;
             text-align: center;
         }
 
-        body.dark .hero {
-            background:
-                radial-gradient(
-                    circle at top right,
-                    #3f1d1d 0%,
-                    var(--hero) 50%
-                );
+        .badge {
+            display: inline-block;
+            background: var(--soft);
+            color: var(--primary);
+            padding: 7px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 18px;
         }
 
         .hero h1 {
-            margin: 0;
-
-            font-size: 48px;
-
-            color: var(--main);
+            font-size: clamp(35px, 6vw, 60px);
+            line-height: 1.15;
+            margin-bottom: 18px;
         }
 
-        .hero h2 {
-            margin: 15px 0 12px;
-
-            font-size: 30px;
-
-            color: var(--text);
+        .hero h1 span {
+            color: var(--primary);
         }
 
         .hero p {
-            max-width: 650px;
-            margin: 0 auto;
-
+            max-width: 720px;
+            margin: auto;
             color: var(--muted);
-
             font-size: 18px;
-            line-height: 1.8;
         }
 
-        /* =========================
-           SEARCH
-        ========================== */
-
         .search-box {
-            max-width: 760px;
-            margin: 30px auto 0;
-
+            max-width: 720px;
+            margin: 35px auto 0;
             position: relative;
         }
 
         .search-box input {
             width: 100%;
-
-            padding: 18px 55px 18px 20px;
-
-            border-radius: 16px;
-
+            padding: 18px 22px;
             border: 2px solid var(--border);
-
-            background: var(--input);
-            color: var(--text);
-
-            font-size: 17px;
-
+            border-radius: 16px;
             outline: none;
-
-            box-shadow:
-                0 10px 30px rgba(127, 29, 29, 0.08);
+            background: var(--card);
+            color: var(--text);
+            font-size: 16px;
+            box-shadow: var(--shadow);
         }
 
         .search-box input:focus {
-            border-color: var(--main);
+            border-color: var(--primary);
         }
 
-        .search-icon {
-            position: absolute;
-
-            right: 18px;
-            top: 50%;
-
-            transform: translateY(-50%);
-
-            font-size: 23px;
+        .search-hint {
+            margin-top: 10px;
+            color: var(--muted);
+            font-size: 13px;
         }
-
-        /* =========================
-           MAIN
-        ========================== */
 
         .container {
-            width: 90%;
             max-width: 1150px;
-
-            margin: 50px auto;
+            margin: auto;
+            padding: 0 20px 60px;
         }
 
-        /* =========================
-           QUICK TOOLS
-        ========================== */
-
-        .quick-title {
-            text-align: center;
-
-            margin-bottom: 25px;
-
-            color: var(--main-dark);
+        .section {
+            margin-top: 45px;
         }
 
-        .tools {
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .section-title h2 {
+            font-size: 25px;
+        }
+
+        .section-title span {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .tools-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(230px, 1fr));
-
-            gap: 22px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
         }
 
-        .tool {
+        .tool-card {
+            display: block;
             background: var(--card);
-
             border: 1px solid var(--border);
-
-            padding: 28px 22px;
-
-            border-radius: 20px;
-
-            text-align: center;
-
-            box-shadow:
-                0 10px 30px
-                rgba(127, 29, 29, 0.07);
-
-            transition: 0.25s;
+            border-radius: 18px;
+            padding: 22px;
+            min-height: 165px;
+            transition: .2s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .03);
         }
 
-        .tool:hover {
-            transform: translateY(-7px);
-
-            background: var(--card-hover);
-
-            box-shadow:
-                0 16px 35px
-                rgba(127, 29, 29, 0.14);
-        }
-
-        .tool.hidden {
-            display: none;
+        .tool-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
         }
 
         .icon {
-            width: 70px;
-            height: 70px;
-
-            margin: 0 auto 18px;
-
+            width: 50px;
+            height: 50px;
             display: flex;
+            align-items: center;
             justify-content: center;
-            align-items: center;
-
-            background: white;
-
-            border-radius: 20px;
-
-            font-size: 36px;
-
-            box-shadow:
-                0 5px 15px
-                rgba(127, 29, 29, 0.08);
+            border-radius: 14px;
+            background: var(--soft);
+            font-size: 25px;
+            margin-bottom: 15px;
         }
 
-        body.dark .icon {
-            background: #3f3f46;
+        .tool-card h3 {
+            font-size: 17px;
+            margin-bottom: 7px;
         }
 
-        .tool h3 {
-            margin: 0 0 10px;
-
-            font-size: 21px;
-
-            color: var(--main-dark);
-        }
-
-        .tool p {
-            min-height: 48px;
-
-            margin: 0 0 20px;
-
+        .tool-card p {
             color: var(--muted);
-
-            line-height: 1.7;
-
-            font-size: 15px;
+            font-size: 13px;
         }
 
-        /* =========================
-           BUTTON
-        ========================== */
-
-        .start-btn {
-            padding: 12px 28px;
-
-            border: none;
-
-            border-radius: 11px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--main),
-                    #ef4444
-                );
-
-            color: white;
-
-            font-size: 16px;
-
-            cursor: pointer;
-
-            transition: 0.2s;
+        .popular {
+            margin-top: 20px;
         }
 
-        .start-btn:hover {
-            transform: scale(1.04);
+        .popular .tools-grid {
+            grid-template-columns: repeat(3, 1fr);
         }
 
-        /* =========================
-           SECTION
-        ========================== */
-
-        .section {
-            margin-top: 60px;
-        }
-
-        .section-header {
-            display: flex;
-
-            align-items: center;
-            gap: 12px;
-
-            margin-bottom: 22px;
-        }
-
-        .section-header h2 {
-            margin: 0;
-
-            color: var(--main-dark);
-
-            font-size: 27px;
-        }
-
-        .section-line {
-            height: 3px;
-
-            flex: 1;
-
-            background:
-                linear-gradient(
-                    to left,
-                    var(--main),
-                    transparent
-                );
-
-            border-radius: 50px;
-        }
-
-        /* =========================
-           NO RESULTS
-        ========================== */
-
-        #noResults {
+        .no-results {
             display: none;
-
             text-align: center;
-
-            margin-top: 25px;
-
-            padding: 22px;
-
-            background: var(--main-light);
-
+            padding: 35px;
+            background: var(--card);
             border: 1px solid var(--border);
-
-            border-radius: 15px;
-
-            color: var(--main-dark);
-
-            font-weight: bold;
+            border-radius: 18px;
+            color: var(--muted);
+            margin-top: 20px;
         }
-
-        /* =========================
-           FOOTER
-        ========================== */
 
         footer {
-            margin-top: 80px;
-
-            background: var(--footer);
-
-            color: white;
-
+            border-top: 1px solid var(--border);
+            background: var(--card);
             text-align: center;
-
             padding: 30px 20px;
-
-            line-height: 1.8;
+            color: var(--muted);
         }
 
         footer strong {
-            font-size: 20px;
+            color: var(--primary);
         }
 
-        /* =========================
-           MOBILE
-        ========================== */
+        @media (max-width: 900px) {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
 
-        @media (max-width: 650px) {
+            .popular .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
 
-            .navbar {
-                padding: 14px 4%;
+        @media (max-width: 600px) {
+            .nav-container {
+                padding: 13px 15px;
             }
 
             .logo {
                 font-size: 23px;
             }
 
+            .nav-btn {
+                padding: 8px 10px;
+            }
+
             .hero {
-                padding: 55px 15px 40px;
-            }
-
-            .hero h1 {
-                font-size: 38px;
-            }
-
-            .hero h2 {
-                font-size: 24px;
+                padding: 50px 15px 35px;
             }
 
             .hero p {
@@ -465,325 +308,163 @@
             }
 
             .container {
-                width: 94%;
+                padding: 0 15px 45px;
             }
 
-            .section-header h2 {
-                font-size: 23px;
+            .tools-grid,
+            .popular .tools-grid {
+                grid-template-columns: 1fr;
             }
 
-            .tool {
-                padding: 25px 18px;
+            .tool-card {
+                min-height: auto;
             }
-
         }
-
     </style>
-
 </head>
 
 <body>
 
-    <!-- NAVBAR -->
+<header class="navbar">
+    <div class="nav-container">
 
-    <nav class="navbar">
-
-        <div class="logo">
-            PDF<span>ora</span>
-        </div>
+        <a href="index.html" class="logo">
+            PDFvero
+        </a>
 
         <div class="nav-actions">
+            <a href="index.html" class="nav-btn">الرئيسية</a>
 
-            <button
-                class="home-btn"
-                onclick="window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                })"
-                title="الرئيسية"
-            >
-                🏠
-            </button>
-
-            <button
-                class="theme-btn"
-                id="themeBtn"
-                onclick="toggleTheme()"
-                title="تغيير الوضع"
-            >
+            <button class="nav-btn" onclick="toggleTheme()" id="themeBtn">
                 🌙
             </button>
-
         </div>
 
-    </nav>
+    </div>
+</header>
 
-
-    <!-- HERO -->
+<main>
 
     <section class="hero">
 
-        <h1>PDFora</h1>
+        <div class="badge">
+            أدوات ملفات مجانية أونلاين
+        </div>
 
-        <h2>
-            أدواتك للملفات في مكان واحد
-        </h2>
+        <h1>
+            كل أدوات ملفاتك في
+            <span>PDFvero</span>
+        </h1>
 
         <p>
-            اضغط، حوّل، ادمج، قسّم وعدّل ملفاتك
-            بسهولة وسرعة.
+            ضغط ودمج وتقسيم وتحويل ملفات PDF،
+            بالإضافة إلى أدوات الصور وWord وExcel،
+            بسهولة ومن غير برامج.
         </p>
-
-
-        <!-- SEARCH -->
 
         <div class="search-box">
 
-            <span class="search-icon">
-                🔎
-            </span>
-
             <input
-                type="text"
+                type="search"
                 id="searchInput"
-                placeholder="ابحث بالعربي أو الإنجليزي... مثل: ضغط PDF أو اكسل"
+                placeholder="ابحث عن أداة... مثل ضغط PDF أو Excel أو صور"
                 oninput="searchTools()"
+                autocomplete="off"
             >
+
+            <div class="search-hint">
+                جرّب: PDF — ضغط — دمج — تقسيم — صور — Word — Excel
+            </div>
 
         </div>
 
     </section>
 
 
-    <main class="container">
+    <div class="container">
 
+        <!-- الأدوات الشائعة -->
 
-        <!-- الأدوات السريعة -->
+        <section class="section popular">
 
-        <div class="section">
+            <div class="section-title">
+                <h2>🔥 الأدوات الأكثر استخدامًا</h2>
+                <span>ابدأ بسرعة</span>
+            </div>
 
-            <h2 class="quick-title">
-                ⭐ الأدوات الأكثر استخدامًا
-            </h2>
+            <div class="tools-grid">
 
-            <div class="tools">
+                <a href="compress-pdf.html"
+                   class="tool-card searchable"
+                   data-keywords="ضغط pdf compress pdf ضغط بي دي اف">
+                    <div class="icon">📦</div>
+                    <h3>ضغط PDF</h3>
+                    <p>تقليل حجم ملف PDF بسهولة.</p>
+                </a>
 
-                <div class="tool">
+                <a href="merge-pdf.html"
+                   class="tool-card searchable"
+                   data-keywords="دمج pdf merge pdf دمج بي دي اف">
+                    <div class="icon">🔗</div>
+                    <h3>دمج PDF</h3>
+                    <p>اجمع أكثر من ملف PDF في ملف واحد.</p>
+                </a>
 
-                    <div class="icon">
-                        📄
-                    </div>
-
-                    <h3>
-                        ضغط PDF
-                    </h3>
-
-                    <p>
-                        قلل حجم ملفات PDF بسهولة.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='compress-pdf.html'"
-                    >
-                        ابدأ الآن
-                    </button>
-
-                </div>
-
-
-                <div class="tool">
-
-                    <div class="icon">
-                        🖼️
-                    </div>
-
-                    <h3>
-                        ضغط الصور
-                    </h3>
-
-                    <p>
-                        قلل حجم الصور بسرعة.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='compress-image.html'"
-                    >
-                        ابدأ الآن
-                    </button>
-
-                </div>
-
-
-                <div class="tool">
-
-                    <div class="icon">
-                        🖼️➡️📄
-                    </div>
-
-                    <h3>
-                        الصور إلى PDF
-                    </h3>
-
-                    <p>
-                        حوّل صورة أو عدة صور إلى PDF.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='images-to-pdf.html'"
-                    >
-                        ابدأ الآن
-                    </button>
-
-                </div>
+                <a href="split-pdf.html"
+                   class="tool-card searchable"
+                   data-keywords="تقسيم pdf split pdf استخراج صفحات">
+                    <div class="icon">✂️</div>
+                    <h3>تقسيم PDF</h3>
+                    <p>استخراج صفحات محددة من ملف PDF.</p>
+                </a>
 
             </div>
 
-        </div>
+        </section>
 
 
         <!-- PDF -->
 
-        <section class="section searchable-section">
+        <section class="section">
 
-            <div class="section-header">
-
-                <h2>
-                    📄 أدوات PDF
-                </h2>
-
-                <div class="section-line"></div>
-
+            <div class="section-title">
+                <h2>📄 أدوات PDF</h2>
+                <span>PDF Tools</span>
             </div>
 
-            <div class="tools">
+            <div class="tools-grid">
 
-                <div
-                    class="tool searchable"
-                    data-keywords="
-                        ضغط pdf
-                        بي دي اف
-                        pdf
-                    "
-                >
+                <a href="compress-pdf.html"
+                   class="tool-card searchable"
+                   data-keywords="ضغط pdf compress">
+                    <div class="icon">📦</div>
+                    <h3>ضغط PDF</h3>
+                    <p>تقليل حجم ملفات PDF.</p>
+                </a>
 
-                    <div class="icon">
-                        📄
-                    </div>
+                <a href="merge-pdf.html"
+                   class="tool-card searchable"
+                   data-keywords="دمج pdf merge">
+                    <div class="icon">🔗</div>
+                    <h3>دمج PDF</h3>
+                    <p>دمج عدة ملفات PDF في ملف واحد.</p>
+                </a>
 
-                    <h3>
-                        ضغط PDF
-                    </h3>
+                <a href="split-pdf.html"
+                   class="tool-card searchable"
+                   data-keywords="تقسيم pdf split">
+                    <div class="icon">✂️</div>
+                    <h3>تقسيم PDF</h3>
+                    <p>استخراج صفحات من ملف PDF.</p>
+                </a>
 
-                    <p>
-                        قلل حجم ملف PDF.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='compress-pdf.html'"
-                    >
-                        ابدأ
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="tool searchable"
-                    data-keywords="
-                        دمج pdf
-                        دمج بي دي اف
-                        merge pdf
-                    "
-                >
-
-                    <div class="icon">
-                        📑
-                    </div>
-
-                    <h3>
-                        دمج PDF
-                    </h3>
-
-                    <p>
-                        ادمج عدة ملفات PDF في ملف واحد.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='merge-pdf.html'"
-                    >
-                        ابدأ
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="tool searchable"
-                    data-keywords="
-                        تقسيم pdf
-                        تقسيم بي دي اف
-                        split pdf
-                    "
-                >
-
-                    <div class="icon">
-                        ✂️
-                    </div>
-
-                    <h3>
-                        تقسيم PDF
-                    </h3>
-
-                    <p>
-                        استخرج صفحات معينة من PDF.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='split-pdf.html'"
-                    >
-                        ابدأ
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="tool searchable"
-                    data-keywords="
-                        pdf الى word
-                        pdf إلى word
-                        بي دي اف الى وورد
-                        بي دي اف إلى وورد
-                        pdf word
-                    "
-                >
-
-                    <div class="icon">
-                        📝
-                    </div>
-
-                    <h3>
-                        PDF إلى Word
-                    </h3>
-
-                    <p>
-                        استخرج النص وأنشئ ملف Word.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='pdf-to-word.html'"
-                    >
-                        ابدأ
-                    </button>
-
-                </div>
+                <a href="pdf-to-word.html"
+                   class="tool-card searchable"
+                   data-keywords="pdf word pdf to word بي دي اف وورد تحويل">
+                    <div class="icon">📝</div>
+                    <h3>PDF إلى Word</h3>
+                    <p>تحويل محتوى PDF إلى ملف Word.</p>
+                </a>
 
             </div>
 
@@ -794,145 +475,44 @@
 
         <section class="section">
 
-            <div class="section-header">
-
-                <h2>
-                    🖼️ أدوات الصور
-                </h2>
-
-                <div class="section-line"></div>
-
+            <div class="section-title">
+                <h2>🖼️ أدوات الصور</h2>
+                <span>Image Tools</span>
             </div>
 
-            <div class="tools">
+            <div class="tools-grid">
 
-                <div
-                    class="tool searchable"
-                    data-keywords="
-                        ضغط الصور
-                        ضغط صورة
-                        compress image
-                        صور
-                    "
-                >
+                <a href="compress-image.html"
+                   class="tool-card searchable"
+                   data-keywords="ضغط الصور compress image صورة صور">
+                    <div class="icon">🗜️</div>
+                    <h3>ضغط الصور</h3>
+                    <p>تقليل حجم الصور مع الحفاظ على الجودة قدر الإمكان.</p>
+                </a>
 
-                    <div class="icon">
-                        🖼️
-                    </div>
+                <a href="resize-image.html"
+                   class="tool-card searchable"
+                   data-keywords="تغيير حجم الصور resize image صورة">
+                    <div class="icon">📐</div>
+                    <h3>تغيير حجم الصور</h3>
+                    <p>تعديل أبعاد الصور بسهولة.</p>
+                </a>
 
-                    <h3>
-                        ضغط الصور
-                    </h3>
+                <a href="convert-image.html"
+                   class="tool-card searchable"
+                   data-keywords="تحويل الصور convert image jpg png webp">
+                    <div class="icon">🔄</div>
+                    <h3>تحويل الصور</h3>
+                    <p>تحويل الصور بين الصيغ المختلفة.</p>
+                </a>
 
-                    <p>
-                        قلل حجم الصور.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='compress-image.html'"
-                    >
-                        ابدأ
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="tool searchable"
-                    data-keywords="
-                        تغيير حجم الصور
-                        تغيير الحجم
-                        تصغير الصور
-                        resize image
-                    "
-                >
-
-                    <div class="icon">
-                        📐
-                    </div>
-
-                    <h3>
-                        تغيير حجم الصور
-                    </h3>
-
-                    <p>
-                        غيّر عرض وارتفاع الصورة.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='resize-image.html'"
-                    >
-                        ابدأ
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="tool searchable"
-                    data-keywords="
-                        تحويل الصور
-                        تحويل jpg
-                        تحويل png
-                        تحويل webp
-                        convert image
-                    "
-                >
-
-                    <div class="icon">
-                        🔄
-                    </div>
-
-                    <h3>
-                        تحويل الصور
-                    </h3>
-
-                    <p>
-                        حوّل بين JPG و PNG و WebP.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='convert-image.html'"
-                    >
-                        ابدأ
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="tool searchable"
-                    data-keywords="
-                        الصور الى pdf
-                        الصور إلى pdf
-                        صور الى بي دي اف
-                        images to pdf
-                    "
-                >
-
-                    <div class="icon">
-                        🖼️➡️📄
-                    </div>
-
-                    <h3>
-                        تحويل الصور إلى PDF
-                    </h3>
-
-                    <p>
-                        حوّل عدة صور إلى ملف PDF واحد.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='images-to-pdf.html'"
-                    >
-                        ابدأ
-                    </button>
-
-                </div>
+                <a href="images-to-pdf.html"
+                   class="tool-card searchable"
+                   data-keywords="صور إلى pdf images to pdf jpg pdf">
+                    <div class="icon">📄</div>
+                    <h3>الصور إلى PDF</h3>
+                    <p>تحويل مجموعة صور إلى ملف PDF.</p>
+                </a>
 
             </div>
 
@@ -943,49 +523,20 @@
 
         <section class="section">
 
-            <div class="section-header">
-
-                <h2>
-                    📝 أدوات Word
-                </h2>
-
-                <div class="section-line"></div>
-
+            <div class="section-title">
+                <h2>📝 أدوات Word</h2>
+                <span>Word Tools</span>
             </div>
 
-            <div class="tools">
+            <div class="tools-grid">
 
-                <div
-                    class="tool searchable"
-                    data-keywords="
-                        word الى pdf
-                        word إلى pdf
-                        وورد الى pdf
-                        وورد إلى pdf
-                        word pdf
-                    "
-                >
-
-                    <div class="icon">
-                        📝
-                    </div>
-
-                    <h3>
-                        Word إلى PDF
-                    </h3>
-
-                    <p>
-                        حوّل ملفات Word إلى PDF.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='word-to-pdf.html'"
-                    >
-                        ابدأ
-                    </button>
-
-                </div>
+                <a href="word-to-pdf.html"
+                   class="tool-card searchable"
+                   data-keywords="word pdf word to pdf وورد بي دي اف تحويل">
+                    <div class="icon">📄</div>
+                    <h3>Word إلى PDF</h3>
+                    <p>تحويل مستندات Word إلى PDF.</p>
+                </a>
 
             </div>
 
@@ -996,306 +547,158 @@
 
         <section class="section">
 
-            <div class="section-header">
-
-                <h2>
-                    📊 أدوات Excel
-                </h2>
-
-                <div class="section-line"></div>
-
+            <div class="section-title">
+                <h2>📊 أدوات Excel</h2>
+                <span>Excel Tools</span>
             </div>
 
-            <div class="tools">
+            <div class="tools-grid">
 
-                <div
-                    class="tool searchable"
-                    data-keywords="
-                        excel الى pdf
-                        excel إلى pdf
-                        اكسل الى pdf
-                        اكسل إلى pdf
-                    "
-                >
+                <a href="excel-to-pdf.html"
+                   class="tool-card searchable"
+                   data-keywords="excel pdf excel to pdf اكسل بي دي اف">
+                    <div class="icon">📄</div>
+                    <h3>Excel إلى PDF</h3>
+                    <p>تحويل جداول Excel إلى PDF.</p>
+                </a>
 
-                    <div class="icon">
-                        📊
-                    </div>
+                <a href="csv-to-excel.html"
+                   class="tool-card searchable"
+                   data-keywords="csv excel csv to excel اكسل">
+                    <div class="icon">📊</div>
+                    <h3>CSV إلى Excel</h3>
+                    <p>تحويل ملفات CSV إلى Excel.</p>
+                </a>
 
-                    <h3>
-                        Excel إلى PDF
-                    </h3>
-
-                    <p>
-                        حوّل ملف Excel إلى PDF.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='excel-to-pdf.html'"
-                    >
-                        ابدأ
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="tool searchable"
-                    data-keywords="
-                        csv الى excel
-                        csv إلى excel
-                        سي اس في الى اكسل
-                        csv excel
-                    "
-                >
-
-                    <div class="icon">
-                        📋
-                    </div>
-
-                    <h3>
-                        CSV إلى Excel
-                    </h3>
-
-                    <p>
-                        حوّل CSV إلى ملف Excel.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='csv-to-excel.html'"
-                    >
-                        ابدأ
-                    </button>
-
-                </div>
-
-
-                <div
-                    class="tool searchable"
-                    data-keywords="
-                        excel الى csv
-                        excel إلى csv
-                        اكسل الى csv
-                        excel csv
-                    "
-                >
-
-                    <div class="icon">
-                        📁
-                    </div>
-
-                    <h3>
-                        Excel إلى CSV
-                    </h3>
-
-                    <p>
-                        حوّل Excel إلى ملف CSV.
-                    </p>
-
-                    <button
-                        class="start-btn"
-                        onclick="location.href='excel-to-csv.html'"
-                    >
-                        ابدأ
-                    </button>
-
-                </div>
+                <a href="excel-to-csv.html"
+                   class="tool-card searchable"
+                   data-keywords="excel csv excel to csv اكسل csv">
+                    <div class="icon">🔄</div>
+                    <h3>Excel إلى CSV</h3>
+                    <p>تحويل ملفات Excel إلى CSV.</p>
+                </a>
 
             </div>
 
         </section>
 
 
-        <div id="noResults">
-            😕 مش لاقي الأداة دي. جرّب اسم مختلف.
+        <div class="no-results" id="noResults">
+            😕 مش لاقي الأداة دي.
+            <br>
+            جرّب اسم تاني مثل: PDF، صور، Word، Excel، ضغط، دمج.
         </div>
 
-    </main>
+    </div>
+
+</main>
 
 
-    <footer>
+<footer>
 
-        <strong>PDFora</strong>
+    <p>
+        © 2026 <strong>PDFvero</strong>
+        — أدوات الملفات أونلاين
+    </p>
 
-        <br>
-
-        أدوات مجانية وسريعة للملفات والصور ❤️
-
-        <br>
-
-        © 2026 PDFora
-
-    </footer>
+</footer>
 
 
-    <script>
+<script>
 
-        /* =========================
-           البحث
-        ========================== */
+    function normalizeText(text) {
 
-        function normalizeText(text) {
+        return text
+            .toLowerCase()
+            .trim()
+            .replace(/أ|إ|آ/g, "ا")
+            .replace(/ة/g, "ه")
+            .replace(/ى/g, "ي")
+            .replace(/ؤ/g, "و")
+            .replace(/ئ/g, "ي")
+            .replace(/\s+/g, " ");
 
-            return text
-                .toLowerCase()
-                .replace(/[\u064B-\u065F\u0670]/g, "")
-                .replace(/[إأآٱ]/g, "ا")
-                .replace(/ى/g, "ي")
-                .replace(/ة/g, "ه")
-                .replace(/\s+/g, " ")
-                .trim();
-
-        }
+    }
 
 
-        function searchTools() {
+    function searchTools() {
 
-            const searchInput =
-                document.getElementById("searchInput");
+        const input =
+            normalizeText(
+                document.getElementById("searchInput").value
+            );
 
-            const searchText =
-                normalizeText(searchInput.value);
+        const cards =
+            document.querySelectorAll(".searchable");
 
-            const tools =
-                document.querySelectorAll(".searchable");
+        let found = 0;
 
-            const noResults =
-                document.getElementById("noResults");
+        cards.forEach(card => {
 
-            let found = false;
+            const text =
+                normalizeText(
+                    card.innerText + " " +
+                    (card.dataset.keywords || "")
+                );
 
+            if (input === "" || text.includes(input)) {
 
-            tools.forEach(function(tool) {
+                card.style.display = "";
 
-                const keywords =
-                    normalizeText(
-                        tool.dataset.keywords || ""
-                    );
-
-                const visibleText =
-                    normalizeText(
-                        tool.innerText
-                    );
-
-                const combined =
-                    keywords + " " + visibleText;
-
-
-                if (
-                    searchText === "" ||
-                    combined.includes(searchText)
-                ) {
-
-                    tool.classList.remove("hidden");
-
-                    found = true;
-
-                } else {
-
-                    tool.classList.add("hidden");
-
-                }
-
-            });
-
-
-            if (
-                searchText !== "" &&
-                !found
-            ) {
-
-                noResults.style.display =
-                    "block";
+                found++;
 
             } else {
 
-                noResults.style.display =
-                    "none";
+                card.style.display = "none";
 
             }
 
-        }
+        });
 
 
-        /* =========================
-           الوضع الليلي
-        ========================== */
+        const noResults =
+            document.getElementById("noResults");
 
-        function toggleTheme() {
-
-            const body =
-                document.body;
-
-            const themeBtn =
-                document.getElementById("themeBtn");
+        noResults.style.display =
+            input !== "" && found === 0
+                ? "block"
+                : "none";
+    }
 
 
-            body.classList.toggle("dark");
+    function toggleTheme() {
 
+        document.body.classList.toggle("dark");
 
-            if (
-                body.classList.contains("dark")
-            ) {
+        const isDark =
+            document.body.classList.contains("dark");
 
-                themeBtn.textContent = "☀️";
-
-                localStorage.setItem(
-                    "pdfora-theme",
-                    "dark"
-                );
-
-            } else {
-
-                themeBtn.textContent = "🌙";
-
-                localStorage.setItem(
-                    "pdfora-theme",
-                    "light"
-                );
-
-            }
-
-        }
-
-
-        /* =========================
-           حفظ الوضع
-        ========================== */
-
-        window.addEventListener(
-            "DOMContentLoaded",
-            function() {
-
-                const savedTheme =
-                    localStorage.getItem(
-                        "pdfora-theme"
-                    );
-
-                const themeBtn =
-                    document.getElementById(
-                        "themeBtn"
-                    );
-
-
-                if (
-                    savedTheme === "dark"
-                ) {
-
-                    document.body.classList.add(
-                        "dark"
-                    );
-
-                    themeBtn.textContent = "☀️";
-
-                }
-
-            }
+        localStorage.setItem(
+            "pdfora-theme",
+            isDark ? "dark" : "light"
         );
 
-    </script>
+        document.getElementById("themeBtn").textContent =
+            isDark ? "☀️" : "🌙";
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const savedTheme =
+            localStorage.getItem("pdfora-theme");
+
+        if (savedTheme === "dark") {
+
+            document.body.classList.add("dark");
+
+            document.getElementById("themeBtn").textContent =
+                "☀️";
+        }
+
+    });
+
+</script>
 
 </body>
-
 </html>
