@@ -6,7 +6,7 @@
 
   <title>الباشمحاسب - الحسابات والمبيعات التجارية</title>
 
-  <meta name="description" content="الباشمحاسب للحسابات التجارية وإدارة المنتجات والمبيعات والمخزون وحساب الأرباح اليومية والشهرية.">
+  <meta name="description" content="الباشمحاسب للحسابات التجارية وإدارة المنتجات والمبيعات والمخزون والمرتجعات وحساب الأرباح اليومية والشهرية.">
 
   <style>
     :root {
@@ -20,6 +20,7 @@
       --soft: #eef5ff;
       --danger: #dc2626;
       --success: #16a34a;
+      --warning: #d97706;
       --shadow: 0 12px 35px rgba(37,99,235,.10);
     }
 
@@ -440,8 +441,17 @@
       color: var(--danger);
     }
 
+    .warning-btn {
+      background: #fef3c7;
+      color: var(--warning);
+    }
+
     body.dark .danger-btn {
       background: rgba(220,38,38,.13);
+    }
+
+    body.dark .warning-btn {
+      background: rgba(217,119,6,.13);
     }
 
     .results-grid {
@@ -482,6 +492,10 @@
 
     .message.success {
       color: var(--success);
+    }
+
+    .message.warning {
+      color: var(--warning);
     }
 
     .mode-buttons {
@@ -676,12 +690,22 @@
       color: var(--danger);
     }
 
+    .return-btn {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
     body.dark .edit-btn {
       background: rgba(37,99,235,.15);
     }
 
     body.dark .delete-btn {
       background: rgba(220,38,38,.13);
+    }
+
+    body.dark .return-btn {
+      background: rgba(217,119,6,.13);
+      color: #fbbf24;
     }
 
     .sale-type-buttons {
@@ -718,6 +742,66 @@
       margin-bottom: 20px;
     }
 
+    .return-box {
+      margin-top: 25px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      background: var(--soft);
+      border-radius: 15px;
+    }
+
+    .return-box h4 {
+      margin: 0 0 7px;
+      font-size: 17px;
+    }
+
+    .return-box p {
+      margin: 0 0 15px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .return-preview {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+      margin-top: 15px;
+    }
+
+    .return-preview-box {
+      padding: 12px;
+      border-radius: 12px;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+
+    .return-preview-box span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .return-history {
+      margin-top: 25px;
+    }
+
+    .return-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    body.dark .return-badge {
+      background: rgba(217,119,6,.13);
+      color: #fbbf24;
+    }
+
     .footer {
       text-align: center;
       color: var(--muted);
@@ -739,6 +823,10 @@
       }
 
       .sale-preview {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .return-preview {
         grid-template-columns: repeat(2, 1fr);
       }
     }
@@ -879,6 +967,10 @@
         grid-template-columns: 1fr 1fr;
       }
 
+      .return-preview {
+        grid-template-columns: 1fr 1fr;
+      }
+
       .navbar {
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
@@ -900,7 +992,8 @@
 
       .results-grid,
       .dashboard-grid,
-      .sale-preview {
+      .sale-preview,
+      .return-preview {
         grid-template-columns: 1fr;
       }
 
@@ -922,7 +1015,6 @@
       }
     }
 
-    /* طباعة الفاتورة فقط */
     @media print {
       body {
         background: white !important;
@@ -1014,7 +1106,7 @@
 
     <p class="hero-description">
       أدوات بسيطة وسريعة لحساب الأرباح والخصومات والـ IVA
-      وإدارة المنتجات والمبيعات والمخزون والتقارير اليومية والشهرية.
+      وإدارة المنتجات والمبيعات والمخزون والمرتجعات والتقارير اليومية والشهرية.
     </p>
 
     <div class="hero-actions">
@@ -1032,11 +1124,11 @@
       <button class="shortcut" onclick="openTool('invoice')">🧾 الفاتورة</button>
       <button class="shortcut" onclick="openTool('inventory')">📦 المخزون</button>
       <button class="shortcut" onclick="openTool('salesManager')">🛒 المبيعات</button>
+      <button class="shortcut" onclick="openTool('salesReport')">📊 التقارير</button>
     </div>
   </header>
 
 
-  <!-- الحسابات التجارية -->
   <section class="section" id="calculatorSection">
 
     <div class="section-title">
@@ -1092,12 +1184,11 @@
   </section>
 
 
-  <!-- إدارة المنتجات والمبيعات -->
   <section class="section">
 
     <div class="section-title">
       <h2>🛒 إدارة المنتجات والمبيعات</h2>
-      <p>إدارة المخزون والمبيعات والأرباح</p>
+      <p>إدارة المخزون والمبيعات والمرتجعات والأرباح</p>
     </div>
 
     <div class="tools-grid">
@@ -1114,7 +1205,7 @@
       <div class="tool-card">
         <div class="tool-icon">📊</div>
         <h3>التقارير</h3>
-        <p>راجع مبيعات وتكلفة وأرباح اليوم والشهر.</p>
+        <p>راجع المبيعات والتكلفة والأرباح والمرتجعات يوميًا وشهريًا.</p>
         <button class="tool-open" onclick="openTool('salesReport')">
           فتح التقارير
         </button>
@@ -1124,7 +1215,6 @@
   </section>
 
 
-  <!-- Workspace -->
   <section class="workspace" id="workspace">
 
     <div class="workspace-card">
@@ -1436,7 +1526,6 @@
 
         </div>
 
-
         <div class="invoice-preview" id="invoicePreview">
 
           <h3 id="previewShop">الفاتورة</h3>
@@ -1475,22 +1564,22 @@
         <div class="dashboard-grid">
 
           <div class="dashboard-card">
-            <span>مبيعات اليوم</span>
+            <span>صافي مبيعات اليوم</span>
             <strong id="managerTodaySales">0</strong>
           </div>
 
           <div class="dashboard-card">
-            <span>ربح اليوم</span>
+            <span>صافي ربح اليوم</span>
             <strong id="managerTodayProfit">0</strong>
           </div>
 
           <div class="dashboard-card">
-            <span>مبيعات الشهر</span>
+            <span>صافي مبيعات الشهر</span>
             <strong id="managerMonthSales">0</strong>
           </div>
 
           <div class="dashboard-card">
-            <span>ربح الشهر</span>
+            <span>صافي ربح الشهر</span>
             <strong id="managerMonthProfit">0</strong>
           </div>
 
@@ -1594,7 +1683,7 @@
           </div>
 
           <div class="field">
-            <label id="saleQuantityLabel">الكمية</label>
+            <label id="saleQuantityLabel">الكمية بالجملة</label>
             <input id="saleQuantity" type="number" min="1" step="1" value="1" oninput="previewSale()">
           </div>
 
@@ -1637,6 +1726,96 @@
 
         <div class="message" id="saleMessage"></div>
 
+
+        <!-- المرتجعات -->
+        <div class="return-box">
+
+          <h4>↩️ مرتجع بيع</h4>
+
+          <p>
+            اختار عملية البيع وحدد الكمية المرتجعة.
+            النظام هيرجع الكمية للمخزون ويخصم قيمتها من صافي المبيعات والربح.
+          </p>
+
+          <div class="form-grid">
+
+            <div class="field full">
+              <label>عملية البيع</label>
+              <select id="returnSale" onchange="previewReturn()">
+                <option value="">اختر عملية البيع</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>الكمية المرتجعة</label>
+              <input
+                id="returnQuantity"
+                type="number"
+                min="1"
+                step="1"
+                value="1"
+                oninput="previewReturn()"
+              >
+            </div>
+
+          </div>
+
+          <div class="return-preview">
+
+            <div class="return-preview-box">
+              <span>سعر الوحدة</span>
+              <strong id="returnUnitPrice">0</strong>
+            </div>
+
+            <div class="return-preview-box">
+              <span>قيمة المرتجع</span>
+              <strong id="returnTotal">0</strong>
+            </div>
+
+            <div class="return-preview-box">
+              <span>الربح المخصوم</span>
+              <strong id="returnProfit">0</strong>
+            </div>
+
+          </div>
+
+          <div class="action-row">
+            <button class="warning-btn" onclick="recordReturn()">
+              ↩️ تسجيل المرتجع
+            </button>
+          </div>
+
+          <div class="message" id="returnMessage"></div>
+
+        </div>
+
+
+        <div class="return-history">
+
+          <h3 class="sub-title">↩️ آخر المرتجعات</h3>
+
+          <div class="table-wrap">
+
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>التاريخ</th>
+                  <th>المنتج</th>
+                  <th>نوع البيع</th>
+                  <th>الكمية</th>
+                  <th>قيمة المرتجع</th>
+                  <th>الربح المخصوم</th>
+                </tr>
+              </thead>
+
+              <tbody id="returnsTable"></tbody>
+
+            </table>
+
+          </div>
+
+        </div>
+
       </div>
 
 
@@ -1663,17 +1842,17 @@
         <div class="dashboard-grid">
 
           <div class="dashboard-card">
-            <span>المبيعات</span>
+            <span>صافي المبيعات</span>
             <strong id="reportTodaySales">0</strong>
           </div>
 
           <div class="dashboard-card">
-            <span>التكلفة</span>
+            <span>صافي التكلفة</span>
             <strong id="reportTodayCost">0</strong>
           </div>
 
           <div class="dashboard-card">
-            <span>الربح</span>
+            <span>صافي الربح</span>
             <strong id="reportTodayProfit">0</strong>
           </div>
 
@@ -1690,23 +1869,50 @@
         <div class="dashboard-grid">
 
           <div class="dashboard-card">
-            <span>المبيعات</span>
+            <span>صافي المبيعات</span>
             <strong id="reportMonthSales">0</strong>
           </div>
 
           <div class="dashboard-card">
-            <span>التكلفة</span>
+            <span>صافي التكلفة</span>
             <strong id="reportMonthCost">0</strong>
           </div>
 
           <div class="dashboard-card">
-            <span>الربح</span>
+            <span>صافي الربح</span>
             <strong id="reportMonthProfit">0</strong>
           </div>
 
           <div class="dashboard-card">
             <span>عدد العمليات</span>
             <strong id="reportMonthOperations">0</strong>
+          </div>
+
+        </div>
+
+
+        <h3 class="sub-title">↩️ المرتجعات</h3>
+
+        <div class="dashboard-grid">
+
+          <div class="dashboard-card">
+            <span>قيمة مرتجعات اليوم</span>
+            <strong id="reportTodayReturns">0</strong>
+          </div>
+
+          <div class="dashboard-card">
+            <span>مرتجعات الشهر</span>
+            <strong id="reportMonthReturns">0</strong>
+          </div>
+
+          <div class="dashboard-card">
+            <span>كمية مرتجعات اليوم</span>
+            <strong id="reportTodayReturnQty">0</strong>
+          </div>
+
+          <div class="dashboard-card">
+            <span>كمية مرتجعات الشهر</span>
+            <strong id="reportMonthReturnQty">0</strong>
           </div>
 
         </div>
@@ -1734,6 +1940,31 @@
           </table>
         </div>
 
+
+        <h3 class="sub-title">↩️ تفاصيل المرتجعات</h3>
+
+        <div class="table-wrap">
+
+          <table class="data-table">
+
+            <thead>
+              <tr>
+                <th>التاريخ</th>
+                <th>المنتج</th>
+                <th>نوع البيع</th>
+                <th>الكمية</th>
+                <th>قيمة المرتجع</th>
+                <th>التكلفة</th>
+                <th>الربح المخصوم</th>
+              </tr>
+            </thead>
+
+            <tbody id="reportReturnsTable"></tbody>
+
+          </table>
+
+        </div>
+
       </div>
 
     </div>
@@ -1748,22 +1979,27 @@
 <script>
 "use strict";
 
+
 /* =========================
    البيانات الأساسية
 ========================= */
 
 const PRODUCTS_KEY = "shopcalc-products-v5";
 const SALES_KEY = "shopcalc-sales-v5";
+const RETURNS_KEY = "shopcalc-returns-v1";
 const THEME_KEY = "shopcalc-theme-v5";
 
 let products = [];
 let sales = [];
+let returns = [];
 
 let editingProductId = null;
 let saleType = "wholesale";
 let currentVatMode = "add";
 
+
 const TOOL_CONFIG = {
+
   profit: {
     title: "حساب الربح",
     subtitle: "احسب التكلفة والمبيعات والربح وهامش الربح",
@@ -1808,17 +2044,18 @@ const TOOL_CONFIG = {
 
   salesManager: {
     title: "إدارة المنتجات والمبيعات",
-    subtitle: "إدارة المنتجات والمخزون وتسجيل المبيعات",
+    subtitle: "إدارة المنتجات والمخزون وتسجيل المبيعات والمرتجعات",
     icon: "🛒",
     panel: "salesManagerPanel"
   },
 
   salesReport: {
     title: "تقارير المبيعات",
-    subtitle: "تابع المبيعات والتكلفة والأرباح",
+    subtitle: "تابع المبيعات والتكلفة والأرباح والمرتجعات",
     icon: "📊",
     panel: "salesReportPanel"
   }
+
 };
 
 
@@ -1829,7 +2066,9 @@ const TOOL_CONFIG = {
 const dom = {};
 
 function cacheDom() {
+
   const ids = [
+
     "workspace",
     "workspaceIcon",
     "workspaceTitle",
@@ -1912,6 +2151,14 @@ function cacheDom() {
     "previewProfit",
     "saleMessage",
 
+    "returnSale",
+    "returnQuantity",
+    "returnUnitPrice",
+    "returnTotal",
+    "returnProfit",
+    "returnMessage",
+    "returnsTable",
+
     "reportDay",
     "reportMonth",
     "reportTodaySales",
@@ -1922,18 +2169,27 @@ function cacheDom() {
     "reportMonthCost",
     "reportMonthProfit",
     "reportMonthOperations",
+    "reportTodayReturns",
+    "reportMonthReturns",
+    "reportTodayReturnQty",
+    "reportMonthReturnQty",
     "salesReportTable",
+    "reportReturnsTable",
 
     "themeBtn"
+
   ];
+
 
   ids.forEach(id => {
     dom[id] = document.getElementById(id);
   });
 
+
   dom.toolPanels = Object.values(TOOL_CONFIG)
     .map(item => document.getElementById(item.panel))
     .filter(Boolean);
+
 }
 
 
@@ -1942,27 +2198,35 @@ function cacheDom() {
 ========================= */
 
 function formatNumber(value) {
+
   const number = Number(value) || 0;
 
   return new Intl.NumberFormat("ar-EG", {
     maximumFractionDigits: 2
   }).format(number);
+
 }
 
 
 function getNumber(id) {
+
   const value = Number(dom[id]?.value);
+
   return Number.isFinite(value) ? value : 0;
+
 }
 
 
 function getToday() {
+
   const date = new Date();
+
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, "0");
   const d = String(date.getDate()).padStart(2, "0");
 
   return `${y}-${m}-${d}`;
+
 }
 
 
@@ -1972,13 +2236,16 @@ function getCurrentMonth() {
 
 
 function setText(id, value) {
+
   if (dom[id]) {
     dom[id].textContent = value;
   }
+
 }
 
 
 function showMessage(element, text, type = "error") {
+
   if (!element) return;
 
   element.textContent = text;
@@ -1987,19 +2254,24 @@ function showMessage(element, text, type = "error") {
   clearTimeout(element._timer);
 
   element._timer = setTimeout(() => {
+
     element.textContent = "";
     element.className = "message";
+
   }, 3500);
+
 }
 
 
 function escapeHtml(value) {
+
   return String(value ?? "")
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#039;");
+
 }
 
 
@@ -2008,35 +2280,87 @@ function escapeHtml(value) {
 ========================= */
 
 function loadData() {
+
   try {
-    const storedProducts = localStorage.getItem(PRODUCTS_KEY);
-    const storedSales = localStorage.getItem(SALES_KEY);
 
-    products = storedProducts ? JSON.parse(storedProducts) : [];
-    sales = storedSales ? JSON.parse(storedSales) : [];
+    const storedProducts =
+      localStorage.getItem(PRODUCTS_KEY);
 
-    if (!Array.isArray(products)) products = [];
-    if (!Array.isArray(sales)) sales = [];
+    const storedSales =
+      localStorage.getItem(SALES_KEY);
+
+    const storedReturns =
+      localStorage.getItem(RETURNS_KEY);
+
+
+    products = storedProducts
+      ? JSON.parse(storedProducts)
+      : [];
+
+    sales = storedSales
+      ? JSON.parse(storedSales)
+      : [];
+
+    returns = storedReturns
+      ? JSON.parse(storedReturns)
+      : [];
+
+
+    if (!Array.isArray(products)) {
+      products = [];
+    }
+
+    if (!Array.isArray(sales)) {
+      sales = [];
+    }
+
+    if (!Array.isArray(returns)) {
+      returns = [];
+    }
+
 
   } catch (error) {
+
     console.error("Storage read error:", error);
 
     products = [];
     sales = [];
+    returns = [];
+
   }
+
 }
 
 
 function saveData() {
+
   try {
-    localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products));
-    localStorage.setItem(SALES_KEY, JSON.stringify(sales));
+
+    localStorage.setItem(
+      PRODUCTS_KEY,
+      JSON.stringify(products)
+    );
+
+    localStorage.setItem(
+      SALES_KEY,
+      JSON.stringify(sales)
+    );
+
+    localStorage.setItem(
+      RETURNS_KEY,
+      JSON.stringify(returns)
+    );
+
     return true;
 
   } catch (error) {
+
     console.error("Storage save error:", error);
+
     return false;
+
   }
+
 }
 
 
@@ -2045,25 +2369,32 @@ function saveData() {
 ========================= */
 
 function scrollToCalculator() {
+
   document.getElementById("calculatorSection")?.scrollIntoView({
     behavior: "smooth",
     block: "start"
   });
+
 }
 
 
 function openTool(tool) {
+
   const config = TOOL_CONFIG[tool];
 
   if (!config) return;
+
 
   dom.toolPanels.forEach(panel => {
     panel.classList.remove("active");
   });
 
-  const panel = document.getElementById(config.panel);
+
+  const panel =
+    document.getElementById(config.panel);
 
   if (!panel) return;
+
 
   dom.workspaceIcon.textContent = config.icon;
   dom.workspaceTitle.textContent = config.title;
@@ -2072,28 +2403,43 @@ function openTool(tool) {
   panel.classList.add("active");
   dom.workspace.classList.add("active");
 
+
   if (tool === "invoice") {
+
     if (!dom.invoiceItems.children.length) {
       addInvoiceItem();
     }
+
   }
 
+
   if (tool === "salesManager") {
+
     renderProducts();
     renderProductSelect();
     updateManagerDashboard();
+    renderReturnSelect();
+    renderReturnsHistory();
+
   }
+
 
   if (tool === "salesReport") {
+
     updateReports();
+
   }
 
+
   requestAnimationFrame(() => {
+
     dom.workspace.scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
+
   });
+
 }
 
 
@@ -2107,30 +2453,69 @@ function closeTool() {
 ========================= */
 
 function calculateProfit() {
+
   const purchase = getNumber("profitPurchase");
   const selling = getNumber("profitSelling");
   const quantity = getNumber("profitQuantity");
 
-  if (purchase <= 0 || selling < 0 || quantity <= 0) {
+
+  if (
+    purchase <= 0 ||
+    selling < 0 ||
+    quantity <= 0
+  ) {
+
     showMessage(
       document.getElementById("profitMessage"),
       "من فضلك أدخل بيانات صحيحة.",
       "error"
     );
+
     return;
   }
 
-  const totalCost = purchase * quantity;
-  const totalSales = selling * quantity;
-  const unitProfit = selling - purchase;
-  const totalProfit = unitProfit * quantity;
-  const margin = (unitProfit / purchase) * 100;
 
-  setText("profitTotalCost", formatNumber(totalCost));
-  setText("profitTotalSales", formatNumber(totalSales));
-  setText("profitTotalProfit", formatNumber(totalProfit));
-  setText("profitUnitProfit", formatNumber(unitProfit));
-  setText("profitMargin", formatNumber(margin) + "%");
+  const totalCost =
+    purchase * quantity;
+
+  const totalSales =
+    selling * quantity;
+
+  const unitProfit =
+    selling - purchase;
+
+  const totalProfit =
+    unitProfit * quantity;
+
+  const margin =
+    (unitProfit / purchase) * 100;
+
+
+  setText(
+    "profitTotalCost",
+    formatNumber(totalCost)
+  );
+
+  setText(
+    "profitTotalSales",
+    formatNumber(totalSales)
+  );
+
+  setText(
+    "profitTotalProfit",
+    formatNumber(totalProfit)
+  );
+
+  setText(
+    "profitUnitProfit",
+    formatNumber(unitProfit)
+  );
+
+  setText(
+    "profitMargin",
+    formatNumber(margin) + "%"
+  );
+
 }
 
 
@@ -2139,24 +2524,49 @@ function calculateProfit() {
 ========================= */
 
 function calculateDiscount() {
+
   const price = getNumber("discountPrice");
   const percent = getNumber("discountPercent");
 
-  if (price <= 0 || percent < 0 || percent > 100) {
+
+  if (
+    price <= 0 ||
+    percent < 0 ||
+    percent > 100
+  ) {
+
     showMessage(
       document.getElementById("discountMessage"),
       "أدخل سعرًا صحيحًا ونسبة خصم بين 0 و100.",
       "error"
     );
+
     return;
   }
 
-  const discount = price * percent / 100;
-  const finalPrice = price - discount;
 
-  setText("discountOriginal", formatNumber(price));
-  setText("discountValue", formatNumber(discount));
-  setText("discountFinal", formatNumber(finalPrice));
+  const discount =
+    price * percent / 100;
+
+  const finalPrice =
+    price - discount;
+
+
+  setText(
+    "discountOriginal",
+    formatNumber(price)
+  );
+
+  setText(
+    "discountValue",
+    formatNumber(discount)
+  );
+
+  setText(
+    "discountFinal",
+    formatNumber(finalPrice)
+  );
+
 }
 
 
@@ -2165,49 +2575,93 @@ function calculateDiscount() {
 ========================= */
 
 function setVatMode(mode) {
+
   currentVatMode = mode;
 
-  dom.vatAddBtn.classList.toggle("active", mode === "add");
-  dom.vatRemoveBtn.classList.toggle("active", mode === "remove");
+
+  dom.vatAddBtn.classList.toggle(
+    "active",
+    mode === "add"
+  );
+
+  dom.vatRemoveBtn.classList.toggle(
+    "active",
+    mode === "remove"
+  );
+
 
   dom.vatPriceLabel.textContent =
     mode === "add"
       ? "السعر قبل IVA"
       : "السعر شامل IVA";
+
 }
 
 
 function calculateVat() {
+
   const price = getNumber("vatPrice");
   const rate = getNumber("vatRate");
 
-  if (price < 0 || rate < 0) {
+
+  if (
+    price < 0 ||
+    rate < 0
+  ) {
+
     showMessage(
       document.getElementById("vatMessage"),
       "أدخل أرقامًا صحيحة.",
       "error"
     );
+
     return;
   }
+
 
   let base;
   let tax;
   let total;
 
+
   if (currentVatMode === "add") {
+
     base = price;
-    tax = price * rate / 100;
-    total = price + tax;
+
+    tax =
+      price * rate / 100;
+
+    total =
+      price + tax;
 
   } else {
+
     total = price;
-    base = price / (1 + rate / 100);
-    tax = total - base;
+
+    base =
+      price / (1 + rate / 100);
+
+    tax =
+      total - base;
+
   }
 
-  setText("vatBase", formatNumber(base));
-  setText("vatValue", formatNumber(tax));
-  setText("vatTotal", formatNumber(total));
+
+  setText(
+    "vatBase",
+    formatNumber(base)
+  );
+
+  setText(
+    "vatValue",
+    formatNumber(tax)
+  );
+
+  setText(
+    "vatTotal",
+    formatNumber(total)
+  );
+
 }
 
 
@@ -2216,24 +2670,48 @@ function calculateVat() {
 ========================= */
 
 function calculateSelling() {
+
   const cost = getNumber("sellingCost");
   const margin = getNumber("sellingMargin");
 
-  if (cost <= 0 || margin < 0) {
+
+  if (
+    cost <= 0 ||
+    margin < 0
+  ) {
+
     showMessage(
       document.getElementById("sellingMessage"),
       "أدخل التكلفة وهامش الربح بشكل صحيح.",
       "error"
     );
+
     return;
   }
 
-  const profit = cost * margin / 100;
-  const sellingPrice = cost + profit;
 
-  setText("sellingCostResult", formatNumber(cost));
-  setText("sellingProfitResult", formatNumber(profit));
-  setText("sellingPriceResult", formatNumber(sellingPrice));
+  const profit =
+    cost * margin / 100;
+
+  const sellingPrice =
+    cost + profit;
+
+
+  setText(
+    "sellingCostResult",
+    formatNumber(cost)
+  );
+
+  setText(
+    "sellingProfitResult",
+    formatNumber(profit)
+  );
+
+  setText(
+    "sellingPriceResult",
+    formatNumber(sellingPrice)
+  );
+
 }
 
 
@@ -2242,26 +2720,54 @@ function calculateSelling() {
 ========================= */
 
 function calculateInventory() {
+
   const qty = getNumber("inventoryQty");
   const cost = getNumber("inventoryCost");
   const sold = getNumber("inventorySold");
 
-  if (qty < 0 || cost < 0 || sold < 0 || sold > qty) {
+
+  if (
+    qty < 0 ||
+    cost < 0 ||
+    sold < 0 ||
+    sold > qty
+  ) {
+
     showMessage(
       document.getElementById("inventoryMessage"),
       "تأكد أن الكمية المباعة لا تتجاوز إجمالي الكمية.",
       "error"
     );
+
     return;
   }
 
-  const remaining = qty - sold;
-  const soldCost = sold * cost;
-  const inventoryValue = remaining * cost;
 
-  setText("inventoryRemaining", formatNumber(remaining));
-  setText("inventorySoldCost", formatNumber(soldCost));
-  setText("inventoryValue", formatNumber(inventoryValue));
+  const remaining =
+    qty - sold;
+
+  const soldCost =
+    sold * cost;
+
+  const inventoryValue =
+    remaining * cost;
+
+
+  setText(
+    "inventoryRemaining",
+    formatNumber(remaining)
+  );
+
+  setText(
+    "inventorySoldCost",
+    formatNumber(soldCost)
+  );
+
+  setText(
+    "inventoryValue",
+    formatNumber(inventoryValue)
+  );
+
 }
 
 
@@ -2270,142 +2776,284 @@ function calculateInventory() {
 ========================= */
 
 function addInvoiceItem() {
-  const row = document.createElement("div");
-  row.className = "invoice-row";
+
+  const row =
+    document.createElement("div");
+
+  row.className =
+    "invoice-row";
+
 
   row.innerHTML = `
+
     <div class="field">
       <label>اسم المنتج</label>
-      <input class="item-name" type="text" placeholder="اسم المنتج">
+      <input
+        class="item-name"
+        type="text"
+        placeholder="اسم المنتج"
+      >
     </div>
 
     <div class="field">
       <label>الكمية</label>
-      <input class="item-qty" type="number" min="1" step="1" value="1">
+      <input
+        class="item-qty"
+        type="number"
+        min="1"
+        step="1"
+        value="1"
+      >
     </div>
 
     <div class="field">
       <label>السعر</label>
-      <input class="item-price" type="number" min="0" step="0.01" value="0">
+      <input
+        class="item-price"
+        type="number"
+        min="0"
+        step="0.01"
+        value="0"
+      >
     </div>
 
     <div class="field">
       <label>الإجمالي</label>
-      <input class="item-total" type="text" value="0" readonly>
+      <input
+        class="item-total"
+        type="text"
+        value="0"
+        readonly
+      >
     </div>
 
-    <button class="remove-item" type="button">
+    <button
+      class="remove-item"
+      type="button">
       حذف
     </button>
+
   `;
 
-  const qty = row.querySelector(".item-qty");
-  const price = row.querySelector(".item-price");
-  const remove = row.querySelector(".remove-item");
+
+  const qty =
+    row.querySelector(".item-qty");
+
+  const price =
+    row.querySelector(".item-price");
+
+  const remove =
+    row.querySelector(".remove-item");
+
 
   const update = () => {
     updateInvoiceRow(row);
   };
 
-  qty.addEventListener("input", update);
-  price.addEventListener("input", update);
 
-  remove.addEventListener("click", () => {
-    row.remove();
-    calculateInvoice();
-  });
+  qty.addEventListener(
+    "input",
+    update
+  );
+
+  price.addEventListener(
+    "input",
+    update
+  );
+
+
+  remove.addEventListener(
+    "click",
+    () => {
+
+      row.remove();
+
+      calculateInvoice();
+
+    }
+  );
+
 
   dom.invoiceItems.appendChild(row);
+
 }
 
 
 function updateInvoiceRow(row) {
-  const qty = Number(row.querySelector(".item-qty")?.value) || 0;
-  const price = Number(row.querySelector(".item-price")?.value) || 0;
 
-  const total = qty * price;
+  const qty =
+    Number(
+      row.querySelector(".item-qty")?.value
+    ) || 0;
 
-  const totalInput = row.querySelector(".item-total");
+
+  const price =
+    Number(
+      row.querySelector(".item-price")?.value
+    ) || 0;
+
+
+  const total =
+    qty * price;
+
+
+  const totalInput =
+    row.querySelector(".item-total");
+
 
   if (totalInput) {
-    totalInput.value = formatNumber(total);
+
+    totalInput.value =
+      formatNumber(total);
+
   }
+
 }
 
 
 function calculateInvoice() {
-  const rows = [...dom.invoiceItems.querySelectorAll(".invoice-row")];
+
+  const rows =
+    [...dom.invoiceItems.querySelectorAll(".invoice-row")];
+
 
   const validItems = [];
 
+
   for (const row of rows) {
+
     updateInvoiceRow(row);
 
-    const name = row.querySelector(".item-name")?.value.trim() || "";
-    const qty = Number(row.querySelector(".item-qty")?.value) || 0;
-    const price = Number(row.querySelector(".item-price")?.value) || 0;
 
-    if (name && qty > 0 && price >= 0) {
+    const name =
+      row.querySelector(".item-name")?.value.trim() || "";
+
+
+    const qty =
+      Number(
+        row.querySelector(".item-qty")?.value
+      ) || 0;
+
+
+    const price =
+      Number(
+        row.querySelector(".item-price")?.value
+      ) || 0;
+
+
+    if (
+      name &&
+      qty > 0 &&
+      price >= 0
+    ) {
+
       validItems.push({
         name,
         qty,
         price,
         total: qty * price
       });
+
     }
+
   }
 
+
   if (!validItems.length) {
+
     showMessage(
       dom.invoiceError,
       "أضف منتجًا واحدًا على الأقل ببيانات صحيحة.",
       "error"
     );
 
-    dom.invoicePreview.style.display = "none";
-    dom.printActions.style.display = "none";
+
+    dom.invoicePreview.style.display =
+      "none";
+
+    dom.printActions.style.display =
+      "none";
 
     return;
+
   }
+
 
   let total = 0;
 
-  const fragment = document.createDocumentFragment();
+
+  const fragment =
+    document.createDocumentFragment();
+
 
   validItems.forEach(item => {
+
     total += item.total;
 
-    const tr = document.createElement("tr");
+
+    const tr =
+      document.createElement("tr");
+
 
     tr.innerHTML = `
+
       <td>${escapeHtml(item.name)}</td>
       <td>${formatNumber(item.qty)}</td>
       <td>${formatNumber(item.price)}</td>
       <td>${formatNumber(item.total)}</td>
+
     `;
 
+
     fragment.appendChild(tr);
+
   });
 
-  dom.invoiceTableBody.replaceChildren(fragment);
 
-  setText("invoiceCount", formatNumber(validItems.length));
-  setText("invoiceTotal", formatNumber(total));
+  dom.invoiceTableBody.replaceChildren(
+    fragment
+  );
+
+
+  setText(
+    "invoiceCount",
+    formatNumber(validItems.length)
+  );
+
+  setText(
+    "invoiceTotal",
+    formatNumber(total)
+  );
+
 
   dom.previewShop.textContent =
-    dom.shopName.value.trim() || "الفاتورة";
+    dom.shopName.value.trim() ||
+    "الفاتورة";
+
 
   dom.previewCustomer.textContent =
-    "العميل: " + (dom.customerName.value.trim() || "-");
+    "العميل: " +
+    (
+      dom.customerName.value.trim() ||
+      "-"
+    );
+
 
   dom.invoicePreviewTotal.textContent =
-    "الإجمالي: " + formatNumber(total);
+    "الإجمالي: " +
+    formatNumber(total);
 
-  dom.invoicePreview.style.display = "block";
-  dom.printActions.style.display = "flex";
+
+  dom.invoicePreview.style.display =
+    "block";
+
+  dom.printActions.style.display =
+    "flex";
+
 
   dom.invoiceError.textContent = "";
   dom.invoiceError.className = "message";
+
 }
 
 
@@ -2414,63 +3062,117 @@ function calculateInvoice() {
 ========================= */
 
 function normalizeProduct(product) {
-  const pieces = Math.max(1, Number(product.pieces) || 1);
-  const stock = Math.max(0, Number(product.stock) || 0);
+
+  const pieces =
+    Math.max(
+      1,
+      Number(product.pieces) || 1
+    );
+
+
+  const stock =
+    Math.max(
+      0,
+      Number(product.stock) || 0
+    );
+
 
   product.pieces = pieces;
   product.stock = stock;
 
-  if (!Number.isFinite(Number(product.totalUnits))) {
-    product.totalUnits = stock * pieces;
+
+  if (
+    !Number.isFinite(
+      Number(product.totalUnits)
+    )
+  ) {
+
+    product.totalUnits =
+      stock * pieces;
+
   }
 
+
   return product;
+
 }
 
 
 function saveProduct() {
-  const name = dom.productName.value.trim();
-  const buy = Number(dom.productBuy.value);
-  const sell = Number(dom.productSell.value);
-  const pieces = Number(dom.productPieces.value);
-  const retail = Number(dom.productRetail.value);
-  const stock = Number(dom.productStock.value);
+
+  const name =
+    dom.productName.value.trim();
+
+  const buy =
+    Number(dom.productBuy.value);
+
+  const sell =
+    Number(dom.productSell.value);
+
+  const pieces =
+    Number(dom.productPieces.value);
+
+  const retail =
+    Number(dom.productRetail.value);
+
+  const stock =
+    Number(dom.productStock.value);
+
 
   if (
+
     !name ||
+
     !Number.isFinite(buy) ||
     buy < 0 ||
+
     !Number.isFinite(sell) ||
     sell < 0 ||
+
     !Number.isFinite(pieces) ||
     pieces < 1 ||
+
     !Number.isFinite(retail) ||
     retail < 0 ||
+
     !Number.isFinite(stock) ||
     stock < 0
+
   ) {
+
     showMessage(
       dom.productMessage,
       "تأكد من إدخال كل بيانات المنتج بشكل صحيح.",
       "error"
     );
+
     return;
+
   }
+
 
   if (editingProductId !== null) {
 
-    const product = products.find(
-      item => Number(item.id) === Number(editingProductId)
-    );
+    const product =
+      products.find(
+        item =>
+          Number(item.id) ===
+          Number(editingProductId)
+      );
+
 
     if (!product) {
+
       showMessage(
         dom.productMessage,
         "المنتج غير موجود.",
         "error"
       );
+
       return;
+
     }
+
 
     product.name = name;
     product.buy = buy;
@@ -2479,16 +3181,15 @@ function saveProduct() {
     product.retail = retail;
     product.stock = stock;
 
-    /*
-      عند تعديل عدد القطع أو المخزون،
-      نعيد بناء إجمالي الوحدات حتى لا يحصل تعارض
-      بين stock و totalUnits.
-    */
-    product.totalUnits = stock * pieces;
+    product.totalUnits =
+      stock * pieces;
+
 
     editingProductId = null;
 
-    dom.productBtn.textContent = "إضافة المنتج";
+    dom.productBtn.textContent =
+      "إضافة المنتج";
+
 
     showMessage(
       dom.productMessage,
@@ -2496,38 +3197,57 @@ function saveProduct() {
       "success"
     );
 
+
   } else {
 
     const newProduct = {
-      id: Date.now() + Math.random(),
+
+      id:
+        Date.now() +
+        Math.random(),
+
       name,
       buy,
       sell,
       pieces,
       retail,
       stock,
-      totalUnits: stock * pieces
+
+      totalUnits:
+        stock * pieces
+
     };
 
+
     products.push(newProduct);
+
 
     showMessage(
       dom.productMessage,
       "تم إضافة المنتج بنجاح.",
       "success"
     );
+
   }
+
 
   saveData();
 
   renderProducts();
   renderProductSelect();
+  renderReturnSelect();
+
   clearProductForm(false);
+
 }
 
 
-function clearProductForm(showMessageText = true) {
+function clearProductForm(
+  showMessageText = true
+) {
+
   editingProductId = null;
+
 
   dom.productName.value = "";
   dom.productBuy.value = "";
@@ -2536,110 +3256,187 @@ function clearProductForm(showMessageText = true) {
   dom.productRetail.value = "";
   dom.productStock.value = "";
 
-  dom.productBtn.textContent = "إضافة المنتج";
+
+  dom.productBtn.textContent =
+    "إضافة المنتج";
+
 
   if (!showMessageText) {
+
     dom.productMessage.textContent = "";
-    dom.productMessage.className = "message";
+    dom.productMessage.className =
+      "message";
+
   }
+
 }
 
 
 function editProduct(id) {
-  const product = products.find(
-    item => Number(item.id) === Number(id)
-  );
+
+  const product =
+    products.find(
+      item =>
+        Number(item.id) ===
+        Number(id)
+    );
+
 
   if (!product) return;
 
+
   normalizeProduct(product);
 
-  editingProductId = product.id;
 
-  dom.productName.value = product.name || "";
-  dom.productBuy.value = product.buy ?? "";
-  dom.productSell.value = product.sell ?? "";
-  dom.productPieces.value = product.pieces ?? 1;
-  dom.productRetail.value = product.retail ?? "";
-  dom.productStock.value = product.stock ?? 0;
+  editingProductId =
+    product.id;
 
-  dom.productBtn.textContent = "حفظ التعديل";
+
+  dom.productName.value =
+    product.name || "";
+
+  dom.productBuy.value =
+    product.buy ?? "";
+
+  dom.productSell.value =
+    product.sell ?? "";
+
+  dom.productPieces.value =
+    product.pieces ?? 1;
+
+  dom.productRetail.value =
+    product.retail ?? "";
+
+  dom.productStock.value =
+    product.stock ?? 0;
+
+
+  dom.productBtn.textContent =
+    "حفظ التعديل";
+
 
   dom.productName.scrollIntoView({
     behavior: "smooth",
     block: "center"
   });
 
+
   dom.productName.focus();
+
 }
 
 
 function deleteProduct(id) {
-  const hasSales = sales.some(
-    sale => Number(sale.productId) === Number(id)
-  );
+
+  const hasSales =
+    sales.some(
+      sale =>
+        Number(sale.productId) ===
+        Number(id)
+    );
+
 
   if (hasSales) {
+
     showMessage(
       dom.productMessage,
       "لا يمكن حذف المنتج لأنه مرتبط بمبيعات مسجلة.",
       "error"
     );
+
     return;
+
   }
 
-  products = products.filter(
-    product => Number(product.id) !== Number(id)
-  );
+
+  products =
+    products.filter(
+      product =>
+        Number(product.id) !==
+        Number(id)
+    );
+
 
   saveData();
 
   renderProducts();
   renderProductSelect();
+  renderReturnSelect();
+
 
   showMessage(
     dom.productMessage,
     "تم حذف المنتج.",
     "success"
   );
+
 }
 
 
 function renderProducts() {
-  const fragment = document.createDocumentFragment();
+
+  const fragment =
+    document.createDocumentFragment();
+
 
   if (!products.length) {
-    const tr = document.createElement("tr");
+
+    const tr =
+      document.createElement("tr");
+
 
     tr.innerHTML = `
+
       <td colspan="8">
         لا توجد منتجات حتى الآن.
       </td>
+
     `;
+
 
     fragment.appendChild(tr);
 
-    dom.productsTable.replaceChildren(fragment);
+    dom.productsTable.replaceChildren(
+      fragment
+    );
+
     return;
+
   }
 
+
   products.forEach(product => {
+
     normalizeProduct(product);
 
-    const profit = Number(product.sell) - Number(product.buy);
 
-    const tr = document.createElement("tr");
+    const profit =
+      Number(product.sell) -
+      Number(product.buy);
+
+
+    const tr =
+      document.createElement("tr");
+
 
     tr.innerHTML = `
+
       <td>${escapeHtml(product.name)}</td>
+
       <td>${formatNumber(product.buy)}</td>
+
       <td>${formatNumber(product.sell)}</td>
+
       <td>${formatNumber(product.pieces)}</td>
+
       <td>${formatNumber(product.retail)}</td>
+
       <td>${formatNumber(product.stock)}</td>
+
       <td>${formatNumber(profit)}</td>
 
       <td>
+
         <button
           class="table-btn edit-btn"
           onclick="editProduct(${JSON.stringify(product.id)})">
@@ -2651,54 +3448,102 @@ function renderProducts() {
           onclick="deleteProduct(${JSON.stringify(product.id)})">
           حذف
         </button>
+
       </td>
+
     `;
 
+
     fragment.appendChild(tr);
+
   });
 
-  dom.productsTable.replaceChildren(fragment);
+
+  dom.productsTable.replaceChildren(
+    fragment
+  );
+
 }
 
 
 function renderProductSelect() {
-  const currentValue = dom.saleProduct.value;
 
-  const fragment = document.createDocumentFragment();
+  const currentValue =
+    dom.saleProduct.value;
 
-  const firstOption = document.createElement("option");
+
+  const fragment =
+    document.createDocumentFragment();
+
+
+  const firstOption =
+    document.createElement("option");
+
+
   firstOption.value = "";
-  firstOption.textContent = "اختر المنتج";
+  firstOption.textContent =
+    "اختر المنتج";
+
 
   fragment.appendChild(firstOption);
 
+
   products.forEach(product => {
+
     normalizeProduct(product);
 
-    const option = document.createElement("option");
 
-    option.value = product.id;
+    const option =
+      document.createElement("option");
 
-    let stockText = `المخزون: ${formatNumber(product.stock)}`;
+
+    option.value =
+      product.id;
+
+
+    let stockText =
+      `المخزون: ${formatNumber(product.stock)}`;
+
 
     if (saleType === "retail") {
-      stockText += ` | القطع: ${formatNumber(product.totalUnits)}`;
+
+      stockText +=
+        ` | القطع: ${formatNumber(product.totalUnits)}`;
+
     }
+
 
     option.textContent =
       `${product.name} — ${stockText}`;
 
+
     fragment.appendChild(option);
+
   });
 
-  dom.saleProduct.replaceChildren(fragment);
+
+  dom.saleProduct.replaceChildren(
+    fragment
+  );
+
 
   if (
+
     currentValue &&
-    products.some(product => String(product.id) === String(currentValue))
+
+    products.some(
+      product =>
+        String(product.id) ===
+        String(currentValue)
+    )
+
   ) {
-    dom.saleProduct.value = currentValue;
+
+    dom.saleProduct.value =
+      currentValue;
+
   }
+
 }
 
 
@@ -2707,25 +3552,32 @@ function renderProductSelect() {
 ========================= */
 
 function setSaleType(type) {
+
   saleType = type;
+
 
   dom.wholesaleBtn.classList.toggle(
     "active",
     type === "wholesale"
   );
 
+
   dom.retailBtn.classList.toggle(
     "active",
     type === "retail"
   );
+
 
   dom.saleQuantityLabel.textContent =
     type === "wholesale"
       ? "الكمية بالجملة"
       : "عدد القطع قطاعي";
 
+
   renderProductSelect();
+
   previewSale();
+
 }
 
 
@@ -2734,51 +3586,106 @@ function setSaleType(type) {
 ========================= */
 
 function previewSale() {
-  const productId = dom.saleProduct.value;
-  const quantity = Number(dom.saleQuantity.value);
 
-  const product = products.find(
-    item => String(item.id) === String(productId)
-  );
+  const productId =
+    dom.saleProduct.value;
 
-  if (!product || !Number.isFinite(quantity) || quantity <= 0) {
+
+  const quantity =
+    Number(dom.saleQuantity.value);
+
+
+  const product =
+    products.find(
+      item =>
+        String(item.id) ===
+        String(productId)
+    );
+
+
+  if (
+    !product ||
+    !Number.isFinite(quantity) ||
+    quantity <= 0
+  ) {
+
     setText("previewPrice", "0");
     setText("salePreviewTotal", "0");
     setText("previewCost", "0");
     setText("previewProfit", "0");
+
     return;
+
   }
 
+
   normalizeProduct(product);
+
 
   let unitSell;
   let totalSales;
   let totalCost;
 
+
   if (saleType === "wholesale") {
 
-    unitSell = Number(product.sell) || 0;
-    totalSales = unitSell * quantity;
-    totalCost = (Number(product.buy) || 0) * quantity;
+    unitSell =
+      Number(product.sell) || 0;
+
+    totalSales =
+      unitSell * quantity;
+
+    totalCost =
+      (Number(product.buy) || 0) *
+      quantity;
 
   } else {
 
-    unitSell = Number(product.retail) || 0;
-    totalSales = unitSell * quantity;
+    unitSell =
+      Number(product.retail) || 0;
+
+    totalSales =
+      unitSell * quantity;
+
 
     const unitCost =
       (Number(product.buy) || 0) /
-      Math.max(1, Number(product.pieces) || 1);
+      Math.max(
+        1,
+        Number(product.pieces) || 1
+      );
 
-    totalCost = unitCost * quantity;
+
+    totalCost =
+      unitCost * quantity;
+
   }
 
-  const profit = totalSales - totalCost;
 
-  setText("previewPrice", formatNumber(unitSell));
-  setText("salePreviewTotal", formatNumber(totalSales));
-  setText("previewCost", formatNumber(totalCost));
-  setText("previewProfit", formatNumber(profit));
+  const profit =
+    totalSales - totalCost;
+
+
+  setText(
+    "previewPrice",
+    formatNumber(unitSell)
+  );
+
+  setText(
+    "salePreviewTotal",
+    formatNumber(totalSales)
+  );
+
+  setText(
+    "previewCost",
+    formatNumber(totalCost)
+  );
+
+  setText(
+    "previewProfit",
+    formatNumber(profit)
+  );
+
 }
 
 
@@ -2787,158 +3694,882 @@ function previewSale() {
 ========================= */
 
 function recordSale() {
-  const productId = dom.saleProduct.value;
-  const quantity = Number(dom.saleQuantity.value);
-  const date = dom.saleDate.value;
 
-  const product = products.find(
-    item => String(item.id) === String(productId)
-  );
+  const productId =
+    dom.saleProduct.value;
+
+
+  const quantity =
+    Number(dom.saleQuantity.value);
+
+
+  const date =
+    dom.saleDate.value;
+
+
+  const product =
+    products.find(
+      item =>
+        String(item.id) ===
+        String(productId)
+    );
+
 
   if (!product) {
+
     showMessage(
       dom.saleMessage,
       "اختر منتجًا.",
       "error"
     );
+
     return;
+
   }
 
-  if (!Number.isInteger(quantity) || quantity <= 0) {
+
+  if (
+    !Number.isInteger(quantity) ||
+    quantity <= 0
+  ) {
+
     showMessage(
       dom.saleMessage,
       "أدخل كمية صحيحة.",
       "error"
     );
+
     return;
+
   }
 
+
   if (!date) {
+
     showMessage(
       dom.saleMessage,
       "اختر تاريخ البيع.",
       "error"
     );
+
     return;
+
   }
+
 
   normalizeProduct(product);
 
-  const pieces = Math.max(1, Number(product.pieces) || 1);
+
+  const pieces =
+    Math.max(
+      1,
+      Number(product.pieces) || 1
+    );
+
 
   let sellPrice;
   let totalSales;
   let totalCost;
   let profit;
 
+
   if (saleType === "wholesale") {
 
-    if (quantity > product.stock) {
+    if (
+      quantity >
+      product.stock
+    ) {
+
       showMessage(
         dom.saleMessage,
         `الكمية أكبر من المخزون المتاح (${formatNumber(product.stock)}).`,
         "error"
       );
+
       return;
+
     }
 
-    sellPrice = Number(product.sell) || 0;
-    totalSales = sellPrice * quantity;
-    totalCost = (Number(product.buy) || 0) * quantity;
-    profit = totalSales - totalCost;
 
-    /*
-      بيع جملة = بيع عبوات/وحدات كاملة.
-      لذلك نقلل totalUnits بعدد القطع الموجودة
-      في العبوات المباعة.
-    */
-    const currentTotalUnits = Number.isFinite(Number(product.totalUnits))
-      ? Number(product.totalUnits)
-      : product.stock * pieces;
+    sellPrice =
+      Number(product.sell) || 0;
+
+
+    totalSales =
+      sellPrice * quantity;
+
+
+    totalCost =
+      (Number(product.buy) || 0) *
+      quantity;
+
+
+    profit =
+      totalSales - totalCost;
+
+
+    const currentTotalUnits =
+      Number.isFinite(
+        Number(product.totalUnits)
+      )
+        ? Number(product.totalUnits)
+        : product.stock * pieces;
+
 
     product.stock -= quantity;
 
-    product.totalUnits = Math.max(
-      0,
-      currentTotalUnits - (quantity * pieces)
-    );
+
+    product.totalUnits =
+      Math.max(
+        0,
+        currentTotalUnits -
+        (quantity * pieces)
+      );
+
 
   } else {
 
-    const currentTotalUnits = Number.isFinite(Number(product.totalUnits))
-      ? Number(product.totalUnits)
-      : product.stock * pieces;
+    const currentTotalUnits =
+      Number.isFinite(
+        Number(product.totalUnits)
+      )
+        ? Number(product.totalUnits)
+        : product.stock * pieces;
 
-    if (quantity > currentTotalUnits) {
+
+    if (
+      quantity >
+      currentTotalUnits
+    ) {
+
       showMessage(
         dom.saleMessage,
         `الكمية أكبر من القطع المتاحة (${formatNumber(currentTotalUnits)} قطعة).`,
         "error"
       );
+
       return;
+
     }
 
-    sellPrice = Number(product.retail) || 0;
 
-    totalSales = sellPrice * quantity;
+    sellPrice =
+      Number(product.retail) || 0;
+
+
+    totalSales =
+      sellPrice * quantity;
+
 
     const unitCost =
-      (Number(product.buy) || 0) / pieces;
+      (Number(product.buy) || 0) /
+      pieces;
 
-    totalCost = unitCost * quantity;
-    profit = totalSales - totalCost;
+
+    totalCost =
+      unitCost * quantity;
+
+
+    profit =
+      totalSales - totalCost;
+
 
     product.totalUnits =
-      Math.max(0, currentTotalUnits - quantity);
+      Math.max(
+        0,
+        currentTotalUnits -
+        quantity
+      );
 
-    /*
-      stock هنا يمثل عدد العبوات الكاملة المتبقية.
-    */
+
     product.stock =
-      Math.floor(product.totalUnits / pieces);
+      Math.floor(
+        product.totalUnits / pieces
+      );
+
   }
 
+
   const sale = {
-    id: Date.now() + Math.random(),
-    productId: product.id,
-    productName: product.name,
+
+    id:
+      Date.now() +
+      Math.random(),
+
+    productId:
+      product.id,
+
+    productName:
+      product.name,
+
     saleType,
+
     quantity,
+
     sellPrice,
+
     totalSales,
+
     totalCost,
+
     profit,
+
     date
+
   };
+
 
   sales.push(sale);
 
-  const saved = saveData();
+
+  const saved =
+    saveData();
+
 
   if (!saved) {
+
     showMessage(
       dom.saleMessage,
       "تمت العملية لكن تعذر حفظ البيانات في المتصفح.",
       "error"
     );
+
     return;
+
   }
+
 
   renderProducts();
   renderProductSelect();
+  renderReturnSelect();
+
   updateManagerDashboard();
   updateReports();
+
 
   dom.saleProduct.value = "";
   dom.saleQuantity.value = "1";
 
+
   previewSale();
+
 
   showMessage(
     dom.saleMessage,
     "تم تسجيل البيع وتحديث المخزون بنجاح.",
     "success"
   );
+
+}
+
+
+/* =========================
+   المرتجعات - حساب المستخدم
+========================= */
+
+function getReturnedQuantityForSale(saleId) {
+
+  return returns.reduce(
+    (sum, item) => {
+
+      if (
+        Number(item.saleId) ===
+        Number(saleId)
+      ) {
+
+        return sum +
+          (Number(item.quantity) || 0);
+
+      }
+
+      return sum;
+
+    },
+    0
+  );
+
+}
+
+
+function getRemainingReturnableQuantity(sale) {
+
+  const soldQuantity =
+    Number(sale.quantity) || 0;
+
+
+  const returnedQuantity =
+    getReturnedQuantityForSale(
+      sale.id
+    );
+
+
+  return Math.max(
+    0,
+    soldQuantity -
+    returnedQuantity
+  );
+
+}
+
+
+/* =========================
+   قائمة عمليات البيع للمرتجع
+========================= */
+
+function renderReturnSelect() {
+
+  if (!dom.returnSale) return;
+
+
+  const currentValue =
+    dom.returnSale.value;
+
+
+  const fragment =
+    document.createDocumentFragment();
+
+
+  const firstOption =
+    document.createElement("option");
+
+
+  firstOption.value = "";
+  firstOption.textContent =
+    "اختر عملية البيع";
+
+
+  fragment.appendChild(firstOption);
+
+
+  const availableSales =
+    sales
+      .slice()
+      .reverse()
+      .filter(
+        sale =>
+          getRemainingReturnableQuantity(sale) > 0
+      );
+
+
+  availableSales.forEach(sale => {
+
+    const option =
+      document.createElement("option");
+
+
+    const remaining =
+      getRemainingReturnableQuantity(sale);
+
+
+    option.value =
+      sale.id;
+
+
+    option.textContent =
+      `${sale.date} — ${sale.productName} — ${
+        sale.saleType === "retail"
+          ? "قطاعي"
+          : "جملة"
+      } — المتاح للمرتجع: ${
+        formatNumber(remaining)
+      }`;
+
+
+    fragment.appendChild(option);
+
+  });
+
+
+  dom.returnSale.replaceChildren(
+    fragment
+  );
+
+
+  if (
+    currentValue &&
+    availableSales.some(
+      sale =>
+        String(sale.id) ===
+        String(currentValue)
+    )
+  ) {
+
+    dom.returnSale.value =
+      currentValue;
+
+  }
+
+
+  previewReturn();
+
+}
+
+
+/* =========================
+   معاينة المرتجع
+========================= */
+
+function previewReturn() {
+
+  const saleId =
+    dom.returnSale.value;
+
+
+  const quantity =
+    Number(dom.returnQuantity.value);
+
+
+  const sale =
+    sales.find(
+      item =>
+        String(item.id) ===
+        String(saleId)
+    );
+
+
+  if (
+    !sale ||
+    !Number.isInteger(quantity) ||
+    quantity <= 0
+  ) {
+
+    setText(
+      "returnUnitPrice",
+      "0"
+    );
+
+    setText(
+      "returnTotal",
+      "0"
+    );
+
+    setText(
+      "returnProfit",
+      "0"
+    );
+
+    return;
+
+  }
+
+
+  const remaining =
+    getRemainingReturnableQuantity(
+      sale
+    );
+
+
+  const validQuantity =
+    Math.min(
+      quantity,
+      remaining
+    );
+
+
+  const unitPrice =
+    Number(sale.sellPrice) || 0;
+
+
+  const unitCost =
+    Number(sale.totalCost) /
+    Math.max(
+      1,
+      Number(sale.quantity)
+    );
+
+
+  const total =
+    unitPrice *
+    validQuantity;
+
+
+  const cost =
+    unitCost *
+    validQuantity;
+
+
+  const profit =
+    total - cost;
+
+
+  setText(
+    "returnUnitPrice",
+    formatNumber(unitPrice)
+  );
+
+  setText(
+    "returnTotal",
+    formatNumber(total)
+  );
+
+  setText(
+    "returnProfit",
+    formatNumber(profit)
+  );
+
+}
+
+
+/* =========================
+   تسجيل المرتجع
+========================= */
+
+function recordReturn() {
+
+  const saleId =
+    dom.returnSale.value;
+
+
+  const quantity =
+    Number(dom.returnQuantity.value);
+
+
+  const sale =
+    sales.find(
+      item =>
+        String(item.id) ===
+        String(saleId)
+    );
+
+
+  if (!sale) {
+
+    showMessage(
+      dom.returnMessage,
+      "اختر عملية بيع.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  if (
+    !Number.isInteger(quantity) ||
+    quantity <= 0
+  ) {
+
+    showMessage(
+      dom.returnMessage,
+      "أدخل كمية مرتجع صحيحة.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const remaining =
+    getRemainingReturnableQuantity(
+      sale
+    );
+
+
+  if (quantity > remaining) {
+
+    showMessage(
+      dom.returnMessage,
+      `الحد الأقصى للمرتجع من هذه العملية هو ${formatNumber(remaining)}.`,
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  const product =
+    products.find(
+      item =>
+        Number(item.id) ===
+        Number(sale.productId)
+    );
+
+
+  if (!product) {
+
+    showMessage(
+      dom.returnMessage,
+      "المنتج الأصلي غير موجود في المخزون.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  normalizeProduct(product);
+
+
+  const pieces =
+    Math.max(
+      1,
+      Number(product.pieces) || 1
+    );
+
+
+  const unitPrice =
+    Number(sale.sellPrice) || 0;
+
+
+  const unitCost =
+    Number(sale.totalCost) /
+    Math.max(
+      1,
+      Number(sale.quantity)
+    );
+
+
+  const totalSales =
+    unitPrice *
+    quantity;
+
+
+  const totalCost =
+    unitCost *
+    quantity;
+
+
+  const profit =
+    totalSales -
+    totalCost;
+
+
+  /*
+    مرتجع الجملة:
+    نرجع عبوات كاملة.
+  */
+
+  if (
+    sale.saleType === "wholesale"
+  ) {
+
+    product.stock += quantity;
+
+
+    const currentTotalUnits =
+      Number.isFinite(
+        Number(product.totalUnits)
+      )
+        ? Number(product.totalUnits)
+        : product.stock * pieces;
+
+
+    product.totalUnits =
+      currentTotalUnits +
+      (quantity * pieces);
+
+
+  } else {
+
+    /*
+      مرتجع القطاعي:
+      نرجع القطع نفسها.
+    */
+
+    const currentTotalUnits =
+      Number.isFinite(
+        Number(product.totalUnits)
+      )
+        ? Number(product.totalUnits)
+        : product.stock * pieces;
+
+
+    product.totalUnits =
+      currentTotalUnits +
+      quantity;
+
+
+    product.stock =
+      Math.floor(
+        product.totalUnits /
+        pieces
+      );
+
+  }
+
+
+  const returnRecord = {
+
+    id:
+      Date.now() +
+      Math.random(),
+
+    saleId:
+      sale.id,
+
+    productId:
+      sale.productId,
+
+    productName:
+      sale.productName,
+
+    saleType:
+      sale.saleType,
+
+    quantity,
+
+    sellPrice:
+      unitPrice,
+
+    totalSales,
+
+    totalCost,
+
+    profit,
+
+    date:
+      getToday()
+
+  };
+
+
+  returns.push(
+    returnRecord
+  );
+
+
+  const saved =
+    saveData();
+
+
+  if (!saved) {
+
+    showMessage(
+      dom.returnMessage,
+      "تم تسجيل المرتجع لكن تعذر حفظ البيانات.",
+      "error"
+    );
+
+    return;
+
+  }
+
+
+  renderProducts();
+  renderProductSelect();
+  renderReturnSelect();
+  renderReturnsHistory();
+
+  updateManagerDashboard();
+  updateReports();
+
+
+  dom.returnQuantity.value =
+    "1";
+
+
+  showMessage(
+    dom.returnMessage,
+    "تم تسجيل المرتجع وإرجاع الكمية للمخزون بنجاح.",
+    "success"
+  );
+
+}
+
+
+/* =========================
+   سجل المرتجعات
+========================= */
+
+function renderReturnsHistory() {
+
+  if (!dom.returnsTable) return;
+
+
+  const fragment =
+    document.createDocumentFragment();
+
+
+  const recentReturns =
+    returns
+      .slice()
+      .sort(
+        (a, b) =>
+          Number(b.id) -
+          Number(a.id)
+      )
+      .slice(0, 50);
+
+
+  if (!recentReturns.length) {
+
+    const tr =
+      document.createElement("tr");
+
+
+    tr.innerHTML = `
+
+      <td colspan="6">
+        لا توجد مرتجعات حتى الآن.
+      </td>
+
+    `;
+
+
+    fragment.appendChild(tr);
+
+
+    dom.returnsTable.replaceChildren(
+      fragment
+    );
+
+    return;
+
+  }
+
+
+  recentReturns.forEach(item => {
+
+    const tr =
+      document.createElement("tr");
+
+
+    tr.innerHTML = `
+
+      <td>
+        ${escapeHtml(item.date)}
+      </td>
+
+      <td>
+        ${escapeHtml(item.productName)}
+      </td>
+
+      <td>
+        ${
+          item.saleType === "retail"
+            ? "قطاعي"
+            : "جملة"
+        }
+      </td>
+
+      <td>
+        ${formatNumber(item.quantity)}
+      </td>
+
+      <td>
+        ${formatNumber(item.totalSales)}
+      </td>
+
+      <td>
+        ${formatNumber(item.profit)}
+      </td>
+
+    `;
+
+
+    fragment.appendChild(tr);
+
+  });
+
+
+  dom.returnsTable.replaceChildren(
+    fragment
+  );
+
 }
 
 
@@ -2946,9 +4577,56 @@ function recordSale() {
    Dashboard
 ========================= */
 
+function getReturnStatsForPeriod(
+  periodType,
+  value
+) {
+
+  let total = 0;
+  let profit = 0;
+
+
+  for (const item of returns) {
+
+    const date =
+      String(item.date || "");
+
+
+    const matches =
+      periodType === "day"
+        ? date === value
+        : date.startsWith(value);
+
+
+    if (!matches) continue;
+
+
+    total +=
+      Number(item.totalSales) || 0;
+
+
+    profit +=
+      Number(item.profit) || 0;
+
+  }
+
+
+  return {
+    total,
+    profit
+  };
+
+}
+
+
 function updateManagerDashboard() {
-  const today = getToday();
-  const month = getCurrentMonth();
+
+  const today =
+    getToday();
+
+  const month =
+    getCurrentMonth();
+
 
   let todaySales = 0;
   let todayProfit = 0;
@@ -2956,41 +4634,94 @@ function updateManagerDashboard() {
   let monthSales = 0;
   let monthProfit = 0;
 
+
   for (const sale of sales) {
 
-    if (sale.date === today) {
-      todaySales += Number(sale.totalSales) || 0;
-      todayProfit += Number(sale.profit) || 0;
+    const saleSales =
+      Number(sale.totalSales) || 0;
+
+    const saleProfit =
+      Number(sale.profit) || 0;
+
+
+    if (
+      sale.date === today
+    ) {
+
+      todaySales +=
+        saleSales;
+
+      todayProfit +=
+        saleProfit;
+
     }
+
 
     if (
       typeof sale.date === "string" &&
       sale.date.startsWith(month)
     ) {
-      monthSales += Number(sale.totalSales) || 0;
-      monthProfit += Number(sale.profit) || 0;
+
+      monthSales +=
+        saleSales;
+
+      monthProfit +=
+        saleProfit;
+
     }
+
   }
+
+
+  const todayReturns =
+    getReturnStatsForPeriod(
+      "day",
+      today
+    );
+
+
+  const monthReturns =
+    getReturnStatsForPeriod(
+      "month",
+      month
+    );
+
 
   setText(
     "managerTodaySales",
-    formatNumber(todaySales)
+    formatNumber(
+      todaySales -
+      todayReturns.total
+    )
   );
+
 
   setText(
     "managerTodayProfit",
-    formatNumber(todayProfit)
+    formatNumber(
+      todayProfit -
+      todayReturns.profit
+    )
   );
+
 
   setText(
     "managerMonthSales",
-    formatNumber(monthSales)
+    formatNumber(
+      monthSales -
+      monthReturns.total
+    )
   );
+
 
   setText(
     "managerMonthProfit",
-    formatNumber(monthProfit)
+    formatNumber(
+      monthProfit -
+      monthReturns.profit
+    )
   );
+
 }
 
 
@@ -2999,142 +4730,612 @@ function updateManagerDashboard() {
 ========================= */
 
 function updateReports() {
+
   if (!dom.reportDay.value) {
-    dom.reportDay.value = getToday();
+    dom.reportDay.value =
+      getToday();
   }
+
 
   if (!dom.reportMonth.value) {
-    dom.reportMonth.value = getCurrentMonth();
+    dom.reportMonth.value =
+      getCurrentMonth();
   }
 
-  const selectedDay = dom.reportDay.value;
-  const selectedMonth = dom.reportMonth.value;
+
+  const selectedDay =
+    dom.reportDay.value;
+
+
+  const selectedMonth =
+    dom.reportMonth.value;
+
 
   let todaySales = 0;
   let todayCost = 0;
   let todayProfit = 0;
   let todayOperations = 0;
 
+
   let monthSales = 0;
   let monthCost = 0;
   let monthProfit = 0;
   let monthOperations = 0;
 
+
   for (const sale of sales) {
 
-    const saleSales = Number(sale.totalSales) || 0;
-    const saleCost = Number(sale.totalCost) || 0;
-    const saleProfit = Number(sale.profit) || 0;
+    const saleSales =
+      Number(sale.totalSales) || 0;
 
-    if (sale.date === selectedDay) {
-      todaySales += saleSales;
-      todayCost += saleCost;
-      todayProfit += saleProfit;
+    const saleCost =
+      Number(sale.totalCost) || 0;
+
+    const saleProfit =
+      Number(sale.profit) || 0;
+
+
+    if (
+      sale.date ===
+      selectedDay
+    ) {
+
+      todaySales +=
+        saleSales;
+
+      todayCost +=
+        saleCost;
+
+      todayProfit +=
+        saleProfit;
+
       todayOperations++;
+
     }
+
 
     if (
       typeof sale.date === "string" &&
       sale.date.startsWith(selectedMonth)
     ) {
-      monthSales += saleSales;
-      monthCost += saleCost;
-      monthProfit += saleProfit;
+
+      monthSales +=
+        saleSales;
+
+      monthCost +=
+        saleCost;
+
+      monthProfit +=
+        saleProfit;
+
       monthOperations++;
+
     }
+
   }
 
-  setText("reportTodaySales", formatNumber(todaySales));
-  setText("reportTodayCost", formatNumber(todayCost));
-  setText("reportTodayProfit", formatNumber(todayProfit));
-  setText("reportTodayOperations", formatNumber(todayOperations));
 
-  setText("reportMonthSales", formatNumber(monthSales));
-  setText("reportMonthCost", formatNumber(monthCost));
-  setText("reportMonthProfit", formatNumber(monthProfit));
-  setText("reportMonthOperations", formatNumber(monthOperations));
+  let todayReturns = 0;
+  let todayReturnCost = 0;
+  let todayReturnProfit = 0;
+  let todayReturnQty = 0;
 
-  renderSalesReport(selectedDay, selectedMonth);
+
+  let monthReturns = 0;
+  let monthReturnCost = 0;
+  let monthReturnProfit = 0;
+  let monthReturnQty = 0;
+
+
+  for (const item of returns) {
+
+    const itemSales =
+      Number(item.totalSales) || 0;
+
+    const itemCost =
+      Number(item.totalCost) || 0;
+
+    const itemProfit =
+      Number(item.profit) || 0;
+
+    const itemQty =
+      Number(item.quantity) || 0;
+
+
+    if (
+      item.date ===
+      selectedDay
+    ) {
+
+      todayReturns +=
+        itemSales;
+
+      todayReturnCost +=
+        itemCost;
+
+      todayReturnProfit +=
+        itemProfit;
+
+      todayReturnQty +=
+        itemQty;
+
+    }
+
+
+    if (
+      typeof item.date === "string" &&
+      item.date.startsWith(selectedMonth)
+    ) {
+
+      monthReturns +=
+        itemSales;
+
+      monthReturnCost +=
+        itemCost;
+
+      monthReturnProfit +=
+        itemProfit;
+
+      monthReturnQty +=
+        itemQty;
+
+    }
+
+  }
+
+
+  setText(
+    "reportTodaySales",
+    formatNumber(
+      todaySales -
+      todayReturns
+    )
+  );
+
+
+  setText(
+    "reportTodayCost",
+    formatNumber(
+      todayCost -
+      todayReturnCost
+    )
+  );
+
+
+  setText(
+    "reportTodayProfit",
+    formatNumber(
+      todayProfit -
+      todayReturnProfit
+    )
+  );
+
+
+  setText(
+    "reportTodayOperations",
+    formatNumber(
+      todayOperations
+    )
+  );
+
+
+  setText(
+    "reportMonthSales",
+    formatNumber(
+      monthSales -
+      monthReturns
+    )
+  );
+
+
+  setText(
+    "reportMonthCost",
+    formatNumber(
+      monthCost -
+      monthReturnCost
+    )
+  );
+
+
+  setText(
+    "reportMonthProfit",
+    formatNumber(
+      monthProfit -
+      monthReturnProfit
+    )
+  );
+
+
+  setText(
+    "reportMonthOperations",
+    formatNumber(
+      monthOperations
+    )
+  );
+
+
+  setText(
+    "reportTodayReturns",
+    formatNumber(
+      todayReturns
+    )
+  );
+
+
+  setText(
+    "reportMonthReturns",
+    formatNumber(
+      monthReturns
+    )
+  );
+
+
+  setText(
+    "reportTodayReturnQty",
+    formatNumber(
+      todayReturnQty
+    )
+  );
+
+
+  setText(
+    "reportMonthReturnQty",
+    formatNumber(
+      monthReturnQty
+    )
+  );
+
+
+  renderSalesReport(
+    selectedDay,
+    selectedMonth
+  );
+
+
+  renderReportReturns(
+    selectedDay,
+    selectedMonth
+  );
+
 }
 
 
-function renderSalesReport(selectedDay, selectedMonth) {
-  const fragment = document.createDocumentFragment();
+/* =========================
+   جدول المبيعات
+========================= */
 
-  const filteredSales = sales
-    .filter(sale => {
-      if (!sale.date) return false;
+function renderSalesReport(
+  selectedDay,
+  selectedMonth
+) {
 
-      return sale.date === selectedDay ||
-             (
-               typeof sale.date === "string" &&
-               sale.date.startsWith(selectedMonth)
-             );
-    })
-    .slice()
-    .sort((a, b) => {
-      const dateCompare =
-        String(b.date).localeCompare(String(a.date));
+  const fragment =
+    document.createDocumentFragment();
 
-      if (dateCompare !== 0) {
-        return dateCompare;
-      }
 
-      return Number(b.id) - Number(a.id);
-    });
+  const filteredSales =
+    sales
+      .filter(sale => {
+
+        if (!sale.date) {
+          return false;
+        }
+
+
+        return (
+          sale.date === selectedDay ||
+          (
+            typeof sale.date === "string" &&
+            sale.date.startsWith(selectedMonth)
+          )
+        );
+
+      })
+      .slice()
+      .sort((a, b) => {
+
+        const dateCompare =
+          String(b.date)
+            .localeCompare(
+              String(a.date)
+            );
+
+
+        if (dateCompare !== 0) {
+          return dateCompare;
+        }
+
+
+        return (
+          Number(b.id) -
+          Number(a.id)
+        );
+
+      });
+
 
   if (!filteredSales.length) {
 
-    const tr = document.createElement("tr");
+    const tr =
+      document.createElement("tr");
+
 
     tr.innerHTML = `
+
       <td colspan="9">
         لا توجد مبيعات في الفترة المحددة.
       </td>
+
     `;
+
 
     fragment.appendChild(tr);
 
-    dom.salesReportTable.replaceChildren(fragment);
+
+    dom.salesReportTable.replaceChildren(
+      fragment
+    );
+
     return;
+
   }
+
 
   filteredSales.forEach(sale => {
 
-    const tr = document.createElement("tr");
+    const tr =
+      document.createElement("tr");
+
+
+    const returned =
+      getReturnedQuantityForSale(
+        sale.id
+      );
+
+
+    const canReturn =
+      getRemainingReturnableQuantity(
+        sale
+      );
+
+
+    const returnInfo =
+      returned > 0
+        ? `<br><span class="return-badge">مرتجع: ${formatNumber(returned)}</span>`
+        : "";
+
 
     tr.innerHTML = `
-      <td>${escapeHtml(sale.date)}</td>
-
-      <td>${escapeHtml(sale.productName)}</td>
 
       <td>
-        ${sale.saleType === "retail" ? "قطاعي" : "جملة"}
+        ${escapeHtml(sale.date)}
       </td>
 
-      <td>${formatNumber(sale.quantity)}</td>
-
-      <td>${formatNumber(sale.sellPrice)}</td>
-
-      <td>${formatNumber(sale.totalSales)}</td>
-
-      <td>${formatNumber(sale.totalCost)}</td>
-
-      <td>${formatNumber(sale.profit)}</td>
+      <td>
+        ${escapeHtml(sale.productName)}
+        ${returnInfo}
+      </td>
 
       <td>
+        ${
+          sale.saleType === "retail"
+            ? "قطاعي"
+            : "جملة"
+        }
+      </td>
+
+      <td>
+        ${formatNumber(sale.quantity)}
+      </td>
+
+      <td>
+        ${formatNumber(sale.sellPrice)}
+      </td>
+
+      <td>
+        ${formatNumber(sale.totalSales)}
+      </td>
+
+      <td>
+        ${formatNumber(sale.totalCost)}
+      </td>
+
+      <td>
+        ${formatNumber(sale.profit)}
+      </td>
+
+      <td>
+
+        ${
+          canReturn > 0
+            ? `
+              <button
+                class="table-btn return-btn"
+                onclick="prepareReturn(${JSON.stringify(sale.id)})">
+                ↩️ مرتجع
+              </button>
+            `
+            : ""
+        }
+
         <button
           class="table-btn delete-btn"
           onclick="deleteSale(${JSON.stringify(sale.id)})">
           حذف
         </button>
+
       </td>
+
     `;
 
+
     fragment.appendChild(tr);
+
   });
 
-  dom.salesReportTable.replaceChildren(fragment);
+
+  dom.salesReportTable.replaceChildren(
+    fragment
+  );
+
+}
+
+
+/* =========================
+   جدول تقارير المرتجعات
+========================= */
+
+function renderReportReturns(
+  selectedDay,
+  selectedMonth
+) {
+
+  if (!dom.reportReturnsTable) {
+    return;
+  }
+
+
+  const fragment =
+    document.createDocumentFragment();
+
+
+  const filtered =
+    returns
+      .filter(item => {
+
+        if (!item.date) {
+          return false;
+        }
+
+
+        return (
+          item.date === selectedDay ||
+          (
+            typeof item.date === "string" &&
+            item.date.startsWith(selectedMonth)
+          )
+        );
+
+      })
+      .slice()
+      .sort(
+        (a, b) =>
+          Number(b.id) -
+          Number(a.id)
+      );
+
+
+  if (!filtered.length) {
+
+    const tr =
+      document.createElement("tr");
+
+
+    tr.innerHTML = `
+
+      <td colspan="7">
+        لا توجد مرتجعات في الفترة المحددة.
+      </td>
+
+    `;
+
+
+    fragment.appendChild(tr);
+
+
+    dom.reportReturnsTable.replaceChildren(
+      fragment
+    );
+
+    return;
+
+  }
+
+
+  filtered.forEach(item => {
+
+    const tr =
+      document.createElement("tr");
+
+
+    tr.innerHTML = `
+
+      <td>
+        ${escapeHtml(item.date)}
+      </td>
+
+      <td>
+        ${escapeHtml(item.productName)}
+      </td>
+
+      <td>
+        ${
+          item.saleType === "retail"
+            ? "قطاعي"
+            : "جملة"
+        }
+      </td>
+
+      <td>
+        ${formatNumber(item.quantity)}
+      </td>
+
+      <td>
+        ${formatNumber(item.totalSales)}
+      </td>
+
+      <td>
+        ${formatNumber(item.totalCost)}
+      </td>
+
+      <td>
+        ${formatNumber(item.profit)}
+      </td>
+
+    `;
+
+
+    fragment.appendChild(tr);
+
+  });
+
+
+  dom.reportReturnsTable.replaceChildren(
+    fragment
+  );
+
+}
+
+
+/* =========================
+   تجهيز مرتجع من تقرير المبيعات
+========================= */
+
+function prepareReturn(saleId) {
+
+  openTool("salesManager");
+
+
+  requestAnimationFrame(() => {
+
+    dom.returnSale.value =
+      saleId;
+
+
+    dom.returnQuantity.value =
+      "1";
+
+
+    previewReturn();
+
+
+    dom.returnSale.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+
+  });
+
 }
 
 
@@ -3143,86 +5344,157 @@ function renderSalesReport(selectedDay, selectedMonth) {
 ========================= */
 
 function deleteSale(id) {
-  const sale = sales.find(
-    item => Number(item.id) === Number(id)
-  );
+
+  const sale =
+    sales.find(
+      item =>
+        Number(item.id) ===
+        Number(id)
+    );
+
 
   if (!sale) return;
 
-  const product = products.find(
-    item => Number(item.id) === Number(sale.productId)
-  );
 
-  if (!product) {
-    sales = sales.filter(
-      item => Number(item.id) !== Number(id)
+  const hasReturns =
+    returns.some(
+      item =>
+        Number(item.saleId) ===
+        Number(id)
     );
 
+
+  if (hasReturns) {
+
+    showMessage(
+      dom.saleMessage,
+      "لا يمكن حذف البيع لأنه عليه مرتجع مسجل. عالج المرتجع أولًا.",
+      "error"
+    );
+
+
+    openTool("salesManager");
+
+    return;
+
+  }
+
+
+  const product =
+    products.find(
+      item =>
+        Number(item.id) ===
+        Number(sale.productId)
+    );
+
+
+  if (!product) {
+
+    sales =
+      sales.filter(
+        item =>
+          Number(item.id) !==
+          Number(id)
+      );
+
+
     saveData();
+
     updateManagerDashboard();
     updateReports();
+
     return;
+
   }
+
 
   normalizeProduct(product);
 
-  const pieces = Math.max(
-    1,
-    Number(product.pieces) || 1
-  );
 
-  /*
-    إلغاء بيع جملة:
-    نرجع العبوات + نرجع عدد القطع إلى totalUnits.
-  */
-  if (sale.saleType === "wholesale") {
+  const pieces =
+    Math.max(
+      1,
+      Number(product.pieces) || 1
+    );
 
-    product.stock += Number(sale.quantity) || 0;
+
+  if (
+    sale.saleType === "wholesale"
+  ) {
+
+    product.stock +=
+      Number(sale.quantity) || 0;
+
 
     const currentTotalUnits =
-      Number.isFinite(Number(product.totalUnits))
+      Number.isFinite(
+        Number(product.totalUnits)
+      )
         ? Number(product.totalUnits)
-        : Math.max(0, product.stock * pieces);
+        : Math.max(
+            0,
+            product.stock * pieces
+          );
+
 
     product.totalUnits =
       currentTotalUnits +
-      ((Number(sale.quantity) || 0) * pieces);
+      (
+        (Number(sale.quantity) || 0) *
+        pieces
+      );
+
 
   } else {
 
-    /*
-      إلغاء بيع قطاعي:
-      نرجع عدد القطع المباعة.
-    */
     const currentTotalUnits =
-      Number.isFinite(Number(product.totalUnits))
+      Number.isFinite(
+        Number(product.totalUnits)
+      )
         ? Number(product.totalUnits)
         : product.stock * pieces;
 
+
     product.totalUnits =
       currentTotalUnits +
-      (Number(sale.quantity) || 0);
+      (
+        Number(sale.quantity) || 0
+      );
+
 
     product.stock =
-      Math.floor(product.totalUnits / pieces);
+      Math.floor(
+        product.totalUnits /
+        pieces
+      );
+
   }
 
-  sales = sales.filter(
-    item => Number(item.id) !== Number(id)
-  );
+
+  sales =
+    sales.filter(
+      item =>
+        Number(item.id) !==
+        Number(id)
+    );
+
 
   saveData();
 
   renderProducts();
   renderProductSelect();
+  renderReturnSelect();
+
   updateManagerDashboard();
   updateReports();
+
 
   showMessage(
     dom.saleMessage,
     "تم حذف عملية البيع وإرجاع الكمية للمخزون.",
     "success"
   );
+
 }
 
 
@@ -3231,47 +5503,88 @@ function deleteSale(id) {
 ========================= */
 
 function updateThemeButton() {
-  const isDark = document.body.classList.contains("dark");
-
-  dom.themeBtn.textContent = isDark
-    ? "☀️"
-    : "🌙";
-}
-
-
-function toggleTheme() {
-  document.body.classList.toggle("dark");
 
   const isDark =
     document.body.classList.contains("dark");
 
+
+  dom.themeBtn.textContent =
+    isDark
+      ? "☀️"
+      : "🌙";
+
+}
+
+
+function toggleTheme() {
+
+  document.body.classList.toggle(
+    "dark"
+  );
+
+
+  const isDark =
+    document.body.classList.contains(
+      "dark"
+    );
+
+
   try {
+
     localStorage.setItem(
       THEME_KEY,
-      isDark ? "dark" : "light"
+      isDark
+        ? "dark"
+        : "light"
     );
+
   } catch (error) {
-    console.error("Theme save error:", error);
+
+    console.error(
+      "Theme save error:",
+      error
+    );
+
   }
 
+
   updateThemeButton();
+
 }
 
 
 function loadTheme() {
-  try {
-    const savedTheme =
-      localStorage.getItem(THEME_KEY);
 
-    if (savedTheme === "dark") {
-      document.body.classList.add("dark");
+  try {
+
+    const savedTheme =
+      localStorage.getItem(
+        THEME_KEY
+      );
+
+
+    if (
+      savedTheme === "dark"
+    ) {
+
+      document.body.classList.add(
+        "dark"
+      );
+
     }
 
   } catch (error) {
-    console.error("Theme read error:", error);
+
+    console.error(
+      "Theme read error:",
+      error
+    );
+
   }
 
+
   updateThemeButton();
+
 }
 
 
@@ -3279,47 +5592,68 @@ function loadTheme() {
    بدء الموقع
 ========================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
 
-  cacheDom();
+    cacheDom();
 
-  loadTheme();
-  loadData();
+    loadTheme();
+    loadData();
 
-  /*
-    Migration:
-    لو عندنا منتجات قديمة لا تحتوي totalUnits
-    نضيفها بدون حفظ زائد لو مفيش تغيير.
-  */
-  let migrationChanged = false;
 
-  products.forEach(product => {
+    let migrationChanged =
+      false;
 
-    const before =
-      Number.isFinite(Number(product.totalUnits));
 
-    normalizeProduct(product);
+    products.forEach(
+      product => {
 
-    if (!before) {
-      migrationChanged = true;
+        const before =
+          Number.isFinite(
+            Number(product.totalUnits)
+          );
+
+
+        normalizeProduct(product);
+
+
+        if (!before) {
+          migrationChanged = true;
+        }
+
+      }
+    );
+
+
+    if (migrationChanged) {
+      saveData();
     }
-  });
 
-  if (migrationChanged) {
-    saveData();
+
+    dom.saleDate.value =
+      getToday();
+
+    dom.reportDay.value =
+      getToday();
+
+    dom.reportMonth.value =
+      getCurrentMonth();
+
+
+    renderProducts();
+    renderProductSelect();
+
+    renderReturnSelect();
+    renderReturnsHistory();
+
+    updateManagerDashboard();
+    updateReports();
+
+    setSaleType("wholesale");
+
   }
-
-  dom.saleDate.value = getToday();
-  dom.reportDay.value = getToday();
-  dom.reportMonth.value = getCurrentMonth();
-
-  renderProducts();
-  renderProductSelect();
-  updateManagerDashboard();
-  updateReports();
-
-  setSaleType("wholesale");
-});
+);
 </script>
 
 </body>
