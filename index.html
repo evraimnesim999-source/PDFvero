@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -24,6 +26,7 @@
           content="أدوات مجانية وسهلة لمعالجة ملفات PDF والصور وWord وExcel.">
     <meta property="og:type" content="website">
 
+
     <style>
 
         * {
@@ -32,7 +35,9 @@
             box-sizing: border-box;
         }
 
+
         :root {
+
             --primary: #e11d48;
             --primary-2: #fb7185;
             --primary-dark: #9f1239;
@@ -54,7 +59,9 @@
                 rgba(255,255,255,0.58);
         }
 
+
         body.dark {
+
             --bg: #0f0f12;
             --card: rgba(28,28,32,0.78);
             --card-solid: #1c1c20;
@@ -72,27 +79,35 @@
                 rgba(28,28,32,0.58);
         }
 
+
         html {
             scroll-behavior: smooth;
         }
 
+
         body {
+
             font-family: Arial, Tahoma, sans-serif;
+
             background:
                 radial-gradient(
                     circle at 15% 10%,
                     rgba(251,113,133,0.09),
                     transparent 25%
                 ),
+
                 radial-gradient(
                     circle at 85% 25%,
                     rgba(225,29,72,0.07),
                     transparent 25%
                 ),
+
                 var(--bg);
 
             color: var(--text);
+
             line-height: 1.6;
+
             transition:
                 background .3s,
                 color .3s;
@@ -100,88 +115,137 @@
             overflow-x: hidden;
         }
 
+
         a {
+
             text-decoration: none;
             color: inherit;
         }
 
+
         button,
         input {
+
             font-family: inherit;
         }
+
+
 
         /* =========================
            أشكال الخلفية
         ========================== */
 
         .background-shapes {
+
             position: fixed;
+
             inset: 0;
+
             pointer-events: none;
+
             overflow: hidden;
+
             z-index: -1;
         }
 
+
         .shape {
+
             position: absolute;
+
             border-radius: 50%;
+
             filter: blur(2px);
+
             opacity: .18;
-            animation: floatShape 9s ease-in-out infinite;
+
+            animation:
+                floatShape 9s ease-in-out infinite;
         }
 
+
         .shape.one {
+
             width: 180px;
             height: 180px;
+
             background: #fb7185;
+
             top: 120px;
             right: -70px;
         }
 
+
         .shape.two {
+
             width: 130px;
             height: 130px;
+
             background: #e11d48;
+
             top: 480px;
             left: -50px;
+
             animation-delay: 2s;
         }
 
+
         .shape.three {
+
             width: 100px;
             height: 100px;
+
             background: #fda4af;
+
             top: 850px;
             right: 12%;
+
             animation-delay: 4s;
         }
 
+
         .shape.four {
+
             width: 150px;
             height: 150px;
+
             background: #fb7185;
+
             top: 1250px;
             left: 8%;
+
             animation-delay: 1s;
         }
 
+
         @keyframes floatShape {
+
             0%, 100% {
-                transform: translateY(0) rotate(0deg);
+                transform:
+                    translateY(0)
+                    rotate(0deg);
             }
 
             50% {
-                transform: translateY(-22px) rotate(8deg);
+                transform:
+                    translateY(-22px)
+                    rotate(8deg);
             }
+
         }
+
+
 
         /* =========================
            NAVBAR
         ========================== */
 
         .navbar {
+
             position: sticky;
+
             top: 0;
+
             z-index: 1000;
 
             background: var(--glass);
@@ -190,28 +254,40 @@
                 1px solid var(--border);
 
             backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+
+            -webkit-backdrop-filter:
+                blur(18px);
         }
 
+
         .nav-container {
+
             max-width: 1150px;
+
             margin: auto;
 
             padding: 14px 20px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
 
             gap: 20px;
         }
 
+
         .logo {
+
             display: flex;
+
             align-items: center;
+
             gap: 10px;
 
             font-size: 28px;
+
             font-weight: 900;
 
             color: var(--primary);
@@ -219,12 +295,16 @@
             letter-spacing: -1px;
         }
 
+
         .logo-mark {
+
             width: 40px;
             height: 40px;
 
             display: flex;
+
             justify-content: center;
+
             align-items: center;
 
             border-radius: 12px;
@@ -241,16 +321,23 @@
             font-size: 20px;
 
             box-shadow:
-                0 8px 20px rgba(225,29,72,.2);
+                0 8px 20px
+                rgba(225,29,72,.2);
         }
 
+
         .nav-actions {
+
             display: flex;
+
             gap: 9px;
+
             align-items: center;
         }
 
+
         .nav-btn {
+
             border:
                 1px solid var(--border);
 
@@ -258,7 +345,8 @@
 
             color: var(--text);
 
-            padding: 9px 14px;
+            padding:
+                9px 14px;
 
             border-radius: 12px;
 
@@ -269,20 +357,30 @@
             transition: .2s;
         }
 
+
         .nav-btn:hover {
+
             color: var(--primary);
-            border-color: var(--primary);
-            transform: translateY(-2px);
+
+            border-color:
+                var(--primary);
+
+            transform:
+                translateY(-2px);
         }
+
+
 
         /* =========================
            HERO
         ========================== */
 
         .hero {
+
             position: relative;
 
             max-width: 1150px;
+
             margin: auto;
 
             padding:
@@ -291,18 +389,26 @@
             text-align: center;
         }
 
+
         .badge {
+
             display: inline-flex;
+
             align-items: center;
+
             gap: 8px;
 
-            background: var(--soft);
+            background:
+                var(--soft);
 
-            color: var(--primary);
+            color:
+                var(--primary);
 
-            padding: 8px 16px;
+            padding:
+                8px 16px;
 
-            border-radius: 50px;
+            border-radius:
+                50px;
 
             font-size: 14px;
 
@@ -314,7 +420,148 @@
                 1px solid var(--border);
         }
 
+
+
+        /* =========================
+           الباشمحاسب
+        ========================== */
+
+        .bashmohaseb {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            margin:
+                2px 0 20px;
+        }
+
+
+        .bashmohaseb span {
+
+            position: relative;
+
+            display: inline-block;
+
+            font-size:
+                clamp(24px, 4vw, 32px);
+
+            font-weight: 900;
+
+            letter-spacing: .5px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--primary-dark),
+                    var(--primary),
+                    #ffffff,
+                    var(--primary-2),
+                    var(--primary-dark)
+                );
+
+            background-size:
+                300% 100%;
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+
+            animation:
+                bashShine 3s linear infinite,
+                bashFloat 2.8s ease-in-out infinite;
+
+            filter:
+                drop-shadow(
+                    0 4px 12px
+                    rgba(225,29,72,.18)
+                );
+        }
+
+
+        .bashmohaseb span::after {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            right: -45%;
+
+            width: 20%;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,.95),
+                    transparent
+                );
+
+            transform:
+                skewX(-22deg);
+
+            animation:
+                bashLight 2.5s
+                ease-in-out infinite;
+        }
+
+
+        @keyframes bashShine {
+
+            0% {
+                background-position:
+                    300% 0;
+            }
+
+            100% {
+                background-position:
+                    -300% 0;
+            }
+
+        }
+
+
+        @keyframes bashLight {
+
+            0% {
+                right: 120%;
+            }
+
+            55%, 100% {
+                right: -45%;
+            }
+
+        }
+
+
+        @keyframes bashFloat {
+
+            0%, 100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-4px);
+            }
+
+        }
+
+
+
+        /* =========================
+           العنوان
+        ========================== */
+
         .hero h1 {
+
             font-size:
                 clamp(38px, 6vw, 64px);
 
@@ -323,13 +570,18 @@
             margin-bottom: 18px;
         }
 
+
         .hero h1 span {
-            color: var(--primary);
+
+            color:
+                var(--primary);
 
             position: relative;
         }
 
+
         .hero h1 span::after {
+
             content: "";
 
             position: absolute;
@@ -342,7 +594,8 @@
 
             bottom: -8px;
 
-            border-radius: 50px;
+            border-radius:
+                50px;
 
             background:
                 linear-gradient(
@@ -355,7 +608,9 @@
             opacity: .5;
         }
 
+
         .hero p {
+
             max-width: 730px;
 
             margin: auto;
@@ -367,11 +622,14 @@
             line-height: 1.9;
         }
 
+
+
         /* =========================
            البحث
         ========================== */
 
         .search-box {
+
             max-width: 760px;
 
             margin:
@@ -380,10 +638,13 @@
             position: relative;
         }
 
+
         .search-icon {
+
             position: absolute;
 
             right: 18px;
+
             top: 50%;
 
             transform:
@@ -394,7 +655,9 @@
             pointer-events: none;
         }
 
+
         .search-box input {
+
             width: 100%;
 
             padding:
@@ -403,44 +666,58 @@
             border:
                 2px solid var(--border);
 
-            border-radius: 18px;
+            border-radius:
+                18px;
 
             outline: none;
 
-            background: var(--card);
+            background:
+                var(--card);
 
-            color: var(--text);
+            color:
+                var(--text);
 
             font-size: 16px;
 
-            box-shadow: var(--shadow);
+            box-shadow:
+                var(--shadow);
 
-            backdrop-filter: blur(12px);
+            backdrop-filter:
+                blur(12px);
 
             transition: .2s;
         }
 
+
         .search-box input:focus {
-            border-color: var(--primary);
+
+            border-color:
+                var(--primary);
 
             box-shadow:
                 0 14px 35px
                 rgba(225,29,72,.14);
         }
 
+
         .search-hint {
+
             margin-top: 11px;
 
-            color: var(--muted);
+            color:
+                var(--muted);
 
             font-size: 13px;
         }
+
+
 
         /* =========================
            MAIN
         ========================== */
 
         .container {
+
             max-width: 1150px;
 
             margin: auto;
@@ -449,13 +726,19 @@
                 0 20px 70px;
         }
 
+
         .section {
+
             margin-top: 58px;
         }
 
+
         .section-title {
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
 
             gap: 15px;
@@ -463,7 +746,9 @@
             margin-bottom: 20px;
         }
 
+
         .section-title-left {
+
             display: flex;
 
             align-items: center;
@@ -471,11 +756,15 @@
             gap: 11px;
         }
 
+
         .section-dot {
+
             width: 12px;
+
             height: 35px;
 
-            border-radius: 50px;
+            border-radius:
+                50px;
 
             background:
                 linear-gradient(
@@ -488,21 +777,29 @@
                 rgba(225,29,72,.2);
         }
 
+
         .section-title h2 {
+
             font-size: 26px;
         }
 
+
         .section-title span {
-            color: var(--muted);
+
+            color:
+                var(--muted);
 
             font-size: 14px;
         }
+
+
 
         /* =========================
            CARDS
         ========================== */
 
         .tools-grid {
+
             display: grid;
 
             grid-template-columns:
@@ -511,24 +808,30 @@
             gap: 17px;
         }
 
+
         .popular .tools-grid {
+
             grid-template-columns:
                 repeat(3, 1fr);
         }
 
+
         .tool-card {
+
             position: relative;
 
             display: block;
 
             min-height: 190px;
 
-            background: var(--card);
+            background:
+                var(--card);
 
             border:
                 1px solid var(--border);
 
-            border-radius: 20px;
+            border-radius:
+                20px;
 
             padding: 24px;
 
@@ -538,7 +841,8 @@
                 0 8px 24px
                 rgba(0,0,0,.04);
 
-            backdrop-filter: blur(10px);
+            backdrop-filter:
+                blur(10px);
 
             transition:
                 transform .25s ease,
@@ -547,7 +851,9 @@
                 background .25s ease;
         }
 
+
         .tool-card::before {
+
             content: "";
 
             position: absolute;
@@ -555,7 +861,8 @@
             width: 100px;
             height: 100px;
 
-            border-radius: 50%;
+            border-radius:
+                50%;
 
             background:
                 var(--soft);
@@ -565,10 +872,13 @@
 
             opacity: .45;
 
-            transition: .3s;
+            transition:
+                .3s;
         }
 
+
         .tool-card:hover {
+
             transform:
                 translateY(-8px);
 
@@ -580,16 +890,22 @@
                 rgba(159,18,57,.12);
         }
 
+
         .tool-card:hover::before {
+
             transform:
                 scale(1.25);
         }
 
+
         .tool-card.hidden {
+
             display: none;
         }
 
+
         .icon {
+
             position: relative;
 
             z-index: 1;
@@ -598,10 +914,13 @@
             height: 58px;
 
             display: flex;
+
             align-items: center;
+
             justify-content: center;
 
-            border-radius: 17px;
+            border-radius:
+                17px;
 
             background:
                 linear-gradient(
@@ -621,10 +940,13 @@
                 0 7px 20px
                 rgba(159,18,57,.08);
 
-            transition: .25s;
+            transition:
+                .25s;
         }
 
+
         body.dark .icon {
+
             background:
                 linear-gradient(
                     135deg,
@@ -633,13 +955,17 @@
                 );
         }
 
+
         .tool-card:hover .icon {
+
             transform:
                 rotate(-5deg)
                 scale(1.05);
         }
 
+
         .tool-card h3 {
+
             position: relative;
 
             z-index: 1;
@@ -649,23 +975,29 @@
             margin-bottom: 8px;
         }
 
+
         .tool-card p {
+
             position: relative;
 
             z-index: 1;
 
-            color: var(--muted);
+            color:
+                var(--muted);
 
             font-size: 13px;
 
             line-height: 1.7;
         }
 
+
+
         /* =========================
            NO RESULTS
         ========================== */
 
         .no-results {
+
             display: none;
 
             text-align: center;
@@ -674,26 +1006,34 @@
 
             margin-top: 25px;
 
-            background: var(--card);
+            background:
+                var(--card);
 
             border:
                 1px solid var(--border);
 
-            border-radius: 18px;
+            border-radius:
+                18px;
 
-            color: var(--muted);
+            color:
+                var(--muted);
 
-            box-shadow: var(--shadow);
+            box-shadow:
+                var(--shadow);
         }
+
+
 
         /* =========================
            CTA
         ========================== */
 
         .cta {
+
             margin-top: 70px;
 
-            padding: 45px 30px;
+            padding:
+                45px 30px;
 
             position: relative;
 
@@ -701,7 +1041,8 @@
 
             text-align: center;
 
-            border-radius: 25px;
+            border-radius:
+                25px;
 
             color: white;
 
@@ -718,19 +1059,24 @@
                 rgba(190,18,60,.2);
         }
 
+
         .cta::before,
         .cta::after {
+
             content: "";
 
             position: absolute;
 
-            border-radius: 50%;
+            border-radius:
+                50%;
 
             background:
                 rgba(255,255,255,.1);
         }
 
+
         .cta::before {
+
             width: 180px;
             height: 180px;
 
@@ -738,7 +1084,9 @@
             right: -40px;
         }
 
+
         .cta::after {
+
             width: 140px;
             height: 140px;
 
@@ -746,7 +1094,9 @@
             left: -30px;
         }
 
+
         .cta h2 {
+
             position: relative;
 
             z-index: 1;
@@ -756,7 +1106,9 @@
             margin-bottom: 10px;
         }
 
+
         .cta p {
+
             position: relative;
 
             z-index: 1;
@@ -770,30 +1122,41 @@
             line-height: 1.8;
         }
 
+
+
         /* =========================
            FOOTER
         ========================== */
 
         footer {
+
             margin-top: 20px;
 
-            padding: 35px 20px;
+            padding:
+                35px 20px;
 
             text-align: center;
 
-            background: var(--card);
+            background:
+                var(--card);
 
             border-top:
                 1px solid var(--border);
 
-            color: var(--muted);
+            color:
+                var(--muted);
         }
 
+
         footer strong {
-            color: var(--primary);
+
+            color:
+                var(--primary);
 
             font-size: 20px;
         }
+
+
 
         /* =========================
            RESPONSIVE
@@ -802,959 +1165,1154 @@
         @media (max-width: 950px) {
 
             .tools-grid {
+
                 grid-template-columns:
                     repeat(2, 1fr);
             }
 
             .popular .tools-grid {
+
                 grid-template-columns:
                     repeat(2, 1fr);
             }
 
         }
 
+
         @media (max-width: 600px) {
 
             .nav-container {
+
                 padding:
                     12px 15px;
             }
 
+
             .logo {
-                font-size: 22px;
+
+                font-size:
+                    22px;
             }
 
+
             .logo-mark {
+
                 width: 36px;
                 height: 36px;
             }
 
+
             .nav-btn {
+
                 padding:
                     8px 10px;
             }
 
+
             .nav-actions .nav-btn:first-child {
-                font-size: 0;
+
+                font-size:
+                    0;
             }
+
 
             .nav-actions .nav-btn:first-child::after {
-                content: "⌂";
 
-                font-size: 20px;
+                content:
+                    "⌂";
+
+                font-size:
+                    20px;
             }
 
+
             .hero {
+
                 padding:
                     55px 15px 40px;
             }
 
-            .hero h1 {
-                font-size: 38px;
+
+            .bashmohaseb {
+
+                margin-bottom:
+                    17px;
             }
+
+
+            .bashmohaseb span {
+
+                font-size:
+                    27px;
+            }
+
+
+            .hero h1 {
+
+                font-size:
+                    38px;
+            }
+
 
             .hero p {
-                font-size: 16px;
+
+                font-size:
+                    16px;
             }
 
+
             .container {
+
                 padding:
                     0 15px 50px;
             }
 
+
             .tools-grid,
             .popular .tools-grid {
+
                 grid-template-columns:
                     1fr;
             }
 
+
             .section-title h2 {
-                font-size: 22px;
+
+                font-size:
+                    22px;
             }
+
 
             .section-title span {
-                display: none;
+
+                display:
+                    none;
             }
+
 
             .tool-card {
-                min-height: auto;
+
+                min-height:
+                    auto;
             }
 
+
             .cta {
+
                 padding:
                     35px 20px;
             }
 
+
             .cta h2 {
-                font-size: 25px;
+
+                font-size:
+                    25px;
             }
 
         }
 
     </style>
+
 </head>
+
 
 <body>
 
-<!-- أشكال الخلفية -->
 
-<div class="background-shapes">
-    <div class="shape one"></div>
-    <div class="shape two"></div>
-    <div class="shape three"></div>
-    <div class="shape four"></div>
-</div>
+    <!-- أشكال الخلفية -->
 
+    <div class="background-shapes">
 
-<!-- NAVBAR -->
-
-<header class="navbar">
-
-    <div class="nav-container">
-
-        <a href="index.html" class="logo">
-
-            <div class="logo-mark">
-                📄
-            </div>
-
-            PDFvero
-
-        </a>
-
-
-        <div class="nav-actions">
-
-            <a
-                href="index.html"
-                class="nav-btn"
-            >
-                الرئيسية
-            </a>
-
-
-            <button
-                class="nav-btn"
-                id="themeBtn"
-                onclick="toggleTheme()"
-                title="الوضع الليلي"
-            >
-                🌙
-            </button>
-
-        </div>
+        <div class="shape one"></div>
+        <div class="shape two"></div>
+        <div class="shape three"></div>
+        <div class="shape four"></div>
 
     </div>
 
-</header>
 
 
-<!-- HERO -->
+    <!-- NAVBAR -->
 
-<main>
+    <header class="navbar">
 
-    <section class="hero">
+        <div class="nav-container">
 
-        <div class="badge">
-            ✨ أدوات ملفاتك في مكان واحد
+            <a
+                href="index.html"
+                class="logo"
+            >
+
+                <div class="logo-mark">
+                    📄
+                </div>
+
+                PDFvero
+
+            </a>
+
+
+            <div class="nav-actions">
+
+                <a
+                    href="index.html"
+                    class="nav-btn"
+                >
+                    الرئيسية
+                </a>
+
+
+                <button
+                    class="nav-btn"
+                    id="themeBtn"
+                    onclick="toggleTheme()"
+                    title="الوضع الليلي"
+                >
+                    🌙
+                </button>
+
+            </div>
+
         </div>
 
+    </header>
 
-        <h1>
 
-            كل أدوات ملفاتك في
 
-            <span>
-                PDFvero
-            </span>
+    <!-- HERO -->
 
-        </h1>
+    <main>
+
+        <section class="hero">
+
+
+            <div class="badge">
+
+                ✨ أدوات ملفاتك في مكان واحد
+
+            </div>
+
+
+            <!-- الباشمحاسب -->
+
+            <div class="bashmohaseb">
+
+                <span>
+                    الباشمحاسب
+                </span>
+
+            </div>
+
+
+            <h1>
+
+                كل أدوات ملفاتك في
+
+                <span>
+                    PDFvero
+                </span>
+
+            </h1>
+
+
+            <p>
+
+                اضغط وادمج وقسّم وحوّل ملفات PDF،
+                وتعامل مع الصور وWord وExcel بسهولة،
+                مباشرة من المتصفح.
+
+            </p>
+
+
+
+            <!-- البحث -->
+
+            <div class="search-box">
+
+
+                <div class="search-icon">
+
+                    🔎
+
+                </div>
+
+
+                <input
+
+                    type="search"
+
+                    id="searchInput"
+
+                    placeholder="ابحث عن أداة... مثل ضغط PDF أو Excel أو صور"
+
+                    oninput="searchTools()"
+
+                    autocomplete="off"
+
+                >
+
+
+                <div class="search-hint">
+
+                    جرّب:
+
+                    PDF — ضغط — دمج — تقسيم — صور — Word — Excel
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <div class="container">
+
+
+            <!-- الأدوات السريعة -->
+
+            <section class="section popular">
+
+
+                <div class="section-title">
+
+
+                    <div class="section-title-left">
+
+
+                        <div class="section-dot"></div>
+
+
+                        <h2>
+
+                            🔥 الأدوات الأكثر استخدامًا
+
+                        </h2>
+
+
+                    </div>
+
+
+                    <span>
+
+                        ابدأ بسرعة
+
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="tools-grid">
+
+
+                    <a
+                        href="compress-pdf.html"
+                        class="tool-card searchable"
+                        data-keywords="
+                            ضغط pdf
+                            compress pdf
+                            ضغط بي دي اف
+                            بي دي اف
+                        "
+                    >
+
+                        <div class="icon">
+                            📉
+                        </div>
+
+                        <h3>
+                            ضغط PDF
+                        </h3>
+
+                        <p>
+                            قلل حجم ملف PDF بسهولة.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="merge-pdf.html"
+                        class="tool-card searchable"
+                        data-keywords="
+                            دمج pdf
+                            merge pdf
+                            دمج بي دي اف
+                        "
+                    >
+
+                        <div class="icon">
+                            🔗
+                        </div>
+
+                        <h3>
+                            دمج PDF
+                        </h3>
+
+                        <p>
+                            اجمع عدة ملفات PDF في ملف واحد.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="split-pdf.html"
+                        class="tool-card searchable"
+                        data-keywords="
+                            تقسيم pdf
+                            split pdf
+                            تقسيم بي دي اف
+                        "
+                    >
+
+                        <div class="icon">
+                            ✂️
+                        </div>
+
+                        <h3>
+                            تقسيم PDF
+                        </h3>
+
+                        <p>
+                            استخرج الصفحات التي تحتاجها.
+                        </p>
+
+                    </a>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- PDF -->
+
+            <section class="section">
+
+
+                <div class="section-title">
+
+
+                    <div class="section-title-left">
+
+
+                        <div class="section-dot"></div>
+
+
+                        <h2>
+                            📄 أدوات PDF
+                        </h2>
+
+
+                    </div>
+
+
+                    <span>
+                        PDF Tools
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="tools-grid">
+
+
+                    <a
+                        href="compress-pdf.html"
+                        class="tool-card searchable"
+                        data-keywords="ضغط pdf compress pdf"
+                    >
+
+                        <div class="icon">
+                            📉
+                        </div>
+
+                        <h3>
+                            ضغط PDF
+                        </h3>
+
+                        <p>
+                            تقليل حجم ملفات PDF.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="merge-pdf.html"
+                        class="tool-card searchable"
+                        data-keywords="دمج pdf merge pdf"
+                    >
+
+                        <div class="icon">
+                            🔗
+                        </div>
+
+                        <h3>
+                            دمج PDF
+                        </h3>
+
+                        <p>
+                            دمج عدة ملفات في ملف واحد.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="split-pdf.html"
+                        class="tool-card searchable"
+                        data-keywords="تقسيم pdf split pdf"
+                    >
+
+                        <div class="icon">
+                            ✂️
+                        </div>
+
+                        <h3>
+                            تقسيم PDF
+                        </h3>
+
+                        <p>
+                            استخراج صفحات معينة من PDF.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="pdf-to-word.html"
+                        class="tool-card searchable"
+                        data-keywords="
+                            pdf الى word
+                            pdf إلى word
+                            pdf word
+                            بي دي اف وورد
+                        "
+                    >
+
+                        <div class="icon">
+                            📝
+                        </div>
+
+                        <h3>
+                            PDF إلى Word
+                        </h3>
+
+                        <p>
+                            تحويل محتوى PDF إلى Word.
+                        </p>
+
+                    </a>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- الصور -->
+
+            <section class="section">
+
+
+                <div class="section-title">
+
+
+                    <div class="section-title-left">
+
+
+                        <div class="section-dot"></div>
+
+
+                        <h2>
+                            🖼️ أدوات الصور
+                        </h2>
+
+
+                    </div>
+
+
+                    <span>
+                        Image Tools
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="tools-grid">
+
+
+                    <a
+                        href="compress-image.html"
+                        class="tool-card searchable"
+                        data-keywords="
+                            ضغط الصور
+                            ضغط صورة
+                            صور
+                            compress image
+                        "
+                    >
+
+                        <div class="icon">
+                            🗜️
+                        </div>
+
+                        <h3>
+                            ضغط الصور
+                        </h3>
+
+                        <p>
+                            قلل حجم الصور بسهولة.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="resize-image.html"
+                        class="tool-card searchable"
+                        data-keywords="
+                            تغيير حجم الصور
+                            resize image
+                            تصغير الصور
+                        "
+                    >
+
+                        <div class="icon">
+                            📐
+                        </div>
+
+                        <h3>
+                            تغيير حجم الصور
+                        </h3>
+
+                        <p>
+                            تعديل أبعاد الصور.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="convert-image.html"
+                        class="tool-card searchable"
+                        data-keywords="
+                            تحويل الصور
+                            convert image
+                            jpg
+                            png
+                            webp
+                        "
+                    >
+
+                        <div class="icon">
+                            🔄
+                        </div>
+
+                        <h3>
+                            تحويل الصور
+                        </h3>
+
+                        <p>
+                            تحويل الصور بين الصيغ المختلفة.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="images-to-pdf.html"
+                        class="tool-card searchable"
+                        data-keywords="
+                            صور الى pdf
+                            صور إلى pdf
+                            images to pdf
+                        "
+                    >
+
+                        <div class="icon">
+                            🖼️
+                        </div>
+
+                        <h3>
+                            الصور إلى PDF
+                        </h3>
+
+                        <p>
+                            تحويل عدة صور إلى PDF.
+                        </p>
+
+                    </a>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- Word -->
+
+            <section class="section">
+
+
+                <div class="section-title">
+
+
+                    <div class="section-title-left">
+
+
+                        <div class="section-dot"></div>
+
+
+                        <h2>
+                            📝 أدوات Word
+                        </h2>
+
+
+                    </div>
+
+
+                    <span>
+                        Word Tools
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="tools-grid">
+
+
+                    <a
+                        href="word-to-pdf.html"
+                        class="tool-card searchable"
+                        data-keywords="
+                            word الى pdf
+                            word إلى pdf
+                            وورد الى pdf
+                            word pdf
+                        "
+                    >
+
+                        <div class="icon">
+                            📄
+                        </div>
+
+                        <h3>
+                            Word إلى PDF
+                        </h3>
+
+                        <p>
+                            تحويل مستندات Word إلى PDF.
+                        </p>
+
+                    </a>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- Excel -->
+
+            <section class="section">
+
+
+                <div class="section-title">
+
+
+                    <div class="section-title-left">
+
+
+                        <div class="section-dot"></div>
+
+
+                        <h2>
+                            📊 أدوات Excel
+                        </h2>
+
+
+                    </div>
+
+
+                    <span>
+                        Excel Tools
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="tools-grid">
+
+
+                    <a
+                        href="excel-to-pdf.html"
+                        class="tool-card searchable"
+                        data-keywords="
+                            excel pdf
+                            excel الى pdf
+                            excel إلى pdf
+                            اكسل الى pdf
+                            اكسل
+                        "
+                    >
+
+                        <div class="icon">
+                            📄
+                        </div>
+
+                        <h3>
+                            Excel إلى PDF
+                        </h3>
+
+                        <p>
+                            تحويل جداول Excel إلى PDF.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="csv-to-excel.html"
+                        class="tool-card searchable"
+                        data-keywords="
+                            csv excel
+                            csv الى excel
+                            csv إلى excel
+                            سي اس في اكسل
+                        "
+                    >
+
+                        <div class="icon">
+                            📊
+                        </div>
+
+                        <h3>
+                            CSV إلى Excel
+                        </h3>
+
+                        <p>
+                            تحويل ملفات CSV إلى Excel.
+                        </p>
+
+                    </a>
+
+
+                    <a
+                        href="excel-to-csv.html"
+                        class="tool-card searchable"
+                        data-keywords="
+                            excel csv
+                            excel الى csv
+                            excel إلى csv
+                            اكسل csv
+                        "
+                    >
+
+                        <div class="icon">
+                            🔄
+                        </div>
+
+                        <h3>
+                            Excel إلى CSV
+                        </h3>
+
+                        <p>
+                            تحويل ملفات Excel إلى CSV.
+                        </p>
+
+                    </a>
+
+
+                </div>
+
+            </section>
+
+
+
+            <!-- CTA -->
+
+            <section class="cta">
+
+
+                <h2>
+
+                    🚀 PDFvero معاك في كل ملف
+
+                </h2>
+
+
+                <p>
+
+                    أدوات بسيطة وسريعة تساعدك تنجز شغلك
+                    من غير ما تحتاج تثبت برامج إضافية.
+
+                </p>
+
+
+            </section>
+
+
+
+            <!-- لا توجد نتائج -->
+
+            <div
+                class="no-results"
+                id="noResults"
+            >
+
+                😕 مش لاقي الأداة دي.
+
+                <br><br>
+
+                جرّب:
+
+                PDF،
+
+                ضغط،
+
+                دمج،
+
+                تقسيم،
+
+                صور،
+
+                Word،
+
+                Excel.
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <!-- FOOTER -->
+
+    <footer>
 
 
         <p>
 
-            اضغط وادمج وقسّم وحوّل ملفات PDF،
-            وتعامل مع الصور وWord وExcel بسهولة،
-            مباشرة من المتصفح.
+            © 2026
+
+            <strong>
+                PDFvero
+            </strong>
+
+            — أدوات الملفات أونلاين ❤️
 
         </p>
 
 
-        <!-- البحث -->
+    </footer>
 
-        <div class="search-box">
 
-            <div class="search-icon">
-                🔎
-            </div>
 
-            <input
-                type="search"
-                id="searchInput"
-                placeholder="ابحث عن أداة... مثل ضغط PDF أو Excel أو صور"
-                oninput="searchTools()"
-                autocomplete="off"
-            >
+    <script>
 
-            <div class="search-hint">
 
-                جرّب:
-                PDF — ضغط — دمج — تقسيم — صور — Word — Excel
+        /* =========================
+           البحث
+        ========================== */
 
-            </div>
+        function normalizeText(text) {
 
-        </div>
+            return text
+                .toLowerCase()
+                .trim()
+                .replace(/[أإآ]/g, "ا")
+                .replace(/ة/g, "ه")
+                .replace(/ى/g, "ي")
+                .replace(/ؤ/g, "و")
+                .replace(/ئ/g, "ي")
+                .replace(/\s+/g, " ");
 
-    </section>
+        }
 
 
-    <div class="container">
+        function searchTools() {
 
-
-        <!-- الأدوات السريعة -->
-
-        <section class="section popular">
-
-            <div class="section-title">
-
-                <div class="section-title-left">
-
-                    <div class="section-dot"></div>
-
-                    <h2>
-                        🔥 الأدوات الأكثر استخدامًا
-                    </h2>
-
-                </div>
-
-                <span>
-                    ابدأ بسرعة
-                </span>
-
-            </div>
-
-
-            <div class="tools-grid">
-
-
-                <a
-                    href="compress-pdf.html"
-                    class="tool-card searchable"
-                    data-keywords="
-                        ضغط pdf
-                        compress pdf
-                        ضغط بي دي اف
-                        بي دي اف
-                    "
-                >
-
-                    <div class="icon">
-                        📉
-                    </div>
-
-                    <h3>
-                        ضغط PDF
-                    </h3>
-
-                    <p>
-                        قلل حجم ملف PDF بسهولة.
-                    </p>
-
-                </a>
-
-
-                <a
-                    href="merge-pdf.html"
-                    class="tool-card searchable"
-                    data-keywords="
-                        دمج pdf
-                        merge pdf
-                        دمج بي دي اف
-                    "
-                >
-
-                    <div class="icon">
-                        🔗
-                    </div>
-
-                    <h3>
-                        دمج PDF
-                    </h3>
-
-                    <p>
-                        اجمع عدة ملفات PDF في ملف واحد.
-                    </p>
-
-                </a>
-
-
-                <a
-                    href="split-pdf.html"
-                    class="tool-card searchable"
-                    data-keywords="
-                        تقسيم pdf
-                        split pdf
-                        تقسيم بي دي اف
-                    "
-                >
-
-                    <div class="icon">
-                        ✂️
-                    </div>
-
-                    <h3>
-                        تقسيم PDF
-                    </h3>
-
-                    <p>
-                        استخرج الصفحات التي تحتاجها.
-                    </p>
-
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- PDF -->
-
-        <section class="section">
-
-            <div class="section-title">
-
-                <div class="section-title-left">
-
-                    <div class="section-dot"></div>
-
-                    <h2>
-                        📄 أدوات PDF
-                    </h2>
-
-                </div>
-
-                <span>
-                    PDF Tools
-                </span>
-
-            </div>
-
-
-            <div class="tools-grid">
-
-
-                <a
-                    href="compress-pdf.html"
-                    class="tool-card searchable"
-                    data-keywords="ضغط pdf compress pdf"
-                >
-
-                    <div class="icon">
-                        📉
-                    </div>
-
-                    <h3>
-                        ضغط PDF
-                    </h3>
-
-                    <p>
-                        تقليل حجم ملفات PDF.
-                    </p>
-
-                </a>
-
-
-                <a
-                    href="merge-pdf.html"
-                    class="tool-card searchable"
-                    data-keywords="دمج pdf merge pdf"
-                >
-
-                    <div class="icon">
-                        🔗
-                    </div>
-
-                    <h3>
-                        دمج PDF
-                    </h3>
-
-                    <p>
-                        دمج عدة ملفات في ملف واحد.
-                    </p>
-
-                </a>
-
-
-                <a
-                    href="split-pdf.html"
-                    class="tool-card searchable"
-                    data-keywords="تقسيم pdf split pdf"
-                >
-
-                    <div class="icon">
-                        ✂️
-                    </div>
-
-                    <h3>
-                        تقسيم PDF
-                    </h3>
-
-                    <p>
-                        استخراج صفحات معينة من PDF.
-                    </p>
-
-                </a>
-
-
-                <a
-                    href="pdf-to-word.html"
-                    class="tool-card searchable"
-                    data-keywords="
-                        pdf الى word
-                        pdf إلى word
-                        pdf word
-                        بي دي اف وورد
-                    "
-                >
-
-                    <div class="icon">
-                        📝
-                    </div>
-
-                    <h3>
-                        PDF إلى Word
-                    </h3>
-
-                    <p>
-                        تحويل محتوى PDF إلى Word.
-                    </p>
-
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- الصور -->
-
-        <section class="section">
-
-            <div class="section-title">
-
-                <div class="section-title-left">
-
-                    <div class="section-dot"></div>
-
-                    <h2>
-                        🖼️ أدوات الصور
-                    </h2>
-
-                </div>
-
-                <span>
-                    Image Tools
-                </span>
-
-            </div>
-
-
-            <div class="tools-grid">
-
-
-                <a
-                    href="compress-image.html"
-                    class="tool-card searchable"
-                    data-keywords="
-                        ضغط الصور
-                        ضغط صورة
-                        صور
-                        compress image
-                    "
-                >
-
-                    <div class="icon">
-                        🗜️
-                    </div>
-
-                    <h3>
-                        ضغط الصور
-                    </h3>
-
-                    <p>
-                        قلل حجم الصور بسهولة.
-                    </p>
-
-                </a>
-
-
-                <a
-                    href="resize-image.html"
-                    class="tool-card searchable"
-                    data-keywords="
-                        تغيير حجم الصور
-                        resize image
-                        تصغير الصور
-                    "
-                >
-
-                    <div class="icon">
-                        📐
-                    </div>
-
-                    <h3>
-                        تغيير حجم الصور
-                    </h3>
-
-                    <p>
-                        تعديل أبعاد الصور.
-                    </p>
-
-                </a>
-
-
-                <a
-                    href="convert-image.html"
-                    class="tool-card searchable"
-                    data-keywords="
-                        تحويل الصور
-                        convert image
-                        jpg
-                        png
-                        webp
-                    "
-                >
-
-                    <div class="icon">
-                        🔄
-                    </div>
-
-                    <h3>
-                        تحويل الصور
-                    </h3>
-
-                    <p>
-                        تحويل الصور بين الصيغ المختلفة.
-                    </p>
-
-                </a>
-
-
-                <a
-                    href="images-to-pdf.html"
-                    class="tool-card searchable"
-                    data-keywords="
-                        صور الى pdf
-                        صور إلى pdf
-                        images to pdf
-                    "
-                >
-
-                    <div class="icon">
-                        🖼️
-                    </div>
-
-                    <h3>
-                        الصور إلى PDF
-                    </h3>
-
-                    <p>
-                        تحويل عدة صور إلى PDF.
-                    </p>
-
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- Word -->
-
-        <section class="section">
-
-            <div class="section-title">
-
-                <div class="section-title-left">
-
-                    <div class="section-dot"></div>
-
-                    <h2>
-                        📝 أدوات Word
-                    </h2>
-
-                </div>
-
-                <span>
-                    Word Tools
-                </span>
-
-            </div>
-
-
-            <div class="tools-grid">
-
-
-                <a
-                    href="word-to-pdf.html"
-                    class="tool-card searchable"
-                    data-keywords="
-                        word الى pdf
-                        word إلى pdf
-                        وورد الى pdf
-                        word pdf
-                    "
-                >
-
-                    <div class="icon">
-                        📄
-                    </div>
-
-                    <h3>
-                        Word إلى PDF
-                    </h3>
-
-                    <p>
-                        تحويل مستندات Word إلى PDF.
-                    </p>
-
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- Excel -->
-
-        <section class="section">
-
-            <div class="section-title">
-
-                <div class="section-title-left">
-
-                    <div class="section-dot"></div>
-
-                    <h2>
-                        📊 أدوات Excel
-                    </h2>
-
-                </div>
-
-                <span>
-                    Excel Tools
-                </span>
-
-            </div>
-
-
-            <div class="tools-grid">
-
-
-                <a
-                    href="excel-to-pdf.html"
-                    class="tool-card searchable"
-                    data-keywords="
-                        excel pdf
-                        excel الى pdf
-                        excel إلى pdf
-                        اكسل الى pdf
-                        اكسل
-                    "
-                >
-
-                    <div class="icon">
-                        📄
-                    </div>
-
-                    <h3>
-                        Excel إلى PDF
-                    </h3>
-
-                    <p>
-                        تحويل جداول Excel إلى PDF.
-                    </p>
-
-                </a>
-
-
-                <a
-                    href="csv-to-excel.html"
-                    class="tool-card searchable"
-                    data-keywords="
-                        csv excel
-                        csv الى excel
-                        csv إلى excel
-                        سي اس في اكسل
-                    "
-                >
-
-                    <div class="icon">
-                        📊
-                    </div>
-
-                    <h3>
-                        CSV إلى Excel
-                    </h3>
-
-                    <p>
-                        تحويل ملفات CSV إلى Excel.
-                    </p>
-
-                </a>
-
-
-                <a
-                    href="excel-to-csv.html"
-                    class="tool-card searchable"
-                    data-keywords="
-                        excel csv
-                        excel الى csv
-                        excel إلى csv
-                        اكسل csv
-                    "
-                >
-
-                    <div class="icon">
-                        🔄
-                    </div>
-
-                    <h3>
-                        Excel إلى CSV
-                    </h3>
-
-                    <p>
-                        تحويل ملفات Excel إلى CSV.
-                    </p>
-
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- CTA -->
-
-        <section class="cta">
-
-            <h2>
-                🚀 PDFvero معاك في كل ملف
-            </h2>
-
-            <p>
-                أدوات بسيطة وسريعة تساعدك تنجز شغلك
-                من غير ما تحتاج تثبت برامج إضافية.
-            </p>
-
-        </section>
-
-
-        <!-- لا توجد نتائج -->
-
-        <div
-            class="no-results"
-            id="noResults"
-        >
-
-            😕 مش لاقي الأداة دي.
-
-            <br><br>
-
-            جرّب:
-            PDF،
-            ضغط،
-            دمج،
-            تقسيم،
-            صور،
-            Word،
-            Excel.
-
-        </div>
-
-    </div>
-
-</main>
-
-
-<!-- FOOTER -->
-
-<footer>
-
-    <p>
-
-        © 2026
-
-        <strong>
-            PDFvero
-        </strong>
-
-        — أدوات الملفات أونلاين ❤️
-
-    </p>
-
-</footer>
-
-
-<script>
-
-    /* =========================
-       البحث
-    ========================== */
-
-    function normalizeText(text) {
-
-        return text
-            .toLowerCase()
-            .trim()
-            .replace(/[أإآ]/g, "ا")
-            .replace(/ة/g, "ه")
-            .replace(/ى/g, "ي")
-            .replace(/ؤ/g, "و")
-            .replace(/ئ/g, "ي")
-            .replace(/\s+/g, " ");
-
-    }
-
-
-    function searchTools() {
-
-        const input =
-            normalizeText(
-                document.getElementById(
-                    "searchInput"
-                ).value
-            );
-
-        const cards =
-            document.querySelectorAll(
-                ".searchable"
-            );
-
-        const noResults =
-            document.getElementById(
-                "noResults"
-            );
-
-        let found = 0;
-
-
-        cards.forEach(function(card) {
-
-            const text =
+            const input =
                 normalizeText(
-                    card.innerText +
-                    " " +
-                    (
-                        card.dataset.keywords ||
-                        ""
-                    )
+                    document.getElementById(
+                        "searchInput"
+                    ).value
                 );
 
 
-            if (
-                input === "" ||
-                text.includes(input)
-            ) {
-
-                card.classList.remove(
-                    "hidden"
+            const cards =
+                document.querySelectorAll(
+                    ".searchable"
                 );
 
-                card.style.display = "";
 
-                found++;
-
-            } else {
-
-                card.classList.add(
-                    "hidden"
+            const noResults =
+                document.getElementById(
+                    "noResults"
                 );
 
-                card.style.display =
-                    "none";
 
-            }
-
-        });
+            let found = 0;
 
 
-        noResults.style.display =
-            input !== "" && found === 0
-                ? "block"
-                : "none";
-
-    }
+            cards.forEach(function(card) {
 
 
-    /* =========================
-       الوضع الليلي
-    ========================== */
+                const text =
+                    normalizeText(
 
-    function toggleTheme() {
+                        card.innerText +
+                        " " +
+                        (
+                            card.dataset.keywords ||
+                            ""
+                        )
 
-        document.body.classList.toggle(
-            "dark"
-        );
+                    );
 
 
-        const isDark =
-            document.body.classList.contains(
+                if (
+                    input === "" ||
+                    text.includes(input)
+                ) {
+
+
+                    card.classList.remove(
+                        "hidden"
+                    );
+
+
+                    card.style.display = "";
+
+
+                    found++;
+
+
+                } else {
+
+
+                    card.classList.add(
+                        "hidden"
+                    );
+
+
+                    card.style.display =
+                        "none";
+
+                }
+
+            });
+
+
+            noResults.style.display =
+                input !== "" && found === 0
+                    ? "block"
+                    : "none";
+
+        }
+
+
+
+        /* =========================
+           الوضع الليلي
+        ========================== */
+
+        function toggleTheme() {
+
+
+            document.body.classList.toggle(
                 "dark"
             );
 
 
-        localStorage.setItem(
-            "pdfvero-theme",
-            isDark
-                ? "dark"
-                : "light"
-        );
-
-
-        document.getElementById(
-            "themeBtn"
-        ).textContent =
-            isDark
-                ? "☀️"
-                : "🌙";
-
-    }
-
-
-    /* =========================
-       تحميل الوضع المحفوظ
-    ========================== */
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        function() {
-
-            const savedTheme =
-                localStorage.getItem(
-                    "pdfvero-theme"
-                );
-
-
-            if (
-                savedTheme === "dark"
-            ) {
-
-                document.body.classList.add(
+            const isDark =
+                document.body.classList.contains(
                     "dark"
                 );
 
 
-                document.getElementById(
-                    "themeBtn"
-                ).textContent = "☀️";
+            localStorage.setItem(
+                "pdfvero-theme",
+                isDark
+                    ? "dark"
+                    : "light"
+            );
+
+
+            document.getElementById(
+                "themeBtn"
+            ).textContent =
+                isDark
+                    ? "☀️"
+                    : "🌙";
+
+        }
+
+
+
+        /* =========================
+           تحميل الوضع المحفوظ
+        ========================== */
+
+        document.addEventListener(
+
+            "DOMContentLoaded",
+
+            function() {
+
+
+                const savedTheme =
+                    localStorage.getItem(
+                        "pdfvero-theme"
+                    );
+
+
+                if (
+                    savedTheme === "dark"
+                ) {
+
+
+                    document.body.classList.add(
+                        "dark"
+                    );
+
+
+                    document.getElementById(
+                        "themeBtn"
+                    ).textContent =
+                        "☀️";
+
+                }
 
             }
 
-        }
-    );
+        );
 
-</script>
+    </script>
+
 
 </body>
+
 </html>
