@@ -1055,123 +1055,148 @@ var(--primary);
 /* =========================
    MOBILE
 ========================= */
+@media (max-width: 650px) {
 
-@media(max-width:950px){
+  body {
+    font-size: 14px;
+    overflow-x: hidden;
+  }
 
-.tools-grid{
-grid-template-columns:
-repeat(2,1fr);
+  .navbar {
+    padding: 10px 12px;
+  }
+
+  .brand {
+    font-size: 18px;
+  }
+
+  .nav-actions button,
+  .nav-actions a {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+
+  .hero {
+    padding: 35px 15px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 14px;
+  }
+
+  .section {
+    padding: 25px 12px;
+  }
+
+  .section-title {
+    font-size: 22px;
+  }
+
+  .tools-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .tool-card {
+    padding: 16px;
+  }
+
+  .tool-card h3 {
+    font-size: 17px;
+  }
+
+  .workspace {
+    margin: 10px;
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .workspace-header h2 {
+    font-size: 20px;
+  }
+
+  .fields,
+  .results,
+  .sales-summary {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  input,
+  select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 11px;
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+  }
+
+  .main-btn {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .vat-mode,
+  .sale-type,
+  .invoice-actions {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .invoice-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .invoice-actions {
+    display: grid;
+  }
+
+  .invoice-preview {
+    padding: 12px;
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 600px;
+  }
+
+  .sales-table {
+    overflow-x: auto;
+  }
 }
 
-.sales-summary{
-grid-template-columns:
-repeat(2,1fr);
+/* موبايلات صغيرة */
+@media (max-width: 380px) {
+
+  .brand {
+    font-size: 16px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
+
+  .section-title {
+    font-size: 20px;
+  }
+
+  .tool-card {
+    padding: 13px;
+  }
+
+  .workspace {
+    margin: 6px;
+    padding: 12px;
+  }
 }
-
-}
-
-@media(max-width:650px){
-
-.nav{
-padding:
-12px 15px;
-}
-
-.brand{
-font-size:
-20px;
-}
-
-.brand-icon{
-width:
-37px;
-
-height:
-37px;
-}
-
-.hero{
-padding:
-52px 15px 28px;
-}
-
-.hero h1{
-font-size:
-34px;
-}
-
-.hero p{
-font-size:
-15px;
-}
-
-.section,
-.workspace{
-padding:
-0 15px;
-}
-
-.tools-grid{
-grid-template-columns:
-1fr;
-}
-
-.fields,
-.results,
-.sales-summary,
-.sale-type,
-.mode-buttons{
-grid-template-columns:
-1fr;
-}
-
-.field.full,
-.result-box.full{
-grid-column:
-auto;
-}
-
-.workspace-card{
-padding:
-20px 17px;
-}
-
-.invoice-row{
-grid-template-columns:
-1fr 1fr;
-
-padding:
-12px;
-
-border:
-1px solid var(--border);
-
-border-radius:
-12px;
-}
-
-.invoice-row input:first-child{
-grid-column:
-1 / -1;
-}
-
-.remove-item{
-width:
-100%;
-}
-
-.invoice-actions{
-flex-direction:
-column;
-}
-
-.workspace-title h2{
-font-size:
-20px;
-}
-
-}
-
 </style>
 </head>
 
