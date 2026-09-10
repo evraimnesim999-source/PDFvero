@@ -8,162 +8,169 @@
 <title>ShopCalc - الحسابات والمبيعات التجارية</title>
 
 <meta name="description"
-      content="ShopCalc للحسابات التجارية وإدارة المنتجات والمبيعات والمخزون وحساب الأرباح اليومية والشهرية.">
+content="ShopCalc للحسابات التجارية وإدارة المنتجات والمبيعات والمخزون وحساب الأرباح اليومية والشهرية.">
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 :root{
-    --primary:#2563eb;
-    --primary2:#60a5fa;
-    --bg:#f5f9ff;
-    --card:rgba(255,255,255,.93);
-    --text:#172033;
-    --muted:#64748b;
-    --border:rgba(37,99,235,.14);
-    --soft:#dbeafe;
-    --danger:#dc2626;
-    --success:#16a34a;
-    --shadow:0 18px 50px rgba(37,99,235,.10);
+--primary:#2563eb;
+--primary2:#60a5fa;
+--bg:#f5f9ff;
+--card:rgba(255,255,255,.94);
+--text:#172033;
+--muted:#64748b;
+--border:rgba(37,99,235,.14);
+--soft:#dbeafe;
+--danger:#dc2626;
+--success:#16a34a;
+--shadow:0 18px 50px rgba(37,99,235,.10);
 }
 
 body.dark{
-    --bg:#0d1118;
-    --card:rgba(24,31,43,.94);
-    --text:#f1f5f9;
-    --muted:#94a3b8;
-    --border:rgba(96,165,250,.16);
-    --soft:#172b4d;
-    --shadow:0 18px 50px rgba(0,0,0,.35);
+--bg:#0d1118;
+--card:rgba(24,31,43,.94);
+--text:#f1f5f9;
+--muted:#94a3b8;
+--border:rgba(96,165,250,.16);
+--soft:#172b4d;
+--shadow:0 18px 50px rgba(0,0,0,.35);
 }
 
 html{
-    scroll-behavior:smooth;
+scroll-behavior:smooth;
 }
 
 body{
-    min-height:100vh;
-    font-family:Arial,Tahoma,sans-serif;
-    color:var(--text);
+min-height:100vh;
+font-family:Arial,Tahoma,sans-serif;
+color:var(--text);
 
-    background:
-        radial-gradient(circle at 10% 10%,rgba(96,165,250,.13),transparent 25%),
-        radial-gradient(circle at 90% 20%,rgba(37,99,235,.08),transparent 25%),
-        var(--bg);
+background:
+radial-gradient(circle at 10% 10%,rgba(96,165,250,.13),transparent 25%),
+radial-gradient(circle at 90% 20%,rgba(37,99,235,.08),transparent 25%),
+var(--bg);
 
-    transition:.3s;
-    overflow-x:hidden;
+transition:.3s;
+overflow-x:hidden;
 }
 
 button,
 input,
 select{
-    font-family:inherit;
+font-family:inherit;
 }
 
 button{
-    cursor:pointer;
+cursor:pointer;
 }
+
 
 /* =========================
    NAVBAR
 ========================= */
 
 .navbar{
-    position:sticky;
-    top:0;
-    z-index:100;
+position:sticky;
+top:0;
+z-index:100;
 
-    background:rgba(255,255,255,.70);
-    border-bottom:1px solid var(--border);
+background:rgba(255,255,255,.70);
+border-bottom:1px solid var(--border);
 
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
 }
 
 body.dark .navbar{
-    background:rgba(13,17,24,.78);
+background:rgba(13,17,24,.78);
 }
 
 .nav{
-    max-width:1150px;
-    margin:auto;
+max-width:1150px;
+margin:auto;
 
-    padding:14px 20px;
+padding:14px 20px;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+display:flex;
+align-items:center;
+justify-content:space-between;
 }
 
 .brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
+display:flex;
+align-items:center;
+gap:10px;
 
-    color:inherit;
-    text-decoration:none;
+color:inherit;
+text-decoration:none;
 
-    font-size:23px;
-    font-weight:900;
+font-size:23px;
+font-weight:900;
 }
 
 .brand-icon{
-    width:42px;
-    height:42px;
+width:42px;
+height:42px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+display:flex;
+align-items:center;
+justify-content:center;
 
-    border-radius:13px;
-    color:white;
+border-radius:13px;
+color:white;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--primary2)
-        );
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
 }
 
 .brand-name{
-    color:var(--primary);
+color:var(--primary);
 }
 
 .actions{
-    display:flex;
-    gap:8px;
+display:flex;
+gap:8px;
 }
 
 .nav-btn{
-    width:42px;
-    height:42px;
+width:42px;
+height:42px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+display:flex;
+align-items:center;
+justify-content:center;
 
-    border:1px solid var(--border);
-    border-radius:12px;
+border:
+1px solid var(--border);
 
-    background:var(--card);
-    color:var(--text);
+border-radius:12px;
 
-    text-decoration:none;
-    font-size:18px;
+background:
+var(--card);
 
-    transition:.2s;
+color:
+var(--text);
+
+text-decoration:none;
+
+font-size:18px;
+
+transition:.2s;
 }
 
 .nav-btn:hover{
-    transform:translateY(-2px);
-    border-color:var(--primary);
+transform:translateY(-2px);
+border-color:var(--primary);
 }
 
 
@@ -172,203 +179,231 @@ body.dark .navbar{
 ========================= */
 
 .hero{
-    max-width:900px;
-    margin:auto;
+max-width:900px;
+margin:auto;
 
-    padding:68px 20px 35px;
+padding:68px 20px 35px;
 
-    text-align:center;
+text-align:center;
 }
 
 .tag{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
+display:inline-flex;
 
-    padding:8px 16px;
-    border-radius:50px;
+align-items:center;
+gap:8px;
 
-    background:rgba(37,99,235,.09);
-    color:var(--primary);
+padding:8px 16px;
 
-    border:1px solid var(--border);
+border-radius:50px;
 
-    font-size:14px;
-    font-weight:800;
+background:
+rgba(37,99,235,.09);
 
-    margin-bottom:20px;
+color:var(--primary);
+
+border:
+1px solid var(--border);
+
+font-size:14px;
+
+font-weight:800;
+
+margin-bottom:20px;
 }
 
 .hero h1{
-    font-size:clamp(36px,6vw,58px);
-    line-height:1.15;
-    margin-bottom:15px;
+font-size:
+clamp(36px,6vw,58px);
+
+line-height:1.15;
+
+margin-bottom:15px;
 }
 
 .hero h1 span{
-    color:var(--primary);
+color:var(--primary);
 }
 
 .hero p{
-    max-width:720px;
-    margin:auto;
+max-width:730px;
+margin:auto;
 
-    color:var(--muted);
-    font-size:17px;
-    line-height:1.9;
+color:var(--muted);
+
+font-size:17px;
+line-height:1.9;
 }
 
 
 /* =========================
-   SECTION
+   SECTIONS
 ========================= */
 
 .section{
-    max-width:1100px;
-    margin:25px auto 0;
-    padding:0 20px;
+max-width:1100px;
+
+margin:25px auto 0;
+
+padding:0 20px;
 }
 
 .section-title{
-    display:flex;
-    align-items:center;
-    gap:11px;
+display:flex;
 
-    margin-bottom:18px;
+align-items:center;
+
+gap:11px;
+
+margin-bottom:18px;
 }
 
 .section-line{
-    width:10px;
-    height:34px;
+width:10px;
+height:34px;
 
-    border-radius:50px;
+border-radius:50px;
 
-    background:
-        linear-gradient(
-            var(--primary),
-            var(--primary2)
-        );
+background:
+linear-gradient(
+var(--primary),
+var(--primary2)
+);
 }
 
 .section-title h2{
-    font-size:27px;
+font-size:27px;
 }
 
 
 /* =========================
-   CARDS
+   TOOLS
 ========================= */
 
 .tools-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:16px;
+display:grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap:16px;
 }
 
 .tool-card{
-    position:relative;
+position:relative;
 
-    padding:22px;
-    min-height:205px;
+padding:22px;
 
-    border:1px solid var(--border);
-    border-radius:20px;
+min-height:205px;
 
-    background:var(--card);
+border:
+1px solid var(--border);
 
-    box-shadow:
-        0 8px 25px rgba(0,0,0,.04);
+border-radius:20px;
 
-    backdrop-filter:blur(12px);
+background:
+var(--card);
 
-    transition:
-        transform .25s,
-        box-shadow .25s,
-        border-color .25s;
+box-shadow:
+0 8px 25px rgba(0,0,0,.04);
 
-    cursor:pointer;
-    overflow:hidden;
+backdrop-filter:blur(12px);
+
+transition:
+transform .25s,
+box-shadow .25s,
+border-color .25s;
+
+cursor:pointer;
+
+overflow:hidden;
 }
 
 .tool-card::before{
-    content:"";
+content:"";
 
-    position:absolute;
+position:absolute;
 
-    width:120px;
-    height:120px;
+width:120px;
+height:120px;
 
-    left:-45px;
-    top:-45px;
+left:-45px;
+top:-45px;
 
-    border-radius:50%;
+border-radius:50%;
 
-    background:var(--soft);
-    opacity:.55;
+background:
+var(--soft);
+
+opacity:.55;
 }
 
 .tool-card:hover{
-    transform:translateY(-7px);
+transform:
+translateY(-7px);
 
-    border-color:
-        rgba(37,99,235,.35);
+border-color:
+rgba(37,99,235,.35);
 
-    box-shadow:
-        0 18px 40px
-        rgba(37,99,235,.11);
+box-shadow:
+0 18px 40px
+rgba(37,99,235,.11);
 }
 
 .tool-icon{
-    position:relative;
+position:relative;
 
-    width:56px;
-    height:56px;
+width:56px;
+height:56px;
 
-    border-radius:16px;
+border-radius:16px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+display:flex;
+align-items:center;
+justify-content:center;
 
-    color:white;
-    font-size:27px;
+color:white;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--primary2)
-        );
+font-size:27px;
 
-    margin-bottom:16px;
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
+
+margin-bottom:16px;
 }
 
 .tool-card h3{
-    position:relative;
+position:relative;
 
-    font-size:18px;
+font-size:18px;
 
-    margin-bottom:7px;
+margin-bottom:7px;
 }
 
 .tool-card p{
-    position:relative;
+position:relative;
 
-    color:var(--muted);
+color:var(--muted);
 
-    font-size:13px;
-    line-height:1.7;
+font-size:13px;
 
-    margin-bottom:16px;
+line-height:1.7;
+
+margin-bottom:16px;
 }
 
 .tool-open{
-    position:relative;
+position:relative;
 
-    color:var(--primary);
+color:var(--primary);
 
-    font-size:13px;
-    font-weight:900;
+font-size:13px;
+
+font-weight:900;
 }
 
 
@@ -377,204 +412,215 @@ body.dark .navbar{
 ========================= */
 
 .workspace{
-    max-width:900px;
+max-width:900px;
 
-    margin:
-        20px auto 70px;
+margin:
+20px auto 70px;
 
-    padding:
-        0 20px;
+padding:
+0 20px;
 
-    display:none;
+display:none;
 }
 
 .workspace.active{
-    display:block;
+display:block;
 }
 
 .workspace-card{
-    background:var(--card);
+background:
+var(--card);
 
-    border:
-        1px solid var(--border);
+border:
+1px solid var(--border);
 
-    border-radius:25px;
+border-radius:
+25px;
 
-    padding:28px;
+padding:
+28px;
 
-    box-shadow:var(--shadow);
+box-shadow:
+var(--shadow);
 
-    backdrop-filter:blur(12px);
+backdrop-filter:
+blur(12px);
 }
 
 .workspace-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+display:flex;
 
-    gap:15px;
+align-items:center;
 
-    margin-bottom:24px;
+justify-content:space-between;
+
+gap:15px;
+
+margin-bottom:24px;
 }
 
 .workspace-title{
-    display:flex;
-    align-items:center;
-    gap:12px;
+display:flex;
+
+align-items:center;
+
+gap:12px;
 }
 
 .mini-icon{
-    width:50px;
-    height:50px;
+width:50px;
+height:50px;
 
-    border-radius:15px;
+border-radius:15px;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+display:flex;
+align-items:center;
+justify-content:center;
 
-    color:white;
-    font-size:23px;
+color:white;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--primary2)
-        );
+font-size:23px;
+
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
 }
 
 .workspace-title h2{
-    font-size:24px;
+font-size:24px;
 }
 
 .workspace-title p{
-    color:var(--muted);
-    font-size:12px;
-    margin-top:2px;
+color:var(--muted);
+
+font-size:12px;
+
+margin-top:2px;
 }
 
 .close-tool{
-    width:40px;
-    height:40px;
+width:40px;
+height:40px;
 
-    border:
-        1px solid var(--border);
+border:
+1px solid var(--border);
 
-    border-radius:11px;
+border-radius:11px;
 
-    background:var(--bg);
-    color:var(--text);
+background:
+var(--bg);
 
-    font-size:18px;
+color:
+var(--text);
+
+font-size:18px;
 }
 
 
 /* =========================
-   INPUTS
+   FIELDS
 ========================= */
 
 .fields{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
+display:grid;
 
-    gap:16px;
-    margin-bottom:18px;
+grid-template-columns:
+repeat(2,1fr);
+
+gap:16px;
+
+margin-bottom:18px;
 }
 
 .field{
-    display:flex;
-    flex-direction:column;
+display:flex;
 
-    gap:7px;
+flex-direction:column;
+
+gap:7px;
 }
 
 .field.full{
-    grid-column:1/-1;
+grid-column:
+1 / -1;
 }
 
 .field label{
-    font-size:14px;
-    font-weight:800;
+font-size:14px;
+font-weight:800;
 }
 
 .field input,
 .field select{
-    width:100%;
+width:100%;
 
-    border:
-        2px solid var(--border);
+border:
+2px solid var(--border);
 
-    border-radius:13px;
+border-radius:13px;
 
-    padding:13px 14px;
+padding:
+13px 14px;
 
-    outline:none;
+outline:none;
 
-    background:var(--bg);
-    color:var(--text);
+background:
+var(--bg);
 
-    font-size:15px;
+color:
+var(--text);
 
-    transition:.2s;
+font-size:15px;
+
+transition:.2s;
 }
 
 .field input:focus,
 .field select:focus{
-    border-color:var(--primary);
+border-color:
+var(--primary);
 }
 
 .main-btn{
-    width:100%;
+width:100%;
 
-    border:none;
-    border-radius:14px;
+border:none;
 
-    padding:15px;
+border-radius:
+14px;
 
-    color:white;
+padding:
+15px;
 
-    font-size:16px;
-    font-weight:900;
+color:white;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            var(--primary2)
-        );
+font-size:
+16px;
 
-    box-shadow:
-        0 10px 24px
-        rgba(37,99,235,.18);
+font-weight:
+900;
 
-    transition:.2s;
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
+
+box-shadow:
+0 10px 24px
+rgba(37,99,235,.18);
+
+transition:
+.2s;
 }
 
 .main-btn:hover{
-    transform:translateY(-2px);
-}
-
-.secondary-btn{
-    flex:1;
-
-    border:
-        1px solid var(--border);
-
-    background:
-        var(--bg);
-
-    color:
-        var(--text);
-
-    border-radius:
-        12px;
-
-    padding:
-        12px;
-
-    font-weight:
-        800;
+transform:
+translateY(-2px);
 }
 
 
@@ -583,77 +629,100 @@ body.dark .navbar{
 ========================= */
 
 .results{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
+display:grid;
 
-    gap:14px;
-    margin-top:22px;
+grid-template-columns:
+repeat(2,1fr);
+
+gap:14px;
+
+margin-top:22px;
 }
 
 .result-box{
-    padding:18px;
+padding:18px;
 
-    border-radius:16px;
+border-radius:16px;
 
-    background:var(--soft);
+background:
+var(--soft);
 
-    border:1px solid var(--border);
+border:
+1px solid var(--border);
 }
 
 .result-box.full{
-    grid-column:1/-1;
+grid-column:
+1 / -1;
 }
 
 .result-box span{
-    display:block;
+display:block;
 
-    color:var(--muted);
+color:var(--muted);
 
-    font-size:12px;
+font-size:12px;
 
-    margin-bottom:5px;
+margin-bottom:5px;
 }
 
 .result-box strong{
-    display:block;
+display:block;
 
-    color:var(--primary);
+color:var(--primary);
 
-    font-size:25px;
+font-size:25px;
 }
 
 .result-box.big strong{
-    font-size:34px;
+font-size:34px;
 }
 
+
+/* =========================
+   VAT
+========================= */
+
 .mode-buttons{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
+display:grid;
 
-    gap:10px;
+grid-template-columns:
+repeat(2,1fr);
 
-    margin-bottom:20px;
+gap:10px;
+
+margin-bottom:20px;
 }
 
 .mode-btn{
-    border:
-        1px solid var(--border);
+border:
+1px solid var(--border);
 
-    border-radius:12px;
+border-radius:
+12px;
 
-    padding:13px;
+padding:
+13px;
 
-    background:var(--bg);
-    color:var(--text);
+background:
+var(--bg);
 
-    font-weight:800;
+color:
+var(--text);
+
+font-weight:
+800;
 }
 
 .mode-btn.active{
-    background:var(--primary);
-    color:white;
+background:
+var(--primary);
 
-    border-color:var(--primary);
+color:
+white;
+
+border-color:
+var(--primary);
 }
 
 
@@ -662,309 +731,298 @@ body.dark .navbar{
 ========================= */
 
 .invoice-items{
-    display:grid;
-    gap:12px;
+display:grid;
 
-    margin:18px 0;
+gap:12px;
+
+margin:18px 0;
 }
 
 .invoice-row{
-    display:grid;
+display:grid;
 
-    grid-template-columns:
-        2fr 1fr 1fr 1fr auto;
+grid-template-columns:
+2fr 1fr 1fr 1fr auto;
 
-    gap:8px;
+gap:8px;
 
-    align-items:center;
+align-items:center;
 }
 
 .invoice-row input{
-    width:100%;
+width:100%;
 
-    border:
-        1px solid var(--border);
+border:
+1px solid var(--border);
 
-    border-radius:10px;
+border-radius:
+10px;
 
-    padding:11px;
+padding:
+11px;
 
-    background:var(--bg);
-    color:var(--text);
+background:
+var(--bg);
 
-    outline:none;
+color:
+var(--text);
+
+outline:none;
 }
 
 .remove-item{
-    width:38px;
-    height:38px;
+width:
+38px;
 
-    border:none;
+height:
+38px;
 
-    border-radius:10px;
+border:none;
 
-    background:
-        rgba(220,38,38,.10);
+border-radius:
+10px;
 
-    color:
-        var(--danger);
+background:
+rgba(220,38,38,.10);
+
+color:
+var(--danger);
 }
 
 .invoice-actions{
-    display:flex;
-    gap:10px;
+display:flex;
 
-    margin-top:15px;
+gap:
+10px;
+
+margin-top:
+15px;
 }
 
 .invoice-preview{
-    display:none;
+display:none;
 
-    margin-top:24px;
+margin-top:
+24px;
 
-    padding:25px;
+padding:
+25px;
 
-    background:white;
-    color:#111;
+background:
+white;
 
-    border-radius:8px;
-    border:1px solid #ddd;
+color:#111;
+
+border-radius:
+8px;
+
+border:
+1px solid #ddd;
 }
 
 .invoice-preview.show{
-    display:block;
+display:block;
 }
 
 .invoice-table{
-    width:100%;
+width:100%;
 
-    border-collapse:collapse;
+border-collapse:
+collapse;
 
-    margin-top:20px;
+margin-top:
+20px;
 }
 
 .invoice-table th,
 .invoice-table td{
-    border:1px solid #ddd;
+border:
+1px solid #ddd;
 
-    padding:9px;
+padding:
+9px;
 
-    text-align:right;
+text-align:
+right;
 }
 
 .invoice-total{
-    text-align:left;
+text-align:left;
 
-    font-weight:900;
+font-weight:
+900;
 
-    margin-top:15px;
+margin-top:
+15px;
 }
 
 
 /* =========================
-   SALES
+   SALES MANAGEMENT
 ========================= */
 
 .sales-summary{
-    display:grid;
+display:grid;
 
-    grid-template-columns:
-        repeat(4,1fr);
+grid-template-columns:
+repeat(4,1fr);
 
-    gap:12px;
+gap:12px;
 
-    margin-bottom:22px;
+margin-bottom:22px;
 }
 
 .sales-stat{
-    padding:18px;
+padding:18px;
 
-    border:
-        1px solid var(--border);
+border:
+1px solid var(--border);
 
-    border-radius:16px;
+border-radius:16px;
 
-    background:var(--soft);
+background:
+var(--soft);
 }
 
 .sales-stat span{
-    display:block;
+display:block;
 
-    color:var(--muted);
+color:var(--muted);
 
-    font-size:12px;
+font-size:12px;
 
-    margin-bottom:6px;
+margin-bottom:6px;
 }
 
 .sales-stat strong{
-    display:block;
+display:block;
 
-    color:var(--primary);
+color:var(--primary);
 
-    font-size:24px;
+font-size:24px;
 }
 
 .sale-type{
-    display:grid;
-    grid-template-columns:1fr 1fr;
+display:grid;
 
-    gap:10px;
+grid-template-columns:
+1fr 1fr;
 
-    margin-bottom:18px;
+gap:10px;
+
+margin-bottom:18px;
 }
 
 .sale-type-btn{
-    padding:14px;
+padding:14px;
 
-    border:
-        1px solid var(--border);
+border:
+1px solid var(--border);
 
-    border-radius:12px;
+border-radius:
+12px;
 
-    background:var(--bg);
-    color:var(--text);
+background:
+var(--bg);
 
-    font-weight:900;
+color:
+var(--text);
+
+font-weight:
+900;
 }
 
 .sale-type-btn.active{
-    background:var(--primary);
-    color:white;
-    border-color:var(--primary);
+background:
+var(--primary);
+
+color:
+white;
+
+border-color:
+var(--primary);
 }
 
 .sale-preview{
-    display:none;
+display:none;
 
-    margin:
-        16px 0;
+margin:16px 0;
 
-    padding:
-        16px;
+padding:16px;
 
-    border-radius:
-        15px;
+border-radius:15px;
 
-    background:
-        var(--soft);
+background:
+var(--soft);
 
-    border:
-        1px solid var(--border);
+border:
+1px solid var(--border);
 }
 
 .sale-preview.show{
-    display:block;
+display:block;
 }
 
 .table-wrap{
-    overflow-x:auto;
+overflow-x:auto;
 
-    margin-top:22px;
+margin-top:22px;
 }
 
 .data-table{
-    width:100%;
+width:100%;
 
-    min-width:950px;
+min-width:1000px;
 
-    border-collapse:collapse;
+border-collapse:
+collapse;
 }
 
 .data-table th,
 .data-table td{
-    padding:11px;
+padding:11px;
 
-    border-bottom:
-        1px solid var(--border);
+border-bottom:
+1px solid var(--border);
 
-    text-align:center;
+text-align:center;
 
-    font-size:13px;
+font-size:13px;
 }
 
 .data-table th{
-    background:var(--soft);
-    font-weight:900;
+background:
+var(--soft);
+
+font-weight:900;
 }
 
 .small-btn{
-    border:none;
+border:none;
 
-    padding:7px 10px;
+padding:7px 10px;
 
-    border-radius:8px;
+border-radius:8px;
 
-    font-size:12px;
+font-size:12px;
 
-    margin:2px;
+margin:2px;
 }
 
 .edit-btn{
-    background:
-        rgba(37,99,235,.10);
+background:
+rgba(37,99,235,.10);
 
-    color:
-        var(--primary);
+color:
+var(--primary);
 }
 
 .delete-btn{
-    background:
-        rgba(220,38,38,.10);
+background:
+rgba(220,38,38,.10);
 
-    color:
-        var(--danger);
-}
-
-
-/* =========================
-   REPORT
-========================= */
-
-.report-filter{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:14px;
-
-    margin-bottom:20px;
-}
-
-
-/* =========================
-   MESSAGES
-========================= */
-
-.message{
-    display:none;
-
-    margin-top:14px;
-
-    padding:12px;
-
-    border-radius:11px;
-
-    text-align:center;
-
-    font-size:13px;
-}
-
-.message.error{
-    background:
-        rgba(220,38,38,.10);
-
-    color:
-        var(--danger);
-}
-
-.message.success{
-    background:
-        rgba(22,163,74,.10);
-
-    color:
-        var(--success);
+color:
+var(--danger);
 }
 
 
@@ -973,23 +1031,24 @@ body.dark .navbar{
 ========================= */
 
 footer{
-    margin-top:40px;
+margin-top:40px;
 
-    padding:30px 20px;
+padding:30px 20px;
 
-    text-align:center;
+text-align:center;
 
-    color:var(--muted);
+color:var(--muted);
 
-    border-top:
-        1px solid var(--border);
+border-top:
+1px solid var(--border);
 
-    background:
-        var(--card);
+background:
+var(--card);
 }
 
 footer strong{
-    color:var(--primary);
+color:
+var(--primary);
 }
 
 
@@ -999,103 +1058,117 @@ footer strong{
 
 @media(max-width:950px){
 
-    .tools-grid{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
+.tools-grid{
+grid-template-columns:
+repeat(2,1fr);
+}
 
-    .sales-summary{
-        grid-template-columns:
-            repeat(2,1fr);
-    }
+.sales-summary{
+grid-template-columns:
+repeat(2,1fr);
+}
 
 }
 
 @media(max-width:650px){
 
-    .nav{
-        padding:
-            12px 15px;
-    }
+.nav{
+padding:
+12px 15px;
+}
 
-    .brand{
-        font-size:20px;
-    }
+.brand{
+font-size:
+20px;
+}
 
-    .brand-icon{
-        width:37px;
-        height:37px;
-    }
+.brand-icon{
+width:
+37px;
 
-    .hero{
-        padding:
-            52px 15px 28px;
-    }
+height:
+37px;
+}
 
-    .hero h1{
-        font-size:34px;
-    }
+.hero{
+padding:
+52px 15px 28px;
+}
 
-    .hero p{
-        font-size:15px;
-    }
+.hero h1{
+font-size:
+34px;
+}
 
-    .section,
-    .workspace{
-        padding:
-            0 15px;
-    }
+.hero p{
+font-size:
+15px;
+}
 
-    .tools-grid{
-        grid-template-columns:1fr;
-    }
+.section,
+.workspace{
+padding:
+0 15px;
+}
 
-    .fields,
-    .results,
-    .sales-summary,
-    .report-filter,
-    .sale-type,
-    .mode-buttons{
-        grid-template-columns:1fr;
-    }
+.tools-grid{
+grid-template-columns:
+1fr;
+}
 
-    .field.full,
-    .result-box.full{
-        grid-column:auto;
-    }
+.fields,
+.results,
+.sales-summary,
+.sale-type,
+.mode-buttons{
+grid-template-columns:
+1fr;
+}
 
-    .workspace-card{
-        padding:20px 17px;
-    }
+.field.full,
+.result-box.full{
+grid-column:
+auto;
+}
 
-    .invoice-row{
-        grid-template-columns:
-            1fr 1fr;
+.workspace-card{
+padding:
+20px 17px;
+}
 
-        padding:12px;
+.invoice-row{
+grid-template-columns:
+1fr 1fr;
 
-        border:
-            1px solid var(--border);
+padding:
+12px;
 
-        border-radius:12px;
-    }
+border:
+1px solid var(--border);
 
-    .invoice-row input:first-child{
-        grid-column:
-            1/-1;
-    }
+border-radius:
+12px;
+}
 
-    .remove-item{
-        width:100%;
-    }
+.invoice-row input:first-child{
+grid-column:
+1 / -1;
+}
 
-    .invoice-actions{
-        flex-direction:column;
-    }
+.remove-item{
+width:
+100%;
+}
 
-    .workspace-title h2{
-        font-size:20px;
-    }
+.invoice-actions{
+flex-direction:
+column;
+}
+
+.workspace-title h2{
+font-size:
+20px;
+}
 
 }
 
@@ -1110,7 +1183,10 @@ footer strong{
 
 <div class="nav">
 
-<a href="shopcalc.html" class="brand">
+<a
+href="shopcalc.html"
+class="brand"
+>
 
 <div class="brand-icon">
 🧮
@@ -1133,6 +1209,7 @@ title="الرئيسية"
 🏠
 </a>
 
+
 <button
 class="nav-btn"
 id="themeBtn"
@@ -1146,7 +1223,6 @@ onclick="toggleTheme()"
 </div>
 
 </header>
-
 
 
 <main>
@@ -1164,12 +1240,12 @@ onclick="toggleTheme()"
 </h1>
 
 <p>
-احسب، سجل منتجاتك، تابع المخزون،
-وسجل المبيعات واعرف الربح اليومي والشهري.
+احسب الأرباح والخصومات والضرائب،
+وسجل المنتجات والمبيعات والمخزون
+وتابع أرباحك اليومية والشهرية.
 </p>
 
 </section>
-
 
 
 <!-- =========================
@@ -1206,8 +1282,8 @@ onclick="openTool('profit')"
 </h3>
 
 <p>
-احسب إجمالي التكلفة والمبيعات
-والربح وهامش الربح.
+احسب التكلفة والمبيعات والربح
+وهامش الربح.
 </p>
 
 <span class="tool-open">
@@ -1215,7 +1291,6 @@ onclick="openTool('profit')"
 </span>
 
 </div>
-
 
 
 <div
@@ -1242,7 +1317,6 @@ onclick="openTool('discount')"
 </div>
 
 
-
 <div
 class="tool-card"
 onclick="openTool('vat')"
@@ -1265,7 +1339,6 @@ VAT / IVA
 </span>
 
 </div>
-
 
 
 <div
@@ -1292,7 +1365,6 @@ onclick="openTool('selling')"
 </div>
 
 
-
 <div
 class="tool-card"
 onclick="openTool('inventory')"
@@ -1307,7 +1379,7 @@ onclick="openTool('inventory')"
 </h3>
 
 <p>
-احسب الكمية المتبقية وقيمة المخزون.
+احسب الكميات وقيمة المخزون.
 </p>
 
 <span class="tool-open">
@@ -1315,7 +1387,6 @@ onclick="openTool('inventory')"
 </span>
 
 </div>
-
 
 
 <div
@@ -1341,11 +1412,9 @@ onclick="openTool('invoice')"
 
 </div>
 
-
 </div>
 
 </section>
-
 
 
 <!-- =========================
@@ -1378,12 +1447,12 @@ onclick="openTool('salesManager')"
 </div>
 
 <h3>
-إدارة المنتجات والمبيعات
+المنتجات والمبيعات
 </h3>
 
 <p>
-سجل الكرتونة ومحتوياتها وأسعار الجملة والقطاعي،
-ثم سجل كل عملية بيع.
+سجل المنتج مرة واحدة بسعر الشراء
+وسعر البيع وعدد الوحدات والمخزون.
 </p>
 
 <span class="tool-open">
@@ -1391,7 +1460,6 @@ onclick="openTool('salesManager')"
 </span>
 
 </div>
-
 
 
 <div
@@ -1408,8 +1476,8 @@ onclick="openTool('salesReport')"
 </h3>
 
 <p>
-تابع مبيعات اليوم والشهر والربح
-وسجل كل العمليات.
+اعرف مبيعات اليوم والشهر والربح
+وسجل عمليات البيع.
 </p>
 
 <span class="tool-open">
@@ -1418,11 +1486,9 @@ onclick="openTool('salesReport')"
 
 </div>
 
-
 </div>
 
 </section>
-
 
 
 <!-- =========================
@@ -1450,11 +1516,15 @@ id="workspaceIcon"
 
 <div>
 
-<h2 id="workspaceTitle">
+<h2
+id="workspaceTitle"
+>
 الأداة
 </h2>
 
-<p id="workspaceSubtitle">
+<p
+id="workspaceSubtitle"
+>
 ShopCalc
 </p>
 
@@ -1473,10 +1543,9 @@ onclick="closeTool()"
 </div>
 
 
-
 <!-- =====================
-     حاسبة الربح
-===================== -->
+     الربح
+====================== -->
 
 <div
 class="tool-panel"
@@ -1485,6 +1554,7 @@ style="display:none;"
 >
 
 <div class="fields">
+
 
 <div class="field">
 
@@ -1560,38 +1630,63 @@ style="display:none;"
 
 <div class="result-box">
 <span>إجمالي التكلفة</span>
-<strong id="profitTotalCost">0</strong>
+<strong
+id="profitTotalCost"
+>
+0
+</strong>
 </div>
+
 
 <div class="result-box">
 <span>إجمالي المبيعات</span>
-<strong id="profitTotalSales">0</strong>
+<strong
+id="profitTotalSales"
+>
+0
+</strong>
 </div>
 
-<div class="result-box full big">
+
+<div
+class="result-box full big"
+>
 <span>إجمالي الربح</span>
-<strong id="profitTotalProfit">0</strong>
+<strong
+id="profitTotalProfit"
+>
+0
+</strong>
 </div>
+
 
 <div class="result-box">
 <span>ربح الوحدة</span>
-<strong id="profitUnitProfit">0</strong>
+<strong
+id="profitUnitProfit"
+>
+0
+</strong>
 </div>
+
 
 <div class="result-box">
 <span>هامش الربح على التكلفة</span>
-<strong id="profitMargin">0%</strong>
+<strong
+id="profitMargin"
+>
+0%
+</strong>
 </div>
 
 </div>
 
 </div>
-
 
 
 <!-- =====================
      الخصم
-===================== -->
+====================== -->
 
 <div
 class="tool-panel"
@@ -1600,6 +1695,7 @@ style="display:none;"
 >
 
 <div class="fields">
+
 
 <div class="field">
 
@@ -1660,28 +1756,43 @@ style="display:none;"
 
 <div class="result-box">
 <span>السعر الأصلي</span>
-<strong id="discountOriginal">0</strong>
+<strong
+id="discountOriginal"
+>
+0
+</strong>
 </div>
+
 
 <div class="result-box">
 <span>قيمة الخصم</span>
-<strong id="discountValue">0</strong>
+<strong
+id="discountValue"
+>
+0
+</strong>
 </div>
 
-<div class="result-box full big">
+
+<div
+class="result-box full big"
+>
 <span>السعر النهائي</span>
-<strong id="discountFinal">0</strong>
+<strong
+id="discountFinal"
+>
+0
+</strong>
 </div>
 
 </div>
 
 </div>
-
 
 
 <!-- =====================
      VAT
-===================== -->
+====================== -->
 
 <div
 class="tool-panel"
@@ -1715,7 +1826,9 @@ onclick="setVatMode('remove')"
 
 <div class="field full">
 
-<label id="vatPriceLabel">
+<label
+id="vatPriceLabel"
+>
 السعر قبل الضريبة
 </label>
 
@@ -1774,12 +1887,16 @@ style="display:none;"
 <strong id="vatBase">0</strong>
 </div>
 
+
 <div class="result-box">
 <span>قيمة الضريبة</span>
 <strong id="vatValue">0</strong>
 </div>
 
-<div class="result-box full big">
+
+<div
+class="result-box full big"
+>
 <span>السعر شامل الضريبة</span>
 <strong id="vatTotal">0</strong>
 </div>
@@ -1789,10 +1906,9 @@ style="display:none;"
 </div>
 
 
-
 <!-- =====================
      سعر البيع
-===================== -->
+====================== -->
 
 <div
 class="tool-panel"
@@ -1860,28 +1976,43 @@ style="display:none;"
 
 <div class="result-box">
 <span>التكلفة</span>
-<strong id="sellingCostResult">0</strong>
+<strong
+id="sellingCostResult"
+>
+0
+</strong>
 </div>
+
 
 <div class="result-box">
 <span>الربح</span>
-<strong id="sellingProfitResult">0</strong>
+<strong
+id="sellingProfitResult"
+>
+0
+</strong>
 </div>
 
-<div class="result-box full big">
+
+<div
+class="result-box full big"
+>
 <span>سعر البيع</span>
-<strong id="sellingPriceResult">0</strong>
+<strong
+id="sellingPriceResult"
+>
+0
+</strong>
 </div>
 
 </div>
 
 </div>
-
 
 
 <!-- =====================
      المخزون
-===================== -->
+====================== -->
 
 <div
 class="tool-panel"
@@ -1964,28 +2095,43 @@ style="display:none;"
 
 <div class="result-box">
 <span>الكمية المتبقية</span>
-<strong id="inventoryRemaining">0</strong>
+<strong
+id="inventoryRemaining"
+>
+0
+</strong>
 </div>
+
 
 <div class="result-box">
 <span>تكلفة البضاعة المباعة</span>
-<strong id="inventorySoldCost">0</strong>
+<strong
+id="inventorySoldCost"
+>
+0
+</strong>
 </div>
 
-<div class="result-box full big">
+
+<div
+class="result-box full big"
+>
 <span>قيمة المخزون المتبقي</span>
-<strong id="inventoryValue">0</strong>
+<strong
+id="inventoryValue"
+>
+0
+</strong>
 </div>
 
 </div>
 
 </div>
-
 
 
 <!-- =====================
      الفاتورة
-===================== -->
+====================== -->
 
 <div
 class="tool-panel"
@@ -2067,12 +2213,21 @@ style="display:none;"
 
 <div class="result-box">
 <span>عدد المنتجات</span>
-<strong id="invoiceCount">0</strong>
+<strong
+id="invoiceCount"
+>
+0
+</strong>
 </div>
+
 
 <div class="result-box">
 <span>الإجمالي</span>
-<strong id="invoiceTotal">0</strong>
+<strong
+id="invoiceTotal"
+>
+0
+</strong>
 </div>
 
 </div>
@@ -2105,7 +2260,10 @@ id="invoicePreview"
 
 </thead>
 
-<tbody id="invoiceTableBody"></tbody>
+
+<tbody
+id="invoiceTableBody"
+></tbody>
 
 </table>
 
@@ -2138,10 +2296,9 @@ onclick="window.print()"
 </div>
 
 
-
 <!-- =====================
-     إدارة المنتجات والمبيعات
-===================== -->
+     إدارة المبيعات
+====================== -->
 
 <div
 class="tool-panel"
@@ -2158,7 +2315,9 @@ style="display:none;"
 مبيعات اليوم
 </span>
 
-<strong id="managerTodaySales">
+<strong
+id="managerTodaySales"
+>
 0
 </strong>
 
@@ -2171,7 +2330,9 @@ style="display:none;"
 ربح اليوم
 </span>
 
-<strong id="managerTodayProfit">
+<strong
+id="managerTodayProfit"
+>
 0
 </strong>
 
@@ -2184,7 +2345,9 @@ style="display:none;"
 مبيعات الشهر
 </span>
 
-<strong id="managerMonthSales">
+<strong
+id="managerMonthSales"
+>
 0
 </strong>
 
@@ -2197,14 +2360,15 @@ style="display:none;"
 ربح الشهر
 </span>
 
-<strong id="managerMonthProfit">
+<strong
+id="managerMonthProfit"
+>
 0
 </strong>
 
 </div>
 
 </div>
-
 
 
 <div class="section-title">
@@ -2239,45 +2403,15 @@ placeholder="مثال: شيبسي"
 <div class="field">
 
 <label>
-وحدة الكرتونة
-</label>
-
-<input
-type="text"
-id="cartonUnit"
-value="كرتونة"
-/>
-
-</div>
-
-
-<div class="field">
-
-<label>
-الوحدة داخل الكرتونة
-</label>
-
-<input
-type="text"
-id="pieceUnit"
-placeholder="كيس / قطعة / زجاجة"
-/>
-
-</div>
-
-
-<div class="field">
-
-<label>
-سعر شراء الكرتونة جملة
+سعر شراء المنتج
 </label>
 
 <input
 type="number"
-id="wholesaleBuy"
+id="productBuy"
 min="0"
 step="0.01"
-placeholder="800"
+placeholder="مثال: 800"
 />
 
 </div>
@@ -2286,15 +2420,15 @@ placeholder="800"
 <div class="field">
 
 <label>
-سعر بيع الكرتونة جملة
+سعر بيع المنتج
 </label>
 
 <input
 type="number"
-id="wholesaleSell"
+id="productSell"
 min="0"
 step="0.01"
-placeholder="850"
+placeholder="مثال: 850"
 />
 
 </div>
@@ -2303,32 +2437,15 @@ placeholder="850"
 <div class="field">
 
 <label>
-سعر بيع الوحدة قطاعي
+عدد داخل المنتج
 </label>
 
 <input
 type="number"
-id="retailSell"
-min="0"
-step="0.01"
-placeholder="10"
-/>
-
-</div>
-
-
-<div class="field">
-
-<label>
-عدد الوحدات داخل الكرتونة
-</label>
-
-<input
-type="number"
-id="piecesPerCarton"
+id="productPieces"
 min="1"
 step="1"
-placeholder="100"
+placeholder="مثال: 100"
 />
 
 </div>
@@ -2337,15 +2454,32 @@ placeholder="100"
 <div class="field">
 
 <label>
-عدد الكراتين في المخزون
+سعر بيع المنتج قطاعي
 </label>
 
 <input
 type="number"
-id="cartonStock"
+id="productRetail"
+min="0"
+step="0.01"
+placeholder="مثال: 10"
+/>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+عدد المخزون
+</label>
+
+<input
+type="number"
+id="productStock"
 min="0"
 step="1"
-placeholder="20"
+placeholder="مثال: 20"
 />
 
 </div>
@@ -2381,31 +2515,27 @@ id="productMessage"
 </th>
 
 <th>
-الوحدة
+سعر شراء المنتج
 </th>
 
 <th>
-شراء الكرتونة
+سعر بيع المنتج
 </th>
 
 <th>
-بيع جملة
+عدد داخل المنتج
 </th>
 
 <th>
-بيع قطاعي
+سعر البيع القطاعي
 </th>
 
 <th>
-وحدات بالكرتونة
+عدد المخزون
 </th>
 
 <th>
-المخزون
-</th>
-
-<th>
-ربح الكرتونة جملة
+الربح
 </th>
 
 <th>
@@ -2417,12 +2547,13 @@ id="productMessage"
 </thead>
 
 
-<tbody id="productsTable"></tbody>
+<tbody
+id="productsTable"
+></tbody>
 
 </table>
 
 </div>
-
 
 
 <div
@@ -2446,7 +2577,7 @@ class="sale-type-btn active"
 id="wholesaleBtn"
 onclick="setSaleType('wholesale')"
 >
-📦 بيع جملة بالكرتونة
+💼 بيع المنتج
 </button>
 
 
@@ -2455,7 +2586,7 @@ class="sale-type-btn"
 id="retailBtn"
 onclick="setSaleType('retail')"
 >
-🧃 بيع قطاعي بالوحدة
+🛍️ بيع قطاعي
 </button>
 
 </div>
@@ -2486,8 +2617,10 @@ onchange="previewSale()"
 
 <div class="field">
 
-<label id="saleQuantityLabel">
-عدد الكراتين
+<label
+id="saleQuantityLabel"
+>
+عدد المنتجات
 </label>
 
 <input
@@ -2529,21 +2662,6 @@ id="salePreview"
 <div class="sales-stat">
 
 <span>
-الوحدة
-</span>
-
-<strong
-id="previewUnit"
->
--
-</strong>
-
-</div>
-
-
-<div class="sales-stat">
-
-<span>
 سعر البيع
 </span>
 
@@ -2574,6 +2692,21 @@ id="previewTotal"
 <div class="sales-stat">
 
 <span>
+التكلفة
+</span>
+
+<strong
+id="previewCost"
+>
+0
+</strong>
+
+</div>
+
+
+<div class="sales-stat">
+
+<span>
 ربح العملية
 </span>
 
@@ -2584,7 +2717,6 @@ id="previewProfit"
 </strong>
 
 </div>
-
 
 </div>
 
@@ -2608,10 +2740,9 @@ id="saleMessage"
 </div>
 
 
-
 <!-- =====================
-     التقارير
-===================== -->
+     التقرير
+====================== -->
 
 <div
 class="tool-panel"
@@ -2620,7 +2751,7 @@ style="display:none;"
 >
 
 
-<div class="report-filter">
+<div class="fields">
 
 <div class="field">
 
@@ -2705,7 +2836,7 @@ id="reportTodayProfit"
 <div class="sales-stat">
 
 <span>
-عدد عمليات اليوم
+عمليات اليوم
 </span>
 
 <strong
@@ -2770,7 +2901,7 @@ id="reportMonthProfit"
 <div class="sales-stat">
 
 <span>
-عدد عمليات الشهر
+عمليات الشهر
 </span>
 
 <strong
@@ -2808,9 +2939,8 @@ style="margin-top:32px;"
 
 <th>التاريخ</th>
 <th>المنتج</th>
-<th>النوع</th>
+<th>نوع البيع</th>
 <th>الكمية</th>
-<th>الوحدة</th>
 <th>سعر البيع</th>
 <th>المبيعات</th>
 <th>التكلفة</th>
@@ -2844,15 +2974,9 @@ id="salesReportTable"
 <footer>
 
 <p>
-
 © 2026
-
-<strong>
-ShopCalc
-</strong>
-
+<strong>ShopCalc</strong>
 — الحسابات والمبيعات التجارية ❤️
-
 </p>
 
 </footer>
@@ -2860,14 +2984,15 @@ ShopCalc
 
 <script>
 
-/* ==================================================
-   بيانات النظام
-================================================== */
+
+/* =========================
+   البيانات
+========================= */
 
 let products =
 JSON.parse(
 localStorage.getItem(
-"shopcalc-products-final"
+"shopcalc-products-v5"
 )
 ) || [];
 
@@ -2875,7 +3000,7 @@ localStorage.getItem(
 let sales =
 JSON.parse(
 localStorage.getItem(
-"shopcalc-sales-final"
+"shopcalc-sales-v5"
 )
 ) || [];
 
@@ -2889,9 +3014,9 @@ let currentVatMode = "add";
 let invoiceItemNumber = 0;
 
 
-/* ==================================================
+/* =========================
    أدوات عامة
-================================================== */
+========================= */
 
 function formatNumber(value){
 
@@ -2918,20 +3043,20 @@ document.getElementById(id).value
 
 function getToday(){
 
-const date =
+const d =
 new Date();
 
 const year =
-date.getFullYear();
+d.getFullYear();
 
 const month =
 String(
-date.getMonth()+1
+d.getMonth()+1
 ).padStart(2,"0");
 
 const day =
 String(
-date.getDate()
+d.getDate()
 ).padStart(2,"0");
 
 return `${year}-${month}-${day}`;
@@ -2941,7 +3066,8 @@ return `${year}-${month}-${day}`;
 
 function getCurrentMonth(){
 
-return getToday().substring(
+return getToday()
+.substring(
 0,
 7
 );
@@ -2952,12 +3078,12 @@ return getToday().substring(
 function saveData(){
 
 localStorage.setItem(
-"shopcalc-products-final",
+"shopcalc-products-v5",
 JSON.stringify(products)
 );
 
 localStorage.setItem(
-"shopcalc-sales-final",
+"shopcalc-sales-v5",
 JSON.stringify(sales)
 );
 
@@ -2970,8 +3096,10 @@ const element =
 document.getElementById(id);
 
 if(element){
+
 element.textContent =
 value;
+
 }
 
 }
@@ -3037,9 +3165,9 @@ return String(text)
 }
 
 
-/* ==================================================
+/* =========================
    فتح الأدوات
-================================================== */
+========================= */
 
 function openTool(tool){
 
@@ -3060,7 +3188,7 @@ panel.style.display =
 );
 
 
-const data = {
+const tools = {
 
 profit:{
 title:"حاسبة الربح",
@@ -3106,7 +3234,7 @@ panel:"invoicePanel"
 
 salesManager:{
 title:"المنتجات والمبيعات",
-subtitle:"إدارة المنتجات والمخزون وتسجيل البيع",
+subtitle:"إدارة المنتجات وتسجيل البيع",
 icon:"🛒",
 panel:"salesManagerPanel"
 },
@@ -3122,7 +3250,7 @@ panel:"salesReportPanel"
 
 
 const selected =
-data[tool];
+tools[tool];
 
 
 if(!selected){
@@ -3171,7 +3299,9 @@ addInvoiceItem();
 }
 
 
-if(tool === "salesManager"){
+if(
+tool === "salesManager"
+){
 
 renderProducts();
 
@@ -3182,7 +3312,9 @@ updateManagerDashboard();
 }
 
 
-if(tool === "salesReport"){
+if(
+tool === "salesReport"
+){
 
 updateReports();
 
@@ -3208,9 +3340,9 @@ document.getElementById(
 }
 
 
-/* ==================================================
+/* =========================
    حاسبة الربح
-================================================== */
+========================= */
 
 function calculateProfit(){
 
@@ -3274,32 +3406,43 @@ const totalProfit =
 unitProfit * quantity;
 
 const margin =
-(unitProfit / purchase) * 100;
+(unitProfit / purchase) *
+100;
 
 
 setText(
 "profitTotalCost",
-formatNumber(totalCost)
+formatNumber(
+totalCost
+)
 );
 
 setText(
 "profitTotalSales",
-formatNumber(totalSales)
+formatNumber(
+totalSales
+)
 );
 
 setText(
 "profitTotalProfit",
-formatNumber(totalProfit)
+formatNumber(
+totalProfit
+)
 );
 
 setText(
 "profitUnitProfit",
-formatNumber(unitProfit)
+formatNumber(
+unitProfit
+)
 );
 
 setText(
 "profitMargin",
-formatNumber(margin)+"%"
+formatNumber(
+margin
+) + "%"
 );
 
 
@@ -3312,9 +3455,9 @@ results.style.display =
 }
 
 
-/* ==================================================
+/* =========================
    الخصم
-================================================== */
+========================= */
 
 function calculateDiscount(){
 
@@ -3379,6 +3522,7 @@ const discount =
 price *
 (percent / 100);
 
+
 const finalPrice =
 price -
 discount;
@@ -3409,9 +3553,9 @@ results.style.display =
 }
 
 
-/* ==================================================
+/* =========================
    VAT
-================================================== */
+========================= */
 
 function setVatMode(mode){
 
@@ -3568,9 +3712,9 @@ results.style.display =
 }
 
 
-/* ==================================================
+/* =========================
    سعر البيع
-================================================== */
+========================= */
 
 function calculateSellingPrice(){
 
@@ -3632,7 +3776,8 @@ const profit =
 cost *
 (margin / 100);
 
-const price =
+
+const sellingPrice =
 cost +
 profit;
 
@@ -3649,7 +3794,7 @@ formatNumber(profit)
 
 setText(
 "sellingPriceResult",
-formatNumber(price)
+formatNumber(sellingPrice)
 );
 
 
@@ -3662,9 +3807,9 @@ results.style.display =
 }
 
 
-/* ==================================================
+/* =========================
    المخزون
-================================================== */
+========================= */
 
 function calculateInventory(){
 
@@ -3715,10 +3860,12 @@ return;
 }
 
 
-if(sold > qty){
+if(
+sold > qty
+){
 
 error.textContent =
-"الكمية المباعة أكبر من الموجودة.";
+"الكمية المباعة أكبر من الكمية الموجودة.";
 
 error.style.display =
 "block";
@@ -3735,9 +3882,11 @@ const remaining =
 qty -
 sold;
 
+
 const soldCost =
 sold *
 cost;
+
 
 const inventoryValue =
 remaining *
@@ -3746,17 +3895,23 @@ cost;
 
 setText(
 "inventoryRemaining",
-formatNumber(remaining)
+formatNumber(
+remaining
+)
 );
 
 setText(
 "inventorySoldCost",
-formatNumber(soldCost)
+formatNumber(
+soldCost
+)
 );
 
 setText(
 "inventoryValue",
-formatNumber(inventoryValue)
+formatNumber(
+inventoryValue
+)
 );
 
 
@@ -3769,9 +3924,9 @@ results.style.display =
 }
 
 
-/* ==================================================
+/* =========================
    الفاتورة
-================================================== */
+========================= */
 
 function addInvoiceItem(){
 
@@ -3840,6 +3995,7 @@ container.appendChild(
 row
 );
 
+
 updateInvoiceRow(
 row
 );
@@ -3903,13 +4059,18 @@ document.getElementById(
 );
 
 
-if(rows.length === 0){
+if(
+rows.length === 0
+){
 
 error.textContent =
 "أضف منتجًا واحدًا على الأقل.";
 
 error.style.display =
 "block";
+
+results.style.display =
+"none";
 
 return;
 
@@ -3968,7 +4129,8 @@ price >= 0
 ){
 
 const itemTotal =
-qty * price;
+qty *
+price;
 
 
 total +=
@@ -4014,7 +4176,9 @@ tr
 );
 
 
-if(validItems === 0){
+if(
+validItems === 0
+){
 
 error.textContent =
 "أدخل بيانات صحيحة.";
@@ -4032,14 +4196,17 @@ return;
 
 setText(
 "invoiceCount",
-formatNumber(validItems)
+formatNumber(
+validItems
+)
 );
 
 setText(
 "invoiceTotal",
-formatNumber(total)
+formatNumber(
+total
+)
 );
-
 
 setText(
 "previewShop",
@@ -4048,7 +4215,6 @@ document.getElementById(
 ).value.trim() ||
 "فاتورة بيع"
 );
-
 
 setText(
 "previewCustomer",
@@ -4060,7 +4226,6 @@ document.getElementById(
 "غير محدد"
 )
 );
-
 
 setText(
 "previewTotal",
@@ -4091,38 +4256,6 @@ document.getElementById(
 }
 
 
-/* تحديث الفاتورة */
-
-document.addEventListener(
-"input",
-function(event){
-
-if(
-event.target.classList.contains(
-"item-qty"
-) ||
-event.target.classList.contains(
-"item-price"
-)
-){
-
-const row =
-event.target.closest(
-".invoice-row"
-);
-
-if(row){
-updateInvoiceRow(
-row
-);
-}
-
-}
-
-}
-);
-
-
 /* ==================================================
    المنتجات
 ================================================== */
@@ -4135,56 +4268,42 @@ document.getElementById(
 ).value.trim();
 
 
-const cartonUnit =
-document.getElementById(
-"cartonUnit"
-).value.trim() ||
-"كرتونة";
-
-
-const pieceUnit =
-document.getElementById(
-"pieceUnit"
-).value.trim() ||
-"قطعة";
-
-
-const wholesaleBuy =
+const buy =
 parseFloat(
 document.getElementById(
-"wholesaleBuy"
+"productBuy"
 ).value
 );
 
 
-const wholesaleSell =
+const sell =
 parseFloat(
 document.getElementById(
-"wholesaleSell"
+"productSell"
 ).value
 );
 
 
-const retailSell =
-parseFloat(
-document.getElementById(
-"retailSell"
-).value
-);
-
-
-const piecesPerCarton =
+const pieces =
 parseInt(
 document.getElementById(
-"piecesPerCarton"
+"productPieces"
 ).value
 );
 
 
-const cartonStock =
+const retail =
+parseFloat(
+document.getElementById(
+"productRetail"
+).value
+);
+
+
+const stock =
 parseInt(
 document.getElementById(
-"cartonStock"
+"productStock"
 ).value
 );
 
@@ -4209,13 +4328,13 @@ return;
 
 
 if(
-isNaN(wholesaleBuy) ||
-wholesaleBuy < 0
+isNaN(buy) ||
+buy < 0
 ){
 
 showMessage(
 message,
-"أدخل سعر شراء الجملة.",
+"أدخل سعر شراء المنتج.",
 "error"
 );
 
@@ -4225,13 +4344,13 @@ return;
 
 
 if(
-isNaN(wholesaleSell) ||
-wholesaleSell < 0
+isNaN(sell) ||
+sell < 0
 ){
 
 showMessage(
 message,
-"أدخل سعر بيع الجملة.",
+"أدخل سعر بيع المنتج.",
 "error"
 );
 
@@ -4241,8 +4360,24 @@ return;
 
 
 if(
-isNaN(retailSell) ||
-retailSell < 0
+isNaN(pieces) ||
+pieces < 1
+){
+
+showMessage(
+message,
+"أدخل عدد الوحدات داخل المنتج.",
+"error"
+);
+
+return;
+
+}
+
+
+if(
+isNaN(retail) ||
+retail < 0
 ){
 
 showMessage(
@@ -4257,13 +4392,13 @@ return;
 
 
 if(
-isNaN(piecesPerCarton) ||
-piecesPerCarton < 1
+isNaN(stock) ||
+stock < 0
 ){
 
 showMessage(
 message,
-"أدخل عدد الوحدات داخل الكرتونة.",
+"أدخل عدد المخزون.",
 "error"
 );
 
@@ -4271,24 +4406,6 @@ return;
 
 }
 
-
-if(
-isNaN(cartonStock) ||
-cartonStock < 0
-){
-
-showMessage(
-message,
-"أدخل عدد الكراتين.",
-"error"
-);
-
-return;
-
-}
-
-
-/* تعديل */
 
 if(
 editingProductId !== null
@@ -4307,26 +4424,20 @@ if(product){
 product.name =
 name;
 
-product.cartonUnit =
-cartonUnit;
+product.buy =
+buy;
 
-product.pieceUnit =
-pieceUnit;
+product.sell =
+sell;
 
-product.wholesaleBuy =
-wholesaleBuy;
+product.pieces =
+pieces;
 
-product.wholesaleSell =
-wholesaleSell;
+product.retail =
+retail;
 
-product.retailSell =
-retailSell;
-
-product.piecesPerCarton =
-piecesPerCarton;
-
-product.cartonStock =
-cartonStock;
+product.stock =
+stock;
 
 }
 
@@ -4351,26 +4462,20 @@ Date.now(),
 name:
 name,
 
-cartonUnit:
-cartonUnit,
+buy:
+buy,
 
-pieceUnit:
-pieceUnit,
+sell:
+sell,
 
-wholesaleBuy:
-wholesaleBuy,
+pieces:
+pieces,
 
-wholesaleSell:
-wholesaleSell,
+retail:
+retail,
 
-retailSell:
-retailSell,
-
-piecesPerCarton:
-piecesPerCarton,
-
-cartonStock:
-cartonStock
+stock:
+stock
 
 });
 
@@ -4402,54 +4507,37 @@ document.getElementById(
 ).value =
 "";
 
-
 document.getElementById(
-"cartonUnit"
-).value =
-"كرتونة";
-
-
-document.getElementById(
-"pieceUnit"
+"productBuy"
 ).value =
 "";
 
-
 document.getElementById(
-"wholesaleBuy"
+"productSell"
 ).value =
 "";
 
-
 document.getElementById(
-"wholesaleSell"
+"productPieces"
 ).value =
 "";
 
-
 document.getElementById(
-"retailSell"
+"productRetail"
 ).value =
 "";
 
-
 document.getElementById(
-"piecesPerCarton"
-).value =
-"";
-
-
-document.getElementById(
-"cartonStock"
+"productStock"
 ).value =
 "";
 
 }
 
 
-/* ==================================================
+/* =========================
    تعديل المنتج
-================================================== */
+========================= */
 
 function editProduct(id){
 
@@ -4472,47 +4560,33 @@ product.name;
 
 
 document.getElementById(
-"cartonUnit"
+"productBuy"
 ).value =
-product.cartonUnit ||
-"كرتونة";
+product.buy;
 
 
 document.getElementById(
-"pieceUnit"
+"productSell"
 ).value =
-product.pieceUnit ||
-"قطعة";
+product.sell;
 
 
 document.getElementById(
-"wholesaleBuy"
+"productPieces"
 ).value =
-product.wholesaleBuy;
+product.pieces;
 
 
 document.getElementById(
-"wholesaleSell"
+"productRetail"
 ).value =
-product.wholesaleSell;
+product.retail;
 
 
 document.getElementById(
-"retailSell"
+"productStock"
 ).value =
-product.retailSell;
-
-
-document.getElementById(
-"piecesPerCarton"
-).value =
-product.piecesPerCarton;
-
-
-document.getElementById(
-"cartonStock"
-).value =
-product.cartonStock;
+product.stock;
 
 
 editingProductId =
@@ -4535,9 +4609,9 @@ block:"center"
 }
 
 
-/* ==================================================
+/* =========================
    حذف المنتج
-================================================== */
+========================= */
 
 function deleteProduct(id){
 
@@ -4575,9 +4649,9 @@ renderProductSelect();
 }
 
 
-/* ==================================================
+/* =========================
    عرض المنتجات
-================================================== */
+========================= */
 
 function renderProducts(){
 
@@ -4599,7 +4673,7 @@ table.innerHTML = `
 
 <tr>
 
-<td colspan="9">
+<td colspan="8">
 لا توجد منتجات حتى الآن.
 </td>
 
@@ -4616,42 +4690,27 @@ products.forEach(
 function(product){
 
 const buy =
-Number(
-product.wholesaleBuy
-) || 0;
+Number(product.buy) || 0;
 
 
-const wholesaleSell =
-Number(
-product.wholesaleSell
-) || 0;
+const sell =
+Number(product.sell) || 0;
 
 
-const retailSell =
-Number(
-product.retailSell
-) || 0;
+const retail =
+Number(product.retail) || 0;
 
 
 const pieces =
-Number(
-product.piecesPerCarton
-) || 1;
+Number(product.pieces) || 1;
 
 
 const stock =
-Number(
-product.cartonStock
-) || 0;
+Number(product.stock) || 0;
 
 
-const totalPieces =
-stock *
-pieces;
-
-
-const cartonProfit =
-wholesaleSell -
+const profit =
+sell -
 buy;
 
 
@@ -4668,22 +4727,11 @@ ${escapeHtml(product.name)}
 </td>
 
 <td>
-${escapeHtml(
-product.pieceUnit ||
-"قطعة"
-)}
-</td>
-
-<td>
 ${formatNumber(buy)}
 </td>
 
 <td>
-${formatNumber(wholesaleSell)}
-</td>
-
-<td>
-${formatNumber(retailSell)}
+${formatNumber(sell)}
 </td>
 
 <td>
@@ -4691,25 +4739,15 @@ ${formatNumber(pieces)}
 </td>
 
 <td>
-
-${formatNumber(stock)}
-${escapeHtml(
-product.cartonUnit ||
-"كرتونة"
-)}
-
-<br>
-
-${formatNumber(totalPieces)}
-${escapeHtml(
-product.pieceUnit ||
-"قطعة"
-)}
-
+${formatNumber(retail)}
 </td>
 
 <td>
-${formatNumber(cartonProfit)}
+${formatNumber(stock)}
+</td>
+
+<td>
+${formatNumber(profit)}
 </td>
 
 <td>
@@ -4743,9 +4781,9 @@ row
 }
 
 
-/* ==================================================
-   قائمة المنتجات في البيع
-================================================== */
+/* =========================
+   قائمة المنتجات للبيع
+========================= */
 
 function renderProductSelect(){
 
@@ -4753,6 +4791,11 @@ const select =
 document.getElementById(
 "saleProduct"
 );
+
+
+if(!select){
+return;
+}
 
 
 select.innerHTML = `
@@ -4767,19 +4810,6 @@ select.innerHTML = `
 products.forEach(
 function(product){
 
-const totalPieces =
-(
-Number(
-product.cartonStock
-) || 0
-) *
-(
-Number(
-product.piecesPerCarton
-) || 1
-);
-
-
 const option =
 document.createElement(
 "option"
@@ -4791,17 +4821,7 @@ product.id;
 
 
 option.textContent =
-`${product.name} — ${
-product.cartonStock
-} ${
-product.cartonUnit ||
-"كرتونة"
-} / ${
-totalPieces
-} ${
-product.pieceUnit ||
-"قطعة"
-}`;
+`${product.name} — المخزون: ${product.stock}`;
 
 
 select.appendChild(
@@ -4814,9 +4834,9 @@ option
 }
 
 
-/* ==================================================
+/* =========================
    نوع البيع
-================================================== */
+========================= */
 
 function setSaleType(type){
 
@@ -4843,15 +4863,8 @@ type === "retail"
 setText(
 "saleQuantityLabel",
 type === "wholesale"
-? "عدد الكراتين"
-: "عدد الوحدات"
-);
-
-
-document.getElementById(
-"salePreview"
-).classList.remove(
-"show"
+? "عدد المنتجات"
+: "عدد الوحدات القطاعي"
 );
 
 
@@ -4860,29 +4873,9 @@ previewSale();
 }
 
 
-/* ==================================================
-   حساب إجمالي الوحدات
-================================================== */
-
-function getTotalPieces(product){
-
-return (
-Number(
-product.cartonStock
-) || 0
-) *
-(
-Number(
-product.piecesPerCarton
-) || 1
-);
-
-}
-
-
-/* ==================================================
+/* =========================
    معاينة البيع
-================================================== */
+========================= */
 
 function previewSale(){
 
@@ -4930,13 +4923,12 @@ return;
 
 
 const buy =
-Number(
-product.wholesaleBuy
-) || 0;
+Number(product.buy) || 0;
 
 
 let sell;
 let total;
+let cost;
 let profit;
 
 
@@ -4945,9 +4937,7 @@ saleType === "wholesale"
 ){
 
 sell =
-Number(
-product.wholesaleSell
-) || 0;
+Number(product.sell) || 0;
 
 
 total =
@@ -4955,26 +4945,19 @@ sell *
 quantity;
 
 
-profit =
-(
-sell -
-buy
-) *
+cost =
+buy *
 quantity;
 
 
-setText(
-"previewUnit",
-product.cartonUnit ||
-"كرتونة"
-);
+profit =
+total -
+cost;
 
 }else{
 
 sell =
-Number(
-product.retailSell
-) || 0;
+Number(product.retail) || 0;
 
 
 total =
@@ -4985,25 +4968,18 @@ quantity;
 const unitCost =
 buy /
 (
-Number(
-product.piecesPerCarton
-) || 1
+Number(product.pieces) || 1
 );
 
 
-profit =
-(
-sell -
-unitCost
-) *
+cost =
+unitCost *
 quantity;
 
 
-setText(
-"previewUnit",
-product.pieceUnit ||
-"قطعة"
-);
+profit =
+total -
+cost;
 
 }
 
@@ -5021,6 +4997,12 @@ formatNumber(total)
 
 
 setText(
+"previewCost",
+formatNumber(cost)
+);
+
+
+setText(
 "previewProfit",
 formatNumber(profit)
 );
@@ -5033,9 +5015,9 @@ preview.classList.add(
 }
 
 
-/* ==================================================
+/* =========================
    تسجيل البيع
-================================================== */
+========================= */
 
 function recordSale(){
 
@@ -5116,21 +5098,12 @@ return;
 }
 
 
-const piecesPerCarton =
-Number(
-product.piecesPerCarton
-) || 1;
+const stock =
+Number(product.stock) || 0;
 
 
-const currentCartons =
-Number(
-product.cartonStock
-) || 0;
-
-
-const totalPieces =
-currentCartons *
-piecesPerCarton;
+const pieces =
+Number(product.pieces) || 1;
 
 
 if(
@@ -5139,12 +5112,12 @@ saleType === "wholesale"
 
 if(
 quantity >
-currentCartons
+stock
 ){
 
 showMessage(
 message,
-"عدد الكراتين أكبر من المخزون.",
+"الكمية المطلوبة أكبر من المخزون.",
 "error"
 );
 
@@ -5154,14 +5127,19 @@ return;
 
 }else{
 
+const totalUnits =
+stock *
+pieces;
+
+
 if(
 quantity >
-totalPieces
+totalUnits
 ){
 
 showMessage(
 message,
-"عدد الوحدات أكبر من المخزون المتاح.",
+"الكمية القطاعي أكبر من المخزون المتاح.",
 "error"
 );
 
@@ -5173,9 +5151,7 @@ return;
 
 
 const buy =
-Number(
-product.wholesaleBuy
-) || 0;
+Number(product.buy) || 0;
 
 
 let sell;
@@ -5189,9 +5165,7 @@ saleType === "wholesale"
 ){
 
 sell =
-Number(
-product.wholesaleSell
-) || 0;
+Number(product.sell) || 0;
 
 
 totalSales =
@@ -5210,19 +5184,17 @@ totalCost;
 
 
 /*
-   بيع كراتين كاملة
+بيع المنتج ككل
 */
 
-product.cartonStock =
-currentCartons -
+product.stock =
+stock -
 quantity;
 
 }else{
 
 sell =
-Number(
-product.retailSell
-) || 0;
+Number(product.retail) || 0;
 
 
 totalSales =
@@ -5230,17 +5202,13 @@ sell *
 quantity;
 
 
-/*
-   تكلفة الوحدة
-*/
-
-const pieceCost =
+const unitCost =
 buy /
-piecesPerCarton;
+pieces;
 
 
 totalCost =
-pieceCost *
+unitCost *
 quantity;
 
 
@@ -5250,18 +5218,52 @@ totalCost;
 
 
 /*
-   خصم الوحدات من المخزون
+خصم الوحدات من المخزون
+
+المخزون محفوظ كعدد وحدات كاملة.
+
+لو كان عندك:
+20 منتج × 100 وحدة = 2000 وحدة
+
+وبعت 35 وحدة:
+المتبقي = 1965 وحدة
+
+نحوّلها إلى عدد المنتجات الكامل
+بالقسمة الصحيحة.
+
+ملاحظة:
+أي وحدات غير مكتملة تظل محسوبة
+داخل إجمالي الوحدات المحفوظ.
 */
 
-const newTotalPieces =
-totalPieces -
+
+const currentTotalUnits =
+stock *
+pieces;
+
+
+const newTotalUnits =
+currentTotalUnits -
 quantity;
 
 
-product.cartonStock =
+/*
+نحفظ الرصيد الحقيقي بالوحدات
+في متغير إضافي للمنتج.
+*/
+
+product.totalUnits =
+newTotalUnits;
+
+
+/*
+عدد المخزون الكامل الظاهر
+*/
+
+product.stock =
 Math.floor(
-newTotalPieces /
-piecesPerCarton
+newTotalUnits /
+pieces
 );
 
 }
@@ -5284,25 +5286,8 @@ saleType,
 quantity:
 quantity,
 
-unit:
-saleType === "wholesale"
-? (
-product.cartonUnit ||
-"كرتونة"
-)
-: (
-product.pieceUnit ||
-"قطعة"
-),
-
 sellPrice:
 sell,
-
-buyCostPerUnit:
-saleType === "wholesale"
-? buy
-: buy /
-piecesPerCarton,
 
 totalSales:
 totalSales,
@@ -5320,7 +5305,6 @@ date
 
 
 saveData();
-
 
 renderProducts();
 
@@ -5359,14 +5343,15 @@ message,
 }
 
 
-/* ==================================================
-   Dashboard
-================================================== */
+/* =========================
+   لوحة المتابعة
+========================= */
 
 function updateManagerDashboard(){
 
 const today =
 getToday();
+
 
 const month =
 getCurrentMonth();
@@ -5389,124 +5374,108 @@ month
 );
 
 
-const todaySalesTotal =
+const todayTotal =
 todaySales.reduce(
 (sum,sale) =>
 sum +
-Number(
-sale.totalSales
-),
+Number(sale.totalSales),
 0
 );
 
 
-const todayProfitTotal =
+const todayProfit =
 todaySales.reduce(
 (sum,sale) =>
 sum +
-Number(
-sale.profit
-),
+Number(sale.profit),
 0
 );
 
 
-const monthSalesTotal =
+const monthTotal =
 monthSales.reduce(
 (sum,sale) =>
 sum +
-Number(
-sale.totalSales
-),
+Number(sale.totalSales),
 0
 );
 
 
-const monthProfitTotal =
+const monthProfit =
 monthSales.reduce(
 (sum,sale) =>
 sum +
-Number(
-sale.profit
-),
+Number(sale.profit),
 0
 );
 
 
 setText(
 "managerTodaySales",
-formatNumber(
-todaySalesTotal
-)
+formatNumber(todayTotal)
 );
 
 
 setText(
 "managerTodayProfit",
-formatNumber(
-todayProfitTotal
-)
+formatNumber(todayProfit)
 );
 
 
 setText(
 "managerMonthSales",
-formatNumber(
-monthSalesTotal
-)
+formatNumber(monthTotal)
 );
 
 
 setText(
 "managerMonthProfit",
-formatNumber(
-monthProfitTotal
-)
+formatNumber(monthProfit)
 );
 
 }
 
 
-/* ==================================================
+/* =========================
    التقارير
-================================================== */
+========================= */
 
 function updateReports(){
 
-const reportDay =
+const dayInput =
 document.getElementById(
 "reportDay"
 );
 
 
-const reportMonth =
+const monthInput =
 document.getElementById(
 "reportMonth"
 );
 
 
-if(!reportDay.value){
+if(!dayInput.value){
 
-reportDay.value =
+dayInput.value =
 getToday();
 
 }
 
 
-if(!reportMonth.value){
+if(!monthInput.value){
 
-reportMonth.value =
+monthInput.value =
 getCurrentMonth();
 
 }
 
 
 const selectedDay =
-reportDay.value;
+dayInput.value;
 
 
 const selectedMonth =
-reportMonth.value;
+monthInput.value;
 
 
 const daySales =
@@ -5661,9 +5630,9 @@ renderSalesReport();
 }
 
 
-/* ==================================================
+/* =========================
    سجل المبيعات
-================================================== */
+========================= */
 
 function renderSalesReport(){
 
@@ -5685,7 +5654,7 @@ table.innerHTML = `
 
 <tr>
 
-<td colspan="10">
+<td colspan="9">
 لا توجد عمليات بيع حتى الآن.
 </td>
 
@@ -5730,17 +5699,13 @@ ${escapeHtml(sale.productName)}
 <td>
 ${
 sale.saleType === "wholesale"
-? "جملة"
+? "بيع المنتج"
 : "قطاعي"
 }
 </td>
 
 <td>
 ${formatNumber(sale.quantity)}
-</td>
-
-<td>
-${escapeHtml(sale.unit)}
 </td>
 
 <td>
@@ -5783,9 +5748,9 @@ row
 }
 
 
-/* ==================================================
-   حذف عملية بيع
-================================================== */
+/* =========================
+   حذف عملية البيع
+========================= */
 
 function deleteSale(id){
 
@@ -5811,9 +5776,9 @@ sale.productId
 
 if(product){
 
-const piecesPerCarton =
+const pieces =
 Number(
-product.piecesPerCarton
+product.pieces
 ) || 1;
 
 
@@ -5821,26 +5786,44 @@ if(
 sale.saleType === "wholesale"
 ){
 
-product.cartonStock +=
+product.stock +=
 sale.quantity;
 
 }else{
 
-const currentPieces =
-getTotalPieces(
-product
+/*
+نرجع الوحدات المباعة
+للمخزون.
+
+لو المنتج لا يحتوي على
+totalUnits قديمًا، نحسبه
+من المخزون الحالي.
+*/
+
+const currentUnits =
+typeof product.totalUnits === "number"
+
+?
+
+product.totalUnits
+
+:
+
+(
+Number(product.stock) *
+pieces
 );
 
 
-const restoredPieces =
-currentPieces +
+product.totalUnits =
+currentUnits +
 sale.quantity;
 
 
-product.cartonStock =
+product.stock =
 Math.floor(
-restoredPieces /
-piecesPerCarton
+product.totalUnits /
+pieces
 );
 
 }
@@ -5868,9 +5851,9 @@ updateReports();
 }
 
 
-/* ==================================================
+/* =========================
    الوضع الليلي
-================================================== */
+========================= */
 
 function toggleTheme(){
 
@@ -5886,7 +5869,7 @@ document.body.classList.contains(
 
 
 localStorage.setItem(
-"shopcalc-theme-final",
+"shopcalc-theme-v5",
 dark
 ? "dark"
 : "light"
@@ -5903,9 +5886,9 @@ dark
 }
 
 
-/* ==================================================
-   تشغيل الصفحة
-================================================== */
+/* =========================
+   بدء الصفحة
+========================= */
 
 document.addEventListener(
 "DOMContentLoaded",
@@ -5913,7 +5896,7 @@ function(){
 
 const savedTheme =
 localStorage.getItem(
-"shopcalc-theme-final"
+"shopcalc-theme-v5"
 );
 
 
@@ -5953,6 +5936,41 @@ document.getElementById(
 "reportMonth"
 ).value =
 getCurrentMonth();
+
+
+/*
+توافق مع المنتجات القديمة:
+لو المنتج عنده stock و pieces
+ومفيش totalUnits،
+نستخدم المخزون الحالي كرصيد مبدئي.
+*/
+
+products =
+products.map(
+function(product){
+
+if(
+typeof product.totalUnits !==
+"number"
+){
+
+product.totalUnits =
+(
+Number(product.stock) || 0
+) *
+(
+Number(product.pieces) || 1
+);
+
+}
+
+return product;
+
+}
+);
+
+
+saveData();
 
 
 renderProducts();
