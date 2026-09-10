@@ -5,10 +5,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>ShopCalc - الحسابات والمبيعات التجارية</title>
+<title>الباشمحاسب - الحسابات والمبيعات التجارية</title>
 
 <meta name="description"
-content="ShopCalc للحسابات التجارية وإدارة المنتجات والمبيعات والمخزون وحساب الأرباح اليومية والشهرية.">
+content="الباشمحاسب للحسابات التجارية وإدارة المنتجات والمبيعات والمخزون وحساب الأرباح اليومية والشهرية.">
 
 <style>
 
@@ -95,7 +95,7 @@ background:rgba(13,17,24,.78);
 max-width:1150px;
 margin:auto;
 
-padding:14px 20px;
+padding:12px 20px;
 
 display:flex;
 align-items:center;
@@ -105,24 +105,24 @@ justify-content:space-between;
 .brand{
 display:flex;
 align-items:center;
-gap:10px;
+gap:9px;
 
 color:inherit;
 text-decoration:none;
 
-font-size:23px;
+font-size:22px;
 font-weight:900;
 }
 
 .brand-icon{
-width:42px;
-height:42px;
+width:40px;
+height:40px;
 
 display:flex;
 align-items:center;
 justify-content:center;
 
-border-radius:13px;
+border-radius:12px;
 color:white;
 
 background:
@@ -131,6 +131,9 @@ linear-gradient(
 var(--primary),
 var(--primary2)
 );
+
+box-shadow:
+0 8px 22px rgba(37,99,235,.18);
 }
 
 .brand-name{
@@ -139,12 +142,12 @@ color:var(--primary);
 
 .actions{
 display:flex;
-gap:8px;
+gap:7px;
 }
 
 .nav-btn{
-width:42px;
-height:42px;
+width:40px;
+height:40px;
 
 display:flex;
 align-items:center;
@@ -153,7 +156,7 @@ justify-content:center;
 border:
 1px solid var(--border);
 
-border-radius:12px;
+border-radius:11px;
 
 background:
 var(--card);
@@ -163,7 +166,7 @@ var(--text);
 
 text-decoration:none;
 
-font-size:18px;
+font-size:17px;
 
 transition:.2s;
 }
@@ -179,21 +182,66 @@ border-color:var(--primary);
 ========================= */
 
 .hero{
+position:relative;
+
 max-width:900px;
 margin:auto;
 
-padding:68px 20px 35px;
+padding:55px 20px 28px;
 
 text-align:center;
+
+overflow:hidden;
+}
+
+.hero-glow{
+position:absolute;
+
+width:280px;
+height:280px;
+
+top:0;
+left:50%;
+
+transform:translateX(-50%);
+
+background:
+rgba(96,165,250,.18);
+
+filter:blur(65px);
+
+border-radius:50%;
+
+pointer-events:none;
+
+animation:
+heroGlow 4s ease-in-out infinite;
+}
+
+@keyframes heroGlow{
+
+0%,100%{
+opacity:.45;
+transform:translateX(-50%) scale(.9);
+}
+
+50%{
+opacity:.8;
+transform:translateX(-50%) scale(1.1);
+}
+
 }
 
 .tag{
+position:relative;
+z-index:2;
+
 display:inline-flex;
 
 align-items:center;
-gap:8px;
+gap:7px;
 
-padding:8px 16px;
+padding:7px 15px;
 
 border-radius:50px;
 
@@ -205,34 +253,198 @@ color:var(--primary);
 border:
 1px solid var(--border);
 
-font-size:14px;
+font-size:13px;
 
 font-weight:800;
 
-margin-bottom:20px;
+margin-bottom:13px;
+
+box-shadow:
+0 0 25px rgba(37,99,235,.08);
 }
 
 .hero h1{
+position:relative;
+z-index:2;
+
 font-size:
-clamp(36px,6vw,58px);
+clamp(38px,7vw,58px);
 
 line-height:1.15;
 
-margin-bottom:15px;
+margin-bottom:7px;
+
+text-shadow:
+0 0 30px rgba(37,99,235,.13);
 }
 
 .hero h1 span{
 color:var(--primary);
 }
 
-.hero p{
-max-width:730px;
-margin:auto;
+.hero-subtitle{
+position:relative;
+z-index:2;
+
+color:var(--text)!important;
+
+font-size:20px!important;
+
+font-weight:900;
+
+margin-bottom:7px!important;
+}
+
+.hero-desc{
+position:relative;
+z-index:2;
+
+max-width:650px;
+
+margin:auto!important;
 
 color:var(--muted);
 
-font-size:17px;
-line-height:1.9;
+font-size:14px!important;
+
+line-height:1.7!important;
+}
+
+
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.quick-actions{
+position:relative;
+z-index:3;
+
+display:flex;
+
+justify-content:center;
+
+gap:10px;
+
+margin-top:18px;
+}
+
+.quick-btn{
+min-width:145px;
+
+border:none;
+
+border-radius:13px;
+
+padding:12px 18px;
+
+font-size:14px;
+
+font-weight:900;
+
+text-decoration:none;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:7px;
+
+transition:.25s;
+}
+
+.quick-btn.primary{
+color:white;
+
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
+
+box-shadow:
+0 10px 28px rgba(37,99,235,.22);
+}
+
+.quick-btn.pdf{
+color:var(--primary);
+
+background:var(--card);
+
+border:
+1px solid var(--border);
+}
+
+.quick-btn:hover{
+transform:translateY(-3px);
+}
+
+
+/* =========================
+   HERO SHORTCUTS
+========================= */
+
+.hero-shortcuts{
+position:relative;
+z-index:3;
+
+max-width:520px;
+
+margin:18px auto 0;
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:8px;
+}
+
+.hero-shortcuts button{
+border:
+1px solid var(--border);
+
+border-radius:13px;
+
+padding:10px 5px;
+
+background:
+rgba(255,255,255,.60);
+
+color:var(--text);
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+gap:4px;
+
+font-size:19px;
+
+transition:.2s;
+}
+
+body.dark .hero-shortcuts button{
+background:
+rgba(24,31,43,.65);
+}
+
+.hero-shortcuts button span{
+font-size:11px;
+font-weight:800;
+}
+
+.hero-shortcuts button:hover{
+transform:translateY(-3px);
+
+border-color:var(--primary);
+
+box-shadow:
+0 8px 22px rgba(37,99,235,.10);
 }
 
 
@@ -623,6 +835,36 @@ transform:
 translateY(-2px);
 }
 
+.secondary-btn{
+border:
+1px solid var(--border);
+
+border-radius:
+12px;
+
+padding:
+12px 16px;
+
+background:
+var(--bg);
+
+color:
+var(--text);
+
+font-size:
+14px;
+
+font-weight:
+900;
+
+transition:.2s;
+}
+
+.secondary-btn:hover{
+border-color:var(--primary);
+color:var(--primary);
+}
+
 
 /* =========================
    RESULTS
@@ -676,6 +918,45 @@ font-size:25px;
 
 .result-box.big strong{
 font-size:34px;
+}
+
+
+/* =========================
+   MESSAGES
+========================= */
+
+.message{
+display:none;
+
+margin-top:10px;
+
+padding:11px;
+
+border-radius:11px;
+
+font-size:13px;
+
+line-height:1.6;
+}
+
+.message.error{
+color:var(--danger);
+
+background:
+rgba(220,38,38,.08);
+
+border:
+1px solid rgba(220,38,38,.15);
+}
+
+.message.success{
+color:var(--success);
+
+background:
+rgba(22,163,74,.08);
+
+border:
+1px solid rgba(22,163,74,.15);
 }
 
 
@@ -1051,414 +1332,490 @@ color:
 var(--primary);
 }
 
+
 /* =========================
    MOBILE
 ========================= */
 
-@media (max-width: 650px){
-
-  body{
-    font-size:14px;
-    overflow-x:hidden;
-  }
-
-  /* NAVBAR */
-  .nav{
-    padding:9px 12px;
-  }
-
-  .brand{
-    font-size:18px;
-    gap:7px;
-  }
-
-  .brand-icon{
-    width:36px;
-    height:36px;
-    border-radius:10px;
-    font-size:18px;
-  }
-
-  .actions{
-    gap:5px;
-  }
-
-  .nav-btn{
-    width:36px;
-    height:36px;
-    border-radius:10px;
-    font-size:16px;
-  }
-
-
-  /* HERO */
-
-  .hero{
-    padding:30px 15px 22px;
-  }
-
-  .tag{
-    padding:6px 12px;
-    font-size:12px;
-    margin-bottom:14px;
-  }
-
-  .hero h1{
-    font-size:28px;
-    line-height:1.3;
-    margin-bottom:10px;
-  }
-
-  .hero p{
-    font-size:14px;
-    line-height:1.8;
-  }
-
-
-  /* SECTIONS */
-
-  .section{
-    margin-top:18px;
-    padding:0 12px;
-  }
-
-  .section-title{
-    gap:8px;
-    margin-bottom:12px;
-  }
-
-  .section-line{
-    width:7px;
-    height:27px;
-  }
-
-  .section-title h2{
-    font-size:20px;
-  }
-
-
-  /* TOOLS */
-
-  .tools-grid{
-    grid-template-columns:1fr;
-    gap:10px;
-  }
-
-  .tool-card{
-    min-height:auto;
-    padding:16px;
-    border-radius:16px;
-  }
-
-  .tool-card:hover{
-    transform:none;
-  }
-
-  .tool-icon{
-    width:45px;
-    height:45px;
-    border-radius:12px;
-    font-size:21px;
-    margin-bottom:10px;
-  }
-
-  .tool-card h3{
-    font-size:16px;
-    margin-bottom:5px;
-  }
-
-  .tool-card p{
-    font-size:12px;
-    line-height:1.6;
-    margin-bottom:10px;
-  }
-
-  .tool-open{
-    font-size:12px;
-  }
-
-
-  /* WORKSPACE */
-
-  .workspace{
-    margin:12px 10px 45px;
-    padding:0;
-  }
-
-  .workspace-card{
-    padding:17px 13px;
-    border-radius:18px;
-  }
-
-  .workspace-header{
-    gap:8px;
-    margin-bottom:18px;
-  }
-
-  .workspace-title{
-    gap:8px;
-  }
-
-  .mini-icon{
-    width:40px;
-    height:40px;
-    border-radius:11px;
-    font-size:19px;
-  }
-
-  .workspace-title h2{
-    font-size:19px;
-  }
-
-  .workspace-title p{
-    font-size:10px;
-  }
-
-  .close-tool{
-    width:36px;
-    height:36px;
-    font-size:15px;
-  }
-
-
-  /* FIELDS */
-
-  .fields{
-    grid-template-columns:1fr;
-    gap:10px;
-    margin-bottom:14px;
-  }
-
-  .field.full{
-    grid-column:auto;
-  }
-
-  .field{
-    gap:5px;
-  }
-
-  .field label{
-    font-size:13px;
-  }
-
-  .field input,
-  .field select{
-    padding:11px 12px;
-    border-radius:10px;
-    font-size:14px;
-    min-height:44px;
-  }
-
-
-  /* BUTTONS */
-
-  .main-btn{
-    padding:12px;
-    border-radius:11px;
-    font-size:14px;
-  }
-
-  .secondary-btn{
-    width:100%;
-    padding:11px;
-    border-radius:11px;
-    font-size:13px;
-  }
-
-
-  /* RESULTS */
-
-  .results{
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-    margin-top:15px;
-  }
-
-  .result-box{
-    padding:13px 10px;
-    border-radius:12px;
-  }
-
-  .result-box.full{
-    grid-column:1 / -1;
-  }
-
-  .result-box span{
-    font-size:10px;
-  }
-
-  .result-box strong{
-    font-size:19px;
-  }
-
-  .result-box.big strong{
-    font-size:25px;
-  }
-
-
-  /* MESSAGES */
-
-  .message{
-    margin-top:10px;
-    padding:10px;
-    border-radius:10px;
-    font-size:12px;
-    line-height:1.6;
-  }
-
-  .message.error{
-    color:var(--danger);
-    background:rgba(220,38,38,.08);
-    border:1px solid rgba(220,38,38,.15);
-  }
-
-  .message.success{
-    color:var(--success);
-    background:rgba(22,163,74,.08);
-    border:1px solid rgba(22,163,74,.15);
-  }
-
-
-  /* VAT */
-
-  .mode-buttons{
-    grid-template-columns:1fr 1fr;
-    gap:7px;
-    margin-bottom:14px;
-  }
-
-  .mode-btn{
-    padding:10px 6px;
-    border-radius:10px;
-    font-size:12px;
-  }
-
-
-  /* INVOICE */
-
-  .invoice-items{
-    gap:9px;
-    margin:14px 0;
-  }
-
-  .invoice-row{
-    grid-template-columns:1fr 1fr;
-    gap:7px;
-    padding:9px;
-    border:1px solid var(--border);
-    border-radius:12px;
-    background:rgba(37,99,235,.025);
-  }
-
-  .invoice-row input{
-    padding:10px;
-    border-radius:9px;
-    font-size:13px;
-  }
-
-  .invoice-row .item-name{
-    grid-column:1 / -1;
-  }
-
-  .remove-item{
-    width:100%;
-    height:38px;
-  }
-
-  .invoice-actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:7px;
-    margin-top:12px;
-  }
-
-  .invoice-preview{
-    padding:10px;
-    overflow-x:auto;
-    border-radius:7px;
-  }
-
-  .invoice-preview h3{
-    font-size:17px;
-  }
-
-  .invoice-table{
-    min-width:520px;
-    font-size:12px;
-  }
-
-  .invoice-table th,
-  .invoice-table td{
-    padding:7px;
-  }
-
-  #printActions{
-    display:grid !important;
-    grid-template-columns:1fr;
-  }
-
-
-  /* SALES */
-
-  .sales-summary{
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-    margin-bottom:15px;
-  }
-
-  .sales-stat{
-    padding:12px 9px;
-    border-radius:12px;
-  }
-
-  .sales-stat span{
-    font-size:10px;
-  }
-
-  .sales-stat strong{
-    font-size:18px;
-  }
-
-  .sale-type{
-    grid-template-columns:1fr 1fr;
-    gap:7px;
-    margin-bottom:12px;
-  }
-
-  .sale-type-btn{
-    padding:11px 6px;
-    border-radius:10px;
-    font-size:12px;
-  }
-
-
-  /* TABLE */
-
-  .table-wrap{
-    width:100%;
-    overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
-    margin-top:15px;
-  }
-
-  .data-table{
-    min-width:850px;
-  }
-
-  .data-table th,
-  .data-table td{
-    padding:8px;
-    font-size:11px;
-  }
-
-
-  /* FOOTER */
-
-  footer{
-    margin-top:25px;
-    padding:22px 12px;
-    font-size:12px;
-  }
+@media (max-width:650px){
+
+body{
+font-size:14px;
+overflow-x:hidden;
+}
+
+
+/* NAVBAR */
+
+.nav{
+padding:9px 12px;
+}
+
+.brand{
+font-size:18px;
+gap:7px;
+}
+
+.brand-icon{
+width:36px;
+height:36px;
+border-radius:10px;
+font-size:18px;
+}
+
+.actions{
+gap:5px;
+}
+
+.nav-btn{
+width:36px;
+height:36px;
+border-radius:10px;
+font-size:16px;
+}
+
+
+/* HERO */
+
+.hero{
+padding:30px 12px 20px;
+}
+
+.hero-glow{
+width:220px;
+height:220px;
+filter:blur(50px);
+}
+
+.tag{
+padding:6px 12px;
+font-size:12px;
+margin-bottom:11px;
+}
+
+.hero h1{
+font-size:34px;
+line-height:1.25;
+margin-bottom:5px;
+}
+
+.hero-subtitle{
+font-size:17px!important;
+}
+
+.hero-desc{
+font-size:12px!important;
+line-height:1.65!important;
+max-width:330px;
+}
+
+
+/* QUICK BUTTONS */
+
+.quick-actions{
+gap:7px;
+margin-top:15px;
+}
+
+.quick-btn{
+min-width:0;
+flex:1;
+padding:11px 8px;
+font-size:13px;
+}
+
+
+/* SHORTCUTS */
+
+.hero-shortcuts{
+grid-template-columns:
+repeat(4,1fr);
+
+gap:6px;
+
+margin-top:13px;
+}
+
+.hero-shortcuts button{
+padding:8px 3px;
+
+border-radius:11px;
+
+font-size:17px;
+}
+
+.hero-shortcuts button span{
+font-size:9px;
+}
+
+
+/* SECTIONS */
+
+.section{
+margin-top:18px;
+padding:0 12px;
+}
+
+.section-title{
+gap:8px;
+margin-bottom:12px;
+}
+
+.section-line{
+width:7px;
+height:27px;
+}
+
+.section-title h2{
+font-size:20px;
+}
+
+
+/* TOOLS */
+
+.tools-grid{
+grid-template-columns:
+repeat(2,1fr);
+
+gap:7px;
+}
+
+.tool-card{
+min-height:auto;
+
+padding:12px 10px;
+
+border-radius:13px;
+}
+
+.tool-card:hover{
+transform:none;
+}
+
+.tool-icon{
+width:40px;
+height:40px;
+
+border-radius:11px;
+
+font-size:19px;
+
+margin-bottom:8px;
+}
+
+.tool-card h3{
+font-size:14px;
+margin-bottom:4px;
+line-height:1.4;
+}
+
+.tool-card p{
+font-size:11px;
+line-height:1.5;
+
+margin-bottom:7px;
+}
+
+.tool-open{
+font-size:10px;
+}
+
+
+/* WORKSPACE */
+
+.workspace{
+margin:12px 10px 45px;
+padding:0;
+}
+
+.workspace-card{
+padding:17px 13px;
+border-radius:18px;
+}
+
+.workspace-header{
+gap:8px;
+margin-bottom:18px;
+}
+
+.workspace-title{
+gap:8px;
+}
+
+.mini-icon{
+width:40px;
+height:40px;
+border-radius:11px;
+font-size:19px;
+}
+
+.workspace-title h2{
+font-size:19px;
+}
+
+.workspace-title p{
+font-size:10px;
+}
+
+.close-tool{
+width:36px;
+height:36px;
+font-size:15px;
+}
+
+
+/* FIELDS */
+
+.fields{
+grid-template-columns:1fr;
+gap:10px;
+margin-bottom:14px;
+}
+
+.field.full{
+grid-column:auto;
+}
+
+.field{
+gap:5px;
+}
+
+.field label{
+font-size:13px;
+}
+
+.field input,
+.field select{
+padding:11px 12px;
+border-radius:10px;
+font-size:14px;
+min-height:44px;
+}
+
+
+/* BUTTONS */
+
+.main-btn{
+padding:12px;
+border-radius:11px;
+font-size:14px;
+}
+
+.secondary-btn{
+width:100%;
+padding:11px;
+border-radius:11px;
+font-size:13px;
+}
+
+
+/* RESULTS */
+
+.results{
+grid-template-columns:
+1fr 1fr;
+
+gap:8px;
+
+margin-top:15px;
+}
+
+.result-box{
+padding:13px 10px;
+border-radius:12px;
+}
+
+.result-box.full{
+grid-column:1 / -1;
+}
+
+.result-box span{
+font-size:10px;
+}
+
+.result-box strong{
+font-size:19px;
+}
+
+.result-box.big strong{
+font-size:25px;
+}
+
+
+/* MESSAGES */
+
+.message{
+margin-top:10px;
+padding:10px;
+border-radius:10px;
+font-size:12px;
+line-height:1.6;
+}
+
+
+/* VAT */
+
+.mode-buttons{
+grid-template-columns:
+1fr 1fr;
+
+gap:7px;
+
+margin-bottom:14px;
+}
+
+.mode-btn{
+padding:10px 6px;
+border-radius:10px;
+font-size:12px;
+}
+
+
+/* INVOICE */
+
+.invoice-items{
+gap:9px;
+margin:14px 0;
+}
+
+.invoice-row{
+grid-template-columns:
+1fr 1fr;
+
+gap:7px;
+
+padding:9px;
+
+border:
+1px solid var(--border);
+
+border-radius:12px;
+
+background:
+rgba(37,99,235,.025);
+}
+
+.invoice-row input{
+padding:10px;
+border-radius:9px;
+font-size:13px;
+}
+
+.invoice-row .item-name{
+grid-column:1 / -1;
+}
+
+.remove-item{
+width:100%;
+height:38px;
+}
+
+.invoice-actions{
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+
+gap:7px;
+
+margin-top:12px;
+}
+
+.invoice-preview{
+padding:10px;
+overflow-x:auto;
+border-radius:7px;
+}
+
+.invoice-preview h3{
+font-size:17px;
+}
+
+.invoice-table{
+min-width:520px;
+font-size:12px;
+}
+
+.invoice-table th,
+.invoice-table td{
+padding:7px;
+}
+
+#printActions{
+display:grid !important;
+grid-template-columns:1fr;
+}
+
+
+/* SALES */
+
+.sales-summary{
+grid-template-columns:
+1fr 1fr;
+
+gap:8px;
+
+margin-bottom:15px;
+}
+
+.sales-stat{
+padding:12px 9px;
+border-radius:12px;
+}
+
+.sales-stat span{
+font-size:10px;
+}
+
+.sales-stat strong{
+font-size:18px;
+}
+
+.sale-type{
+grid-template-columns:
+1fr 1fr;
+
+gap:7px;
+
+margin-bottom:12px;
+}
+
+.sale-type-btn{
+padding:11px 6px;
+border-radius:10px;
+font-size:12px;
+}
+
+
+/* TABLE */
+
+.table-wrap{
+width:100%;
+overflow-x:auto;
+
+-webkit-overflow-scrolling:touch;
+
+margin-top:15px;
+}
+
+.data-table{
+min-width:850px;
+}
+
+.data-table th,
+.data-table td{
+padding:8px;
+font-size:11px;
+}
+
+
+/* FOOTER */
+
+footer{
+margin-top:25px;
+padding:22px 12px;
+font-size:12px;
+}
 
 }
 
@@ -1469,51 +1826,87 @@ var(--primary);
 
 @media (max-width:380px){
 
-  .brand{
-    font-size:16px;
-  }
+.brand{
+font-size:16px;
+}
 
-  .brand-icon{
-    width:33px;
-    height:33px;
-  }
+.brand-icon{
+width:33px;
+height:33px;
+}
 
-  .nav-btn{
-    width:33px;
-    height:33px;
-  }
+.nav-btn{
+width:33px;
+height:33px;
+}
 
-  .hero{
-    padding-top:25px;
-  }
+.hero{
+padding-top:25px;
+}
 
-  .hero h1{
-    font-size:24px;
-  }
+.hero h1{
+font-size:28px;
+}
 
-  .hero p{
-    font-size:13px;
-  }
+.hero-subtitle{
+font-size:16px!important;
+}
 
-  .section-title h2{
-    font-size:18px;
-  }
+.hero p{
+font-size:12px;
+}
 
-  .tool-card{
-    padding:13px;
-  }
+.hero-shortcuts button{
+font-size:15px;
+}
 
-  .workspace-card{
-    padding:14px 10px;
-  }
+.hero-shortcuts button span{
+font-size:8px;
+}
 
-  .results,
-  .sales-summary{
-    grid-template-columns:1fr 1fr;
-  }
+.section-title h2{
+font-size:18px;
+}
+
+.tools-grid{
+gap:6px;
+}
+
+.tool-card{
+padding:10px 8px;
+}
+
+.tool-icon{
+width:36px;
+height:36px;
+font-size:17px;
+border-radius:10px;
+}
+
+.tool-card h3{
+font-size:13px;
+}
+
+.tool-card p{
+font-size:10px;
+}
+
+.tool-open{
+font-size:9px;
+}
+
+.workspace-card{
+padding:14px 10px;
+}
+
+.results,
+.sales-summary{
+grid-template-columns:
+1fr 1fr;
+}
 
 }
-}
+
 </style>
 </head>
 
@@ -1535,7 +1928,7 @@ class="brand"
 </div>
 
 <span class="brand-name">
-ShopCalc
+الباشمحاسب
 </span>
 
 </a>
@@ -1572,20 +1965,69 @@ onclick="toggleTheme()"
 
 <section class="hero">
 
+<div class="hero-glow"></div>
+
 <div class="tag">
-🧮 ShopCalc
+🧮 الباشمحاسب
 </div>
 
 <h1>
-<span>الحسابات والمبيعات</span>
-في مكان واحد
+<span>الباشمحاسب</span>
 </h1>
 
-<p>
-احسب الأرباح والخصومات والضرائب،
-وسجل المنتجات والمبيعات والمخزون
-وتابع أرباحك اليومية والشهرية.
+<p class="hero-subtitle">
+حساباتك ومبيعاتك في مكان واحد
 </p>
+
+<p class="hero-desc">
+احسب الربح والخصم والضريبة، وأنشئ الفواتير،
+وأدر المنتجات والمبيعات والمخزون بسهولة.
+</p>
+
+
+<div class="quick-actions">
+
+<button
+class="quick-btn primary"
+onclick="document.getElementById('calculatorSection').scrollIntoView({behavior:'smooth'})"
+>
+🧮 ابدأ الحساب
+</button>
+
+
+<a
+href="index-pdfvero.html"
+class="quick-btn pdf"
+>
+📄 قسم PDF
+</a>
+
+</div>
+
+
+<div class="hero-shortcuts">
+
+<button onclick="openTool('profit')">
+💰
+<span>الربح</span>
+</button>
+
+<button onclick="openTool('invoice')">
+🧾
+<span>الفاتورة</span>
+</button>
+
+<button onclick="openTool('inventory')">
+📦
+<span>المخزون</span>
+</button>
+
+<button onclick="openTool('salesManager')">
+🛒
+<span>المبيعات</span>
+</button>
+
+</div>
 
 </section>
 
@@ -1594,7 +2036,10 @@ onclick="toggleTheme()"
      الحسابات التجارية
 ========================== -->
 
-<section class="section">
+<section
+class="section"
+id="calculatorSection"
+>
 
 <div class="section-title">
 
@@ -1867,7 +2312,7 @@ id="workspaceTitle"
 <p
 id="workspaceSubtitle"
 >
-ShopCalc
+الباشمحاسب
 </p>
 
 </div>
@@ -3317,7 +3762,7 @@ id="salesReportTable"
 
 <p>
 © 2026
-<strong>ShopCalc</strong>
+<strong>الباشمحاسب</strong>
 — الحسابات والمبيعات التجارية ❤️
 </p>
 
@@ -5525,10 +5970,6 @@ totalSales -
 totalCost;
 
 
-/*
-بيع المنتج ككل
-*/
-
 product.stock =
 stock -
 quantity;
@@ -5559,26 +6000,6 @@ totalSales -
 totalCost;
 
 
-/*
-خصم الوحدات من المخزون
-
-المخزون محفوظ كعدد وحدات كاملة.
-
-لو كان عندك:
-20 منتج × 100 وحدة = 2000 وحدة
-
-وبعت 35 وحدة:
-المتبقي = 1965 وحدة
-
-نحوّلها إلى عدد المنتجات الكامل
-بالقسمة الصحيحة.
-
-ملاحظة:
-أي وحدات غير مكتملة تظل محسوبة
-داخل إجمالي الوحدات المحفوظ.
-*/
-
-
 const currentTotalUnits =
 stock *
 pieces;
@@ -5589,18 +6010,9 @@ currentTotalUnits -
 quantity;
 
 
-/*
-نحفظ الرصيد الحقيقي بالوحدات
-في متغير إضافي للمنتج.
-*/
-
 product.totalUnits =
 newTotalUnits;
 
-
-/*
-عدد المخزون الكامل الظاهر
-*/
 
 product.stock =
 Math.floor(
@@ -6133,15 +6545,6 @@ sale.quantity;
 
 }else{
 
-/*
-نرجع الوحدات المباعة
-للمخزون.
-
-لو المنتج لا يحتوي على
-totalUnits قديمًا، نحسبه
-من المخزون الحالي.
-*/
-
 const currentUnits =
 typeof product.totalUnits === "number"
 
@@ -6279,13 +6682,6 @@ document.getElementById(
 ).value =
 getCurrentMonth();
 
-
-/*
-توافق مع المنتجات القديمة:
-لو المنتج عنده stock و pieces
-ومفيش totalUnits،
-نستخدم المخزون الحالي كرصيد مبدئي.
-*/
 
 products =
 products.map(

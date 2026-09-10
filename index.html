@@ -1,1087 +1,1443 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Google Search Console Verification -->
-    <meta name="google-site-verification" content="l2UCtSrI8cbaCq5MuXtOjYLZrFOJynn7oybzt0jr46I" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PDFvero & ShopCalc - أدوات الملفات والحسابات</title>
+<meta name="google-site-verification"
+content="l2UCtSrI8cbaCq5MuXtOjYLZrFOJynn7oybzt0jr46I">
 
-    <meta name="description"
-          content="منصة PDFvero وShopCalc: أدوات PDF والملفات، وحاسبات التجارة والأرباح والخصومات والضرائب والفواتير.">
+<title>الباشمحاسب & PDFvero - أدوات الحسابات والملفات</title>
 
-    <meta name="keywords"
-          content="PDFvero, ShopCalc, PDF, أدوات PDF, حساب الربح, الخصم, VAT, IVA, الفواتير, المحاسبة, التجارة">
+<meta name="description"
+content="الباشمحاسب للحسابات والمبيعات والتجارة، وPDFvero لأدوات PDF والملفات.">
 
-    <meta name="author" content="PDFvero & ShopCalc">
-    <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#e11d48">
+<meta name="keywords"
+content="الباشمحاسب, ShopCalc, PDFvero, PDF, حساب الربح, المبيعات, المخزون, الفواتير">
 
-    <meta property="og:title"
-          content="PDFvero & ShopCalc - أدوات الملفات والحسابات">
+<meta name="author" content="الباشمحاسب & PDFvero">
 
-    <meta property="og:description"
-          content="أدوات الملفات وحسابات التجارة في مكان واحد.">
+<meta name="robots" content="index, follow">
 
-    <meta property="og:type" content="website">
+<meta name="theme-color" content="#2563eb">
 
-    <style>
+<style>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-        :root {
-            --primary: #e11d48;
-            --primary-2: #fb7185;
-            --primary-dark: #9f1239;
+:root{
+--primary:#2563eb;
+--primary2:#60a5fa;
+--primary-dark:#1d4ed8;
 
-            --secondary: #2563eb;
-            --secondary-2: #60a5fa;
+--pdf:#e11d48;
+--pdf2:#fb7185;
 
-            --bg: #fff7f9;
-            --card: rgba(255, 255, 255, 0.84);
+--bg:#f5f9ff;
+--card:rgba(255,255,255,.90);
+--text:#172033;
+--muted:#64748b;
+--border:rgba(37,99,235,.13);
+--soft:#dbeafe;
 
-            --text: #18181b;
-            --muted: #71717a;
+--shadow:0 18px 50px rgba(37,99,235,.09);
+}
 
-            --border: rgba(0, 0, 0, 0.08);
+body.dark{
+--bg:#0d1118;
+--card:rgba(24,31,43,.94);
+--text:#f1f5f9;
+--muted:#94a3b8;
+--border:rgba(96,165,250,.16);
+--soft:#172b4d;
 
-            --shadow: 0 18px 50px rgba(0, 0, 0, 0.08);
-        }
+--shadow:0 18px 50px rgba(0,0,0,.35);
+}
 
-        body.dark {
-            --bg: #0e0e12;
-            --card: rgba(28, 28, 32, 0.88);
+html{
+scroll-behavior:smooth;
+}
 
-            --text: #f4f4f5;
-            --muted: #a1a1aa;
+body{
+min-height:100vh;
 
-            --border: rgba(255, 255, 255, 0.08);
+font-family:
+Arial,
+Tahoma,
+sans-serif;
 
-            --shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
-        }
+color:var(--text);
 
-        html {
-            scroll-behavior: smooth;
-        }
+background:
 
-        body {
-            min-height: 100vh;
+radial-gradient(
+circle at 10% 10%,
+rgba(96,165,250,.13),
+transparent 25%
+),
 
-            font-family:
-                Arial,
-                Tahoma,
-                sans-serif;
+radial-gradient(
+circle at 90% 20%,
+rgba(37,99,235,.08),
+transparent 25%
+),
 
-            color: var(--text);
+var(--bg);
 
-            background:
-                radial-gradient(
-                    circle at 15% 15%,
-                    rgba(251, 113, 133, 0.12),
-                    transparent 28%
-                ),
+transition:.3s;
 
-                radial-gradient(
-                    circle at 85% 20%,
-                    rgba(96, 165, 250, 0.10),
-                    transparent 28%
-                ),
+overflow-x:hidden;
+}
 
-                var(--bg);
+a{
+text-decoration:none;
+color:inherit;
+}
 
-            transition:
-                background .3s ease,
-                color .3s ease;
+button{
+font-family:inherit;
+cursor:pointer;
+}
 
-            overflow-x: hidden;
-        }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+/* =========================
+   BACKGROUND
+========================= */
 
-        button {
-            font-family: inherit;
-        }
+.bg-shapes{
+position:fixed;
+inset:0;
 
+z-index:-1;
 
-        /* =========================
-           الخلفية المتحركة
-        ========================== */
+overflow:hidden;
+pointer-events:none;
+}
 
-        .bg-shapes {
-            position: fixed;
+.bg-shape{
+position:absolute;
 
-            inset: 0;
+border-radius:50%;
 
-            z-index: -1;
+filter:blur(5px);
 
-            overflow: hidden;
+opacity:.12;
 
-            pointer-events: none;
-        }
+animation:
+floating 8s ease-in-out infinite;
+}
 
-        .bg-shape {
-            position: absolute;
+.bg-shape.one{
+width:180px;
+height:180px;
 
-            border-radius: 50%;
+right:-60px;
+top:120px;
 
-            filter: blur(4px);
+background:var(--pdf);
+}
 
-            opacity: .13;
+.bg-shape.two{
+width:150px;
+height:150px;
 
-            animation:
-                floating 8s ease-in-out infinite;
-        }
+left:-50px;
+bottom:120px;
 
-        .bg-shape.one {
-            width: 180px;
-            height: 180px;
+background:var(--primary);
 
-            right: -60px;
-            top: 120px;
+animation-delay:2s;
+}
 
-            background: var(--primary);
-        }
+.bg-shape.three{
+width:90px;
+height:90px;
 
-        .bg-shape.two {
-            width: 150px;
-            height: 150px;
+right:25%;
+top:18%;
 
-            left: -50px;
-            bottom: 120px;
+background:#a855f7;
 
-            background: var(--secondary);
+animation-delay:4s;
+}
 
-            animation-delay: 2s;
-        }
+@keyframes floating{
 
-        .bg-shape.three {
-            width: 90px;
-            height: 90px;
+0%,100%{
+transform:
+translateY(0)
+rotate(0deg);
+}
 
-            right: 25%;
-            top: 18%;
+50%{
+transform:
+translateY(-20px)
+rotate(8deg);
+}
 
-            background: #a855f7;
+}
 
-            animation-delay: 4s;
-        }
 
-        @keyframes floating {
+/* =========================
+   NAVBAR
+========================= */
 
-            0%,
-            100% {
-                transform:
-                    translateY(0)
-                    rotate(0deg);
-            }
+.navbar{
+position:sticky;
 
-            50% {
-                transform:
-                    translateY(-20px)
-                    rotate(8deg);
-            }
-        }
+top:0;
 
+z-index:100;
 
-        /* =========================
-           NAVBAR
-        ========================== */
+border-bottom:
+1px solid var(--border);
 
-        .navbar {
-            position: sticky;
+background:
+rgba(255,255,255,.66);
 
-            top: 0;
+backdrop-filter:
+blur(18px);
 
-            z-index: 100;
+-webkit-backdrop-filter:
+blur(18px);
+}
 
-            border-bottom:
-                1px solid var(--border);
+body.dark .navbar{
+background:
+rgba(13,17,24,.76);
+}
 
-            background:
-                rgba(255, 255, 255, 0.62);
+.nav-container{
+max-width:1150px;
 
-            backdrop-filter:
-                blur(18px);
-        }
+margin:auto;
 
-        body.dark .navbar {
-            background:
-                rgba(14, 14, 18, 0.68);
-        }
+padding:
+11px 18px;
 
-        .nav-container {
-            max-width: 1180px;
+display:flex;
 
-            margin: auto;
+align-items:center;
 
-            padding:
-                14px 20px;
+justify-content:space-between;
+}
 
-            display: flex;
+.brand{
+display:flex;
 
-            align-items: center;
+align-items:center;
 
-            justify-content: space-between;
-        }
+gap:9px;
 
-        .brand {
-            display: flex;
+font-size:21px;
 
-            align-items: center;
+font-weight:900;
+}
 
-            gap: 10px;
+.brand-icon{
+width:40px;
+height:40px;
 
-            font-weight: 900;
+display:flex;
 
-            font-size: 22px;
+align-items:center;
+justify-content:center;
 
-            letter-spacing: -0.5px;
-        }
+border-radius:12px;
 
-        .brand-icon {
-            width: 40px;
-            height: 40px;
+color:white;
 
-            display: flex;
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
 
-            align-items: center;
-            justify-content: center;
+box-shadow:
+0 8px 20px
+rgba(37,99,235,.18);
+}
 
-            border-radius: 12px;
+.brand-name{
+color:var(--primary);
+}
 
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--primary),
-                    var(--primary-2)
-                );
+.actions{
+display:flex;
+gap:7px;
+}
 
-            color: white;
+.theme-btn{
+width:40px;
+height:40px;
 
-            box-shadow:
-                0 8px 20px
-                rgba(225, 29, 72, .20);
-        }
+border:
+1px solid var(--border);
 
-        .brand span {
-            color: var(--primary);
-        }
+border-radius:11px;
 
-        .theme-btn {
-            border:
-                1px solid var(--border);
+background:var(--card);
 
-            background:
-                var(--card);
+color:var(--text);
 
-            color:
-                var(--text);
+font-size:18px;
+}
 
-            width: 42px;
-            height: 42px;
 
-            display: flex;
+/* =========================
+   HERO
+========================= */
 
-            align-items: center;
-            justify-content: center;
+.hero{
+position:relative;
 
-            border-radius: 12px;
+max-width:900px;
 
-            cursor: pointer;
+margin:auto;
 
-            font-size: 19px;
+padding:
+55px 18px 25px;
 
-            transition: .2s;
-        }
+text-align:center;
 
-        .theme-btn:hover {
-            transform:
-                translateY(-2px);
+overflow:hidden;
+}
 
-            border-color:
-                var(--primary);
-        }
+.hero-glow{
+position:absolute;
 
+width:300px;
+height:300px;
 
-        /* =========================
-           HERO
-        ========================== */
+top:0;
+left:50%;
 
-        .hero {
-            max-width: 1050px;
+transform:
+translateX(-50%);
 
-            margin:
-                auto;
+background:
+rgba(37,99,235,.17);
 
-            padding:
-                75px 20px 35px;
+filter:blur(70px);
 
-            text-align:
-                center;
-        }
+border-radius:50%;
 
-        .welcome-badge {
-            display: inline-flex;
+pointer-events:none;
 
-            align-items: center;
+animation:
+heroGlow 4s ease-in-out infinite;
+}
 
-            gap: 8px;
+@keyframes heroGlow{
 
-            padding:
-                8px 16px;
+0%,100%{
+opacity:.4;
 
-            border-radius:
-                50px;
+transform:
+translateX(-50%)
+scale(.9);
+}
 
-            background:
-                rgba(225, 29, 72, .08);
+50%{
+opacity:.8;
 
-            color:
-                var(--primary);
+transform:
+translateX(-50%)
+scale(1.1);
+}
 
-            border:
-                1px solid
-                rgba(225, 29, 72, .12);
+}
 
-            font-size:
-                14px;
+.welcome{
+position:relative;
 
-            font-weight:
-                700;
+z-index:2;
 
-            margin-bottom:
-                20px;
-        }
+display:inline-flex;
 
-        .hero h1 {
-            font-size:
-                clamp(34px, 6vw, 58px);
+align-items:center;
 
-            line-height:
-                1.15;
+gap:7px;
 
-            margin-bottom:
-                16px;
-        }
+padding:
+7px 14px;
 
-        .hero h1 span {
-            color:
-                var(--primary);
-        }
+border-radius:50px;
 
-        .hero p {
-            max-width:
-                700px;
+background:
+rgba(37,99,235,.08);
 
-            margin:
-                auto;
+border:
+1px solid var(--border);
 
-            color:
-                var(--muted);
+color:var(--primary);
 
-            font-size:
-                18px;
+font-size:13px;
 
-            line-height:
-                1.9;
-        }
+font-weight:900;
 
+margin-bottom:12px;
+}
 
-        /* =========================
-           CARDS
-        ========================== */
+.hero h1{
+position:relative;
 
-        .cards {
-            max-width:
-                1050px;
+z-index:2;
 
-            margin:
-                28px auto 0;
+font-size:
+clamp(42px,8vw,65px);
 
-            padding:
-                0 20px 70px;
+line-height:1.05;
 
-            display:
-                grid;
+margin-bottom:9px;
 
-            grid-template-columns:
-                repeat(2, 1fr);
+font-weight:900;
 
-            gap: 25px;
-        }
+text-shadow:
+0 0 30px
+rgba(37,99,235,.12);
+}
 
-        .choice-card {
-            position: relative;
+.hero h1 span{
+color:var(--primary);
+}
 
-            min-height:
-                410px;
+.hero-subtitle{
+position:relative;
 
-            padding:
-                35px;
+z-index:2;
 
-            border-radius:
-                28px;
+font-size:20px;
 
-            border:
-                1px solid var(--border);
+font-weight:900;
 
-            background:
-                var(--card);
+margin-bottom:7px;
+}
 
-            box-shadow:
-                var(--shadow);
+.hero-desc{
+position:relative;
 
-            overflow:
-                hidden;
+z-index:2;
 
-            backdrop-filter:
-                blur(14px);
+max-width:620px;
 
-            transition:
-                transform .25s ease,
-                box-shadow .25s ease,
-                border-color .25s ease;
-        }
+margin:auto;
 
-        .choice-card::before {
-            content: "";
+color:var(--muted);
 
-            position: absolute;
+font-size:14px;
 
-            width: 190px;
-            height: 190px;
+line-height:1.8;
+}
 
-            border-radius:
-                50%;
 
-            top: -85px;
-            left: -65px;
+/* =========================
+   QUICK BUTTONS
+========================= */
 
-            opacity: .12;
-        }
+.quick-actions{
+position:relative;
 
-        .pdf-card::before {
-            background:
-                var(--primary);
-        }
+z-index:3;
 
-        .calc-card::before {
-            background:
-                var(--secondary);
-        }
+display:flex;
 
-        .choice-card:hover {
-            transform:
-                translateY(-10px);
+justify-content:center;
 
-            box-shadow:
-                0 25px 60px
-                rgba(0, 0, 0, .12);
-        }
+gap:9px;
 
-        .pdf-card:hover {
-            border-color:
-                rgba(225,29,72,.35);
-        }
+margin-top:17px;
+}
 
-        .calc-card:hover {
-            border-color:
-                rgba(37,99,235,.35);
-        }
+.quick-btn{
+min-width:145px;
 
-        .card-icon {
-            position: relative;
+padding:
+11px 17px;
 
-            width: 75px;
-            height: 75px;
+border-radius:13px;
 
-            border-radius:
-                22px;
+display:flex;
 
-            display:
-                flex;
+align-items:center;
 
-            align-items:
-                center;
+justify-content:center;
 
-            justify-content:
-                center;
+gap:6px;
 
-            font-size:
-                36px;
+font-size:14px;
 
-            margin-bottom:
-                24px;
+font-weight:900;
 
-            color:
-                white;
+transition:.2s;
+}
 
-            box-shadow:
-                0 12px 28px
-                rgba(0,0,0,.13);
-        }
+.quick-btn:hover{
+transform:
+translateY(-3px);
+}
 
-        .pdf-card .card-icon {
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--primary),
-                    var(--primary-2)
-                );
-        }
+.quick-btn.calc{
+color:white;
 
-        .calc-card .card-icon {
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--secondary),
-                    var(--secondary-2)
-                );
-        }
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
 
-        .choice-card h2 {
-            position: relative;
+box-shadow:
+0 9px 25px
+rgba(37,99,235,.20);
+}
 
-            font-size:
-                32px;
+.quick-btn.pdf{
+color:white;
 
-            margin-bottom:
-                12px;
-        }
+background:
+linear-gradient(
+135deg,
+var(--pdf),
+var(--pdf2)
+);
 
-        .choice-card .subtitle {
-            position: relative;
+box-shadow:
+0 9px 25px
+rgba(225,29,72,.18);
+}
 
-            color:
-                var(--muted);
 
-            font-size:
-                15px;
+/* =========================
+   SHORTCUTS
+========================= */
 
-            margin-bottom:
-                21px;
-        }
+.shortcuts{
+position:relative;
 
-        .features {
-            position: relative;
+z-index:3;
 
-            list-style:
-                none;
+max-width:500px;
 
-            display:
-                grid;
+margin:
+15px auto 0;
 
-            gap:
-                11px;
+display:grid;
 
-            margin-bottom:
-                28px;
-        }
+grid-template-columns:
+repeat(4,1fr);
 
-        .features li {
-            display:
-                flex;
+gap:7px;
+}
 
-            align-items:
-                center;
+.shortcut{
+padding:
+9px 4px;
 
-            gap:
-                9px;
+border:
+1px solid var(--border);
 
-            color:
-                var(--text);
+border-radius:12px;
 
-            font-size:
-                14px;
-        }
+background:
+var(--card);
 
-        .features li::before {
-            content:
-                "✓";
+color:var(--text);
 
-            width:
-                23px;
+display:flex;
 
-            height:
-                23px;
+flex-direction:column;
 
-            flex:
-                0 0 23px;
+align-items:center;
 
-            display:
-                flex;
+gap:3px;
 
-            align-items:
-                center;
+font-size:18px;
 
-            justify-content:
-                center;
+transition:.2s;
+}
 
-            border-radius:
-                50%;
+.shortcut:hover{
+transform:
+translateY(-3px);
 
-            font-size:
-                12px;
+border-color:
+var(--primary);
 
-            font-weight:
-                bold;
-        }
+box-shadow:
+0 8px 20px
+rgba(37,99,235,.09);
+}
 
-        .pdf-card .features li::before {
-            background:
-                rgba(225,29,72,.10);
+.shortcut span{
+font-size:10px;
 
-            color:
-                var(--primary);
-        }
+font-weight:900;
+}
 
-        .calc-card .features li::before {
-            background:
-                rgba(37,99,235,.10);
 
-            color:
-                var(--secondary);
-        }
+/* =========================
+   MAIN CARDS
+========================= */
 
-        .enter-btn {
-            position: relative;
+.cards{
+max-width:900px;
 
-            display:
-                inline-flex;
+margin:
+12px auto 0;
 
-            align-items:
-                center;
+padding:
+0 18px 55px;
 
-            justify-content:
-                center;
+display:grid;
 
-            gap:
-                9px;
+grid-template-columns:
+repeat(2,1fr);
 
-            width:
-                100%;
+gap:16px;
+}
 
-            padding:
-                14px 20px;
+.choice-card{
+position:relative;
 
-            border-radius:
-                15px;
+min-height:330px;
 
-            color:
-                white;
+padding:24px;
 
-            font-size:
-                16px;
+border:
+1px solid var(--border);
 
-            font-weight:
-                800;
+border-radius:22px;
 
-            transition:
-                transform .2s,
-                filter .2s;
-        }
+background:
+var(--card);
 
-        .enter-btn:hover {
-            transform:
-                translateY(-2px);
+box-shadow:
+var(--shadow);
 
-            filter:
-                brightness(1.06);
-        }
+overflow:hidden;
 
-        .pdf-btn {
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--primary),
-                    var(--primary-2)
-                );
+backdrop-filter:
+blur(14px);
 
-            box-shadow:
-                0 10px 24px
-                rgba(225,29,72,.22);
-        }
+transition:.25s;
+}
 
-        .calc-btn {
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--secondary),
-                    var(--secondary-2)
-                );
+.choice-card:hover{
+transform:
+translateY(-7px);
 
-            box-shadow:
-                0 10px 24px
-                rgba(37,99,235,.22);
-        }
+box-shadow:
+0 25px 55px
+rgba(0,0,0,.11);
+}
 
+.choice-card::before{
+content:"";
 
-        /* =========================
-           أسفل الصفحة
-        ========================== */
+position:absolute;
 
-        .footer-note {
-            text-align:
-                center;
+width:160px;
+height:160px;
 
-            color:
-                var(--muted);
+right:-65px;
+top:-70px;
 
-            font-size:
-                13px;
+border-radius:50%;
 
-            padding:
-                0 20px 35px;
-        }
+opacity:.10;
+}
 
-        .footer-note strong {
-            color:
-                var(--primary);
-        }
+.pdf-card::before{
+background:var(--pdf);
+}
 
+.calc-card::before{
+background:var(--primary);
+}
 
-        /* =========================
-           MOBILE
-        ========================== */
+.card-icon{
+position:relative;
 
-        @media (max-width: 800px) {
+width:58px;
+height:58px;
 
-            .cards {
-                grid-template-columns:
-                    1fr;
-            }
+border-radius:16px;
 
-            .choice-card {
-                min-height:
-                    auto;
-            }
+display:flex;
 
-        }
+align-items:center;
 
-        @media (max-width: 500px) {
+justify-content:center;
 
-            .nav-container {
-                padding:
-                    12px 15px;
-            }
+font-size:27px;
 
-            .brand {
-                font-size:
-                    19px;
-            }
+color:white;
 
-            .brand-icon {
-                width: 36px;
-                height: 36px;
-            }
+margin-bottom:14px;
+}
 
-            .hero {
-                padding:
-                    55px 15px 25px;
-            }
+.pdf-card .card-icon{
+background:
+linear-gradient(
+135deg,
+var(--pdf),
+var(--pdf2)
+);
+}
 
-            .hero h1 {
-                font-size:
-                    34px;
-            }
+.calc-card .card-icon{
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
+}
 
-            .hero p {
-                font-size:
-                    15px;
-            }
+.choice-card h2{
+position:relative;
 
-            .cards {
-                padding:
-                    0 15px 55px;
-            }
+font-size:25px;
 
-            .choice-card {
-                padding:
-                    28px 23px;
-            }
+margin-bottom:5px;
+}
 
-            .choice-card h2 {
-                font-size:
-                    28px;
-            }
+.subtitle{
+position:relative;
 
-        }
+color:var(--muted);
 
-    </style>
+font-size:13px;
+
+margin-bottom:15px;
+}
+
+.features{
+position:relative;
+
+list-style:none;
+
+display:grid;
+
+gap:7px;
+
+margin-bottom:18px;
+}
+
+.features li{
+display:flex;
+
+align-items:center;
+
+gap:7px;
+
+font-size:12px;
+}
+
+.features li::before{
+content:"✓";
+
+width:20px;
+height:20px;
+
+flex:0 0 20px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:50%;
+
+font-size:10px;
+
+font-weight:bold;
+}
+
+.pdf-card .features li::before{
+background:
+rgba(225,29,72,.09);
+
+color:var(--pdf);
+}
+
+.calc-card .features li::before{
+background:
+rgba(37,99,235,.09);
+
+color:var(--primary);
+}
+
+.enter-btn{
+position:relative;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:7px;
+
+width:100%;
+
+padding:
+11px 15px;
+
+border-radius:12px;
+
+color:white;
+
+font-size:13px;
+
+font-weight:900;
+
+transition:.2s;
+}
+
+.enter-btn:hover{
+transform:
+translateY(-2px);
+
+filter:
+brightness(1.06);
+}
+
+.pdf-btn{
+background:
+linear-gradient(
+135deg,
+var(--pdf),
+var(--pdf2)
+);
+}
+
+.calc-btn{
+background:
+linear-gradient(
+135deg,
+var(--primary),
+var(--primary2)
+);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer-note{
+text-align:center;
+
+color:var(--muted);
+
+font-size:12px;
+
+padding:
+0 15px 28px;
+}
+
+.footer-note strong{
+color:var(--primary);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
+
+.nav-container{
+padding:
+8px 11px;
+}
+
+.brand{
+font-size:17px;
+}
+
+.brand-icon{
+width:35px;
+height:35px;
+
+border-radius:10px;
+
+font-size:17px;
+}
+
+.theme-btn{
+width:35px;
+height:35px;
+
+border-radius:9px;
+
+font-size:16px;
+}
+
+.hero{
+padding:
+28px 12px 18px;
+}
+
+.welcome{
+padding:
+6px 11px;
+
+font-size:11px;
+
+margin-bottom:10px;
+}
+
+.hero h1{
+font-size:34px;
+
+line-height:1.1;
+}
+
+.hero-subtitle{
+font-size:17px;
+}
+
+.hero-desc{
+font-size:12px;
+
+line-height:1.65;
+
+max-width:340px;
+}
+
+.hero-glow{
+width:220px;
+height:220px;
+
+filter:blur(50px);
+}
+
+.quick-actions{
+gap:7px;
+
+margin-top:13px;
+}
+
+.quick-btn{
+min-width:0;
+
+flex:1;
+
+padding:
+10px 7px;
+
+font-size:12px;
+
+border-radius:11px;
+}
+
+.shortcuts{
+grid-template-columns:
+repeat(4,1fr);
+
+gap:5px;
+
+margin-top:11px;
+}
+
+.shortcut{
+padding:
+7px 2px;
+
+border-radius:10px;
+
+font-size:16px;
+}
+
+.shortcut span{
+font-size:8px;
+}
+
+.cards{
+grid-template-columns:1fr;
+
+gap:10px;
+
+padding:
+0 12px 35px;
+
+margin-top:10px;
+}
+
+.choice-card{
+min-height:auto;
+
+padding:
+17px;
+
+border-radius:17px;
+}
+
+.choice-card:hover{
+transform:none;
+}
+
+.card-icon{
+width:45px;
+height:45px;
+
+border-radius:12px;
+
+font-size:21px;
+
+margin-bottom:10px;
+}
+
+.choice-card h2{
+font-size:20px;
+}
+
+.subtitle{
+font-size:11px;
+
+margin-bottom:11px;
+}
+
+.features{
+gap:5px;
+
+margin-bottom:13px;
+}
+
+.features li{
+font-size:11px;
+}
+
+.features li::before{
+width:18px;
+height:18px;
+
+flex-basis:18px;
+
+font-size:9px;
+}
+
+.enter-btn{
+padding:
+10px;
+
+font-size:12px;
+
+border-radius:10px;
+}
+
+.footer-note{
+font-size:10px;
+
+padding-bottom:20px;
+}
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media(max-width:380px){
+
+.brand{
+font-size:15px;
+}
+
+.brand-icon{
+width:32px;
+height:32px;
+}
+
+.theme-btn{
+width:32px;
+height:32px;
+}
+
+.hero{
+padding-top:23px;
+}
+
+.hero h1{
+font-size:29px;
+}
+
+.hero-subtitle{
+font-size:15px;
+}
+
+.hero-desc{
+font-size:11px;
+}
+
+.quick-btn{
+font-size:11px;
+
+padding:9px 5px;
+}
+
+.shortcut{
+font-size:15px;
+}
+
+.shortcut span{
+font-size:7px;
+}
+
+.choice-card{
+padding:15px;
+}
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
 
-    <!-- الخلفية -->
+<!-- الخلفية -->
 
-    <div class="bg-shapes">
+<div class="bg-shapes">
 
-        <div class="bg-shape one"></div>
-        <div class="bg-shape two"></div>
-        <div class="bg-shape three"></div>
+<div class="bg-shape one"></div>
 
-    </div>
+<div class="bg-shape two"></div>
 
+<div class="bg-shape three"></div>
 
-    <!-- NAVBAR -->
+</div>
 
-    <header class="navbar">
 
-        <div class="nav-container">
+<!-- NAVBAR -->
 
-            <a href="index.html" class="brand">
+<header class="navbar">
 
-                <div class="brand-icon">
-                    ⚡
-                </div>
+<div class="nav-container">
 
-                <div>
-                    <span>PDFvero</span>
-                    &nbsp;×&nbsp;
-                    ShopCalc
-                </div>
+<a href="index.html" class="brand">
 
-            </a>
+<div class="brand-icon">
+⚡
+</div>
 
+<div>
 
-            <button
-                class="theme-btn"
-                id="themeBtn"
-                onclick="toggleTheme()"
-                title="تغيير الوضع"
-            >
-                🌙
-            </button>
+<span class="brand-name">
+الباشمحاسب
+</span>
 
-        </div>
+</div>
 
-    </header>
+</a>
 
 
-    <!-- HERO -->
+<button
+class="theme-btn"
+id="themeBtn"
+onclick="toggleTheme()"
+title="تغيير الوضع"
+>
+🌙
+</button>
 
-    <main>
+</div>
 
-        <section class="hero">
+</header>
 
-            <div class="welcome-badge">
-                ✨ اختر القسم الذي تحتاجه
-            </div>
 
-            <h1>
+<main>
 
-                أدواتك في
 
-                <span>
-                    مكان واحد
-                </span>
+<!-- HERO -->
 
-            </h1>
+<section class="hero">
 
-            <p>
+<div class="hero-glow"></div>
 
-                منصة تجمع بين أدوات الملفات
-                والحسابات والتجارة، بطريقة بسيطة
-                وسريعة وسهلة الاستخدام.
+<div class="welcome">
 
-            </p>
+✨ أدواتك في مكان واحد
 
-        </section>
+</div>
 
+<h1>
 
-        <!-- الاختيارات -->
+<span>الباشمحاسب</span>
 
-        <section class="cards">
+</h1>
 
+<div class="hero-subtitle">
 
-            <!-- PDFvero -->
+حساباتك ومبيعاتك وملفاتك بسهولة
 
-            <article class="choice-card pdf-card">
+</div>
 
-                <div class="card-icon">
-                    📄
-                </div>
+<p class="hero-desc">
 
-                <h2>
-                    PDFvero
-                </h2>
+احسب الربح والخصم والضريبة، أدر المنتجات والمبيعات والمخزون،
+أو استخدم أدوات PDF والملفات في ثواني.
 
-                <div class="subtitle">
-                    أدوات PDF والملفات
-                </div>
+</p>
 
 
-                <ul class="features">
+<div class="quick-actions">
 
-                    <li>
-                        ضغط ملفات PDF
-                    </li>
+<a
+href="shopcalc.html"
+class="quick-btn calc"
+>
+🧮 ابدأ الحساب
+</a>
 
-                    <li>
-                        دمج وتقسيم PDF
-                    </li>
 
-                    <li>
-                        تحويل PDF وWord
-                    </li>
+<a
+href="index-pdfvero.html"
+class="quick-btn pdf"
+>
+📄 أدوات PDF
+</a>
 
-                    <li>
-                        أدوات الصور
-                    </li>
+</div>
 
-                    <li>
-                        أدوات Excel وCSV
-                    </li>
 
-                </ul>
+<div class="shortcuts">
 
+<a
+href="shopcalc.html"
+class="shortcut"
+>
+💰
+<span>الربح</span>
+</a>
 
-                <a
-                    href="index-pdfvero.html"
-                    class="enter-btn pdf-btn"
-                >
-                    دخول إلى PDFvero
-                    <span>←</span>
-                </a>
+<a
+href="shopcalc.html"
+class="shortcut"
+>
+🧾
+<span>الفاتورة</span>
+</a>
 
-            </article>
+<a
+href="shopcalc.html"
+class="shortcut"
+>
+📦
+<span>المخزون</span>
+</a>
 
+<a
+href="shopcalc.html"
+class="shortcut"
+>
+🛒
+<span>المبيعات</span>
+</a>
 
+</div>
 
-            <!-- ShopCalc -->
+</section>
 
-            <article class="choice-card calc-card">
 
-                <div class="card-icon">
-                    🧮
-                </div>
+<!-- الأقسام -->
 
-                <h2>
-                    ShopCalc
-                </h2>
+<section class="cards">
 
-                <div class="subtitle">
-                    أدوات الحسابات والتجارة
-                </div>
 
+<!-- PDFvero -->
 
-                <ul class="features">
+<article class="choice-card pdf-card">
 
-                    <li>
-                        حساب الربح والخسارة
-                    </li>
+<div class="card-icon">
+📄
+</div>
 
-                    <li>
-                        حساب الخصومات
-                    </li>
+<h2>
+PDFvero
+</h2>
 
-                    <li>
-                        VAT / IVA
-                    </li>
+<div class="subtitle">
+أدوات PDF والملفات
+</div>
 
-                    <li>
-                        حساب سعر البيع
-                    </li>
+<ul class="features">
 
-                    <li>
-                        الفواتير والمخزون
-                    </li>
+<li>
+ضغط ملفات PDF
+</li>
 
-                </ul>
+<li>
+دمج وتقسيم PDF
+</li>
 
+<li>
+تحويل PDF وWord
+</li>
 
-                <a
-                    href="shopcalc.html"
-                    class="enter-btn calc-btn"
-                >
-                    دخول إلى ShopCalc
-                    <span>←</span>
-                </a>
+<li>
+أدوات الصور
+</li>
 
-            </article>
+<li>
+أدوات Excel وCSV
+</li>
 
+</ul>
 
-        </section>
+<a
+href="index-pdfvero.html"
+class="enter-btn pdf-btn"
+>
+دخول إلى PDFvero
+<span>←</span>
+</a>
 
+</article>
 
-        <div class="footer-note">
 
-            <strong>PDFvero</strong>
-            و
-            <strong>ShopCalc</strong>
-            — مشروع واحد، أدوات متعددة.
+<!-- الباشمحاسب -->
 
-        </div>
+<article class="choice-card calc-card">
 
-    </main>
+<div class="card-icon">
+🧮
+</div>
 
+<h2>
+الباشمحاسب
+</h2>
 
-    <script>
+<div class="subtitle">
+الحسابات والتجارة والمبيعات
+</div>
 
-        /* =========================
-           الوضع الليلي
-        ========================== */
+<ul class="features">
 
-        function toggleTheme() {
+<li>
+حساب الربح والخسارة
+</li>
 
-            document.body.classList.toggle("dark");
+<li>
+حساب الخصومات والضرائب
+</li>
 
-            const isDark =
-                document.body.classList.contains("dark");
+<li>
+حساب سعر البيع
+</li>
 
-            localStorage.setItem(
-                "main-theme",
-                isDark ? "dark" : "light"
-            );
+<li>
+إدارة المخزون
+</li>
 
-            document.getElementById(
-                "themeBtn"
-            ).textContent =
-                isDark ? "☀️" : "🌙";
-        }
+<li>
+الفواتير والمبيعات والتقارير
+</li>
 
+</ul>
 
-        /* =========================
-           تحميل الوضع المحفوظ
-        ========================== */
+<a
+href="shopcalc.html"
+class="enter-btn calc-btn"
+>
+دخول إلى الباشمحاسب
+<span>←</span>
+</a>
 
-        document.addEventListener(
-            "DOMContentLoaded",
-            function () {
+</article>
 
-                const savedTheme =
-                    localStorage.getItem(
-                        "main-theme"
-                    );
 
-                if (
-                    savedTheme === "dark"
-                ) {
+</section>
 
-                    document.body.classList.add(
-                        "dark"
-                    );
 
-                    document.getElementById(
-                        "themeBtn"
-                    ).textContent =
-                        "☀️";
-                }
+<div class="footer-note">
 
-            }
-        );
+<strong>الباشمحاسب</strong>
 
-    </script>
+و
+
+<strong>PDFvero</strong>
+
+— أدوات بسيطة لشغلك اليومي ❤️
+
+</div>
+
+
+</main>
+
+
+<script>
+
+
+/* =========================
+   الوضع الليلي
+========================= */
+
+function toggleTheme(){
+
+document.body.classList.toggle("dark");
+
+const isDark =
+document.body.classList.contains("dark");
+
+localStorage.setItem(
+"main-theme",
+isDark
+? "dark"
+: "light"
+);
+
+document.getElementById(
+"themeBtn"
+).textContent =
+isDark
+? "☀️"
+: "🌙";
+
+}
+
+
+/* =========================
+   تحميل الوضع المحفوظ
+========================= */
+
+document.addEventListener(
+"DOMContentLoaded",
+function(){
+
+const savedTheme =
+localStorage.getItem("main-theme");
+
+if(savedTheme === "dark"){
+
+document.body.classList.add("dark");
+
+document.getElementById(
+"themeBtn"
+).textContent =
+"☀️";
+
+}
+
+}
+);
+
+</script>
+
 
 </body>
 </html>
