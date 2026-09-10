@@ -8,7 +8,7 @@
     <title>ShopCalc - الحسابات التجارية</title>
 
     <meta name="description"
-          content="قسم الحسابات التجارية في ShopCalc: حاسبة الربح والخصم وVAT وIVA وسعر البيع والمخزون والفواتير.">
+          content="ShopCalc - أدوات الحسابات التجارية في ملف واحد: الربح، الخصم، VAT وIVA، سعر البيع، المخزون والفاتورة.">
 
     <style>
 
@@ -24,28 +24,35 @@
             --primary-dark: #1d4ed8;
 
             --bg: #f5f9ff;
-            --card: rgba(255,255,255,.88);
+            --card: rgba(255,255,255,.90);
+            --card-2: #ffffff;
 
             --text: #172033;
             --muted: #64748b;
 
-            --border: rgba(37,99,235,.13);
+            --border: rgba(37,99,235,.14);
             --soft: #dbeafe;
 
-            --shadow: 0 18px 50px rgba(37,99,235,.10);
+            --success: #16a34a;
+            --danger: #dc2626;
+
+            --shadow:
+                0 18px 50px rgba(37,99,235,.10);
         }
 
         body.dark {
             --bg: #0d1118;
-            --card: rgba(24,31,43,.90);
+            --card: rgba(24,31,43,.92);
+            --card-2: #18202c;
 
             --text: #f1f5f9;
             --muted: #94a3b8;
 
-            --border: rgba(96,165,250,.15);
+            --border: rgba(96,165,250,.16);
             --soft: #172b4d;
 
-            --shadow: 0 18px 50px rgba(0,0,0,.35);
+            --shadow:
+                0 18px 50px rgba(0,0,0,.35);
         }
 
         html {
@@ -82,14 +89,17 @@
             overflow-x: hidden;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
         }
 
         button {
-            font-family: inherit;
+            cursor: pointer;
         }
+
 
         /* =========================
            الخلفية
@@ -107,86 +117,66 @@
 
         .shape {
             position: absolute;
-
             border-radius: 50%;
-
-            opacity: .12;
-
-            filter: blur(4px);
+            opacity: .11;
+            filter: blur(5px);
 
             animation:
-                floating 8s ease-in-out infinite;
+                floatShape 8s ease-in-out infinite;
         }
 
         .shape.one {
             width: 180px;
             height: 180px;
-
             right: -70px;
             top: 120px;
-
             background: var(--primary);
         }
 
         .shape.two {
-            width: 130px;
-            height: 130px;
-
-            left: -45px;
-            bottom: 130px;
-
+            width: 140px;
+            height: 140px;
+            left: -55px;
+            bottom: 100px;
             background: var(--primary-2);
-
             animation-delay: 2s;
         }
 
         .shape.three {
             width: 90px;
             height: 90px;
-
-            right: 30%;
+            right: 28%;
             top: 18%;
-
             background: #93c5fd;
-
             animation-delay: 4s;
         }
 
-        @keyframes floating {
-            0%,100% {
-                transform:
-                    translateY(0)
-                    rotate(0);
+        @keyframes floatShape {
+            0%, 100% {
+                transform: translateY(0) rotate(0);
             }
 
             50% {
-                transform:
-                    translateY(-18px)
-                    rotate(8deg);
+                transform: translateY(-18px) rotate(8deg);
             }
         }
 
+
         /* =========================
-           NAVBAR
+           Navbar
         ========================== */
 
         .navbar {
             position: sticky;
-
             top: 0;
-
             z-index: 100;
 
-            background:
-                rgba(255,255,255,.67);
+            background: rgba(255,255,255,.68);
 
             border-bottom:
                 1px solid var(--border);
 
             backdrop-filter:
-                blur(18px);
-
-            -webkit-backdrop-filter:
                 blur(18px);
         }
 
@@ -197,60 +187,36 @@
 
         .nav {
             max-width: 1150px;
-
             margin: auto;
 
             padding:
                 14px 20px;
 
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                space-between;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .brand {
-            display:
-                flex;
+            display: flex;
+            align-items: center;
+            gap: 10px;
 
-            align-items:
-                center;
-
-            gap:
-                10px;
-
-            font-size:
-                23px;
-
-            font-weight:
-                900;
+            font-size: 23px;
+            font-weight: 900;
         }
 
         .brand-icon {
-            width:
-                42px;
+            width: 42px;
+            height: 42px;
 
-            height:
-                42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
-            display:
-                flex;
+            border-radius: 13px;
 
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            border-radius:
-                13px;
-
-            color:
-                white;
+            color: white;
 
             background:
                 linear-gradient(
@@ -265,33 +231,21 @@
         }
 
         .brand-name {
-            color:
-                var(--primary);
+            color: var(--primary);
         }
 
-        .actions {
-            display:
-                flex;
-
-            gap:
-                8px;
+        .nav-actions {
+            display: flex;
+            gap: 8px;
         }
 
         .nav-btn {
-            width:
-                42px;
+            width: 42px;
+            height: 42px;
 
-            height:
-                42px;
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             border:
                 1px solid var(--border);
@@ -302,54 +256,35 @@
             color:
                 var(--text);
 
-            border-radius:
-                12px;
+            border-radius: 12px;
 
-            cursor:
-                pointer;
-
-            font-size:
-                18px;
-
-            transition:
-                .2s;
+            transition: .2s;
         }
 
         .nav-btn:hover {
-            transform:
-                translateY(-2px);
-
-            border-color:
-                var(--primary);
+            transform: translateY(-2px);
+            border-color: var(--primary);
         }
 
+
         /* =========================
-           HERO
+           Hero
         ========================== */
 
         .hero {
-            max-width:
-                900px;
-
-            margin:
-                auto;
+            max-width: 900px;
+            margin: auto;
 
             padding:
-                70px 20px 35px;
+                68px 20px 30px;
 
-            text-align:
-                center;
+            text-align: center;
         }
 
         .tag {
-            display:
-                inline-flex;
-
-            align-items:
-                center;
-
-            gap:
-                8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
 
             padding:
                 8px 16px;
@@ -394,7 +329,7 @@
 
         .hero p {
             max-width:
-                700px;
+                720px;
 
             margin:
                 auto;
@@ -409,11 +344,12 @@
                 1.9;
         }
 
+
         /* =========================
-           عنوان الخانة
+           أدوات
         ========================== */
 
-        .section {
+        .tools-section {
             max-width:
                 1100px;
 
@@ -421,10 +357,10 @@
                 20px auto 0;
 
             padding:
-                0 20px;
+                0 20px 60px;
         }
 
-        .section-header {
+        .section-title {
             display:
                 flex;
 
@@ -432,10 +368,10 @@
                 center;
 
             gap:
-                12px;
+                11px;
 
             margin-bottom:
-                20px;
+                18px;
         }
 
         .section-line {
@@ -455,42 +391,58 @@
                 );
         }
 
-        .section-header h2 {
+        .section-title h2 {
             font-size:
-                28px;
+                27px;
         }
 
-        /* =========================
-           الخانة الرئيسية
-        ========================== */
+        .tools-grid {
+            display:
+                grid;
 
-        .business-box {
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap:
+                16px;
+        }
+
+        .tool-card {
             position:
                 relative;
 
             padding:
-                26px;
+                22px;
+
+            min-height:
+                205px;
 
             border:
                 1px solid var(--border);
 
             border-radius:
-                25px;
+                20px;
 
             background:
                 var(--card);
 
             box-shadow:
-                var(--shadow);
+                0 8px 25px
+                rgba(0,0,0,.04);
 
             backdrop-filter:
                 blur(12px);
+
+            transition:
+                transform .25s,
+                box-shadow .25s,
+                border-color .25s;
 
             overflow:
                 hidden;
         }
 
-        .business-box::after {
+        .tool-card::before {
             content:
                 "";
 
@@ -498,123 +450,51 @@
                 absolute;
 
             width:
-                180px;
+                120px;
 
             height:
-                180px;
+                120px;
+
+            left:
+                -45px;
+
+            top:
+                -45px;
 
             border-radius:
                 50%;
-
-            left:
-                -70px;
-
-            bottom:
-                -80px;
 
             background:
                 var(--soft);
 
             opacity:
-                .45;
-
-            pointer-events:
-                none;
+                .55;
         }
 
-        .business-description {
-            position:
-                relative;
-
-            z-index:
-                1;
-
-            margin-bottom:
-                24px;
-
-            color:
-                var(--muted);
-
-            font-size:
-                14px;
-
-            line-height:
-                1.8;
-        }
-
-        /* =========================
-           الأدوات داخل الخانة
-        ========================== */
-
-        .tools-grid {
-            position:
-                relative;
-
-            z-index:
-                1;
-
-            display:
-                grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap:
-                15px;
-        }
-
-        .tool {
-            position:
-                relative;
-
-            display:
-                block;
-
-            min-height:
-                185px;
-
-            padding:
-                21px;
-
-            border:
-                1px solid var(--border);
-
-            border-radius:
-                18px;
-
-            background:
-                rgba(255,255,255,.68);
-
-            transition:
-                .25s;
-
-            overflow:
-                hidden;
-        }
-
-        body.dark .tool {
-            background:
-                rgba(24,31,43,.65);
-        }
-
-        .tool:hover {
+        .tool-card:hover {
             transform:
-                translateY(-6px);
+                translateY(-7px);
 
             border-color:
                 rgba(37,99,235,.35);
 
             box-shadow:
-                0 15px 32px
-                rgba(37,99,235,.10);
+                0 18px 40px
+                rgba(37,99,235,.11);
         }
 
         .tool-icon {
+            position:
+                relative;
+
             width:
-                52px;
+                56px;
 
             height:
-                52px;
+                56px;
+
+            border-radius:
+                16px;
 
             display:
                 flex;
@@ -625,17 +505,11 @@
             justify-content:
                 center;
 
-            border-radius:
-                15px;
-
             color:
                 white;
 
             font-size:
-                25px;
-
-            margin-bottom:
-                14px;
+                27px;
 
             background:
                 linear-gradient(
@@ -645,33 +519,54 @@
                 );
 
             box-shadow:
-                0 8px 18px
-                rgba(37,99,235,.17);
-        }
-
-        .tool h3 {
-            font-size:
-                17px;
+                0 9px 21px
+                rgba(37,99,235,.18);
 
             margin-bottom:
-                6px;
+                16px;
         }
 
-        .tool p {
+        .tool-card h3 {
+            position:
+                relative;
+
+            font-size:
+                18px;
+
+            margin-bottom:
+                7px;
+        }
+
+        .tool-card p {
+            position:
+                relative;
+
             color:
                 var(--muted);
 
             font-size:
-                12px;
+                13px;
 
             line-height:
                 1.7;
 
             margin-bottom:
-                13px;
+                16px;
         }
 
-        .tool-link {
+        .tool-open {
+            position:
+                relative;
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
             color:
                 var(--primary);
 
@@ -679,49 +574,624 @@
                 13px;
 
             font-weight:
-                800;
+                900;
         }
 
+
         /* =========================
-           NOTE
+           نافذة الأداة
         ========================== */
 
-        .note {
+        .workspace {
             max-width:
-                1100px;
+                900px;
 
             margin:
-                25px auto 55px;
+                0 auto 70px;
 
             padding:
                 0 20px;
+
+            display:
+                none;
         }
 
-        .note-box {
-            padding:
-                17px 20px;
+        .workspace.active {
+            display:
+                block;
+        }
 
-            text-align:
+        .workspace-card {
+            background:
+                var(--card);
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                25px;
+
+            padding:
+                28px;
+
+            box-shadow:
+                var(--shadow);
+
+            backdrop-filter:
+                blur(12px);
+        }
+
+        .workspace-header {
+            display:
+                flex;
+
+            align-items:
                 center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            margin-bottom:
+                24px;
+        }
+
+        .workspace-title {
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+        }
+
+        .workspace-title .mini-icon {
+            width:
+                50px;
+
+            height:
+                50px;
 
             border-radius:
                 15px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            color:
+                white;
+
+            font-size:
+                23px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--primary-2)
+                );
+        }
+
+        .workspace-title h2 {
+            font-size:
+                24px;
+        }
+
+        .workspace-title p {
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+
+            margin-top:
+                2px;
+        }
+
+        .close-tool {
+            width:
+                40px;
+
+            height:
+                40px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                11px;
+
+            background:
+                var(--bg);
+
+            color:
+                var(--text);
+
+            font-size:
+                18px;
+        }
+
+
+        /* =========================
+           الحقول
+        ========================== */
+
+        .fields {
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap:
+                16px;
+
+            margin-bottom:
+                18px;
+        }
+
+        .field {
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                7px;
+        }
+
+        .field.full {
+            grid-column:
+                1 / -1;
+        }
+
+        .field label {
+            font-size:
+                14px;
+
+            font-weight:
+                800;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width:
+                100%;
+
+            border:
+                2px solid var(--border);
+
+            border-radius:
+                13px;
+
+            padding:
+                13px 14px;
+
+            outline:
+                none;
+
+            background:
+                var(--bg);
+
+            color:
+                var(--text);
+
+            font-size:
+                15px;
+
+            transition:
+                .2s;
+        }
+
+        .field textarea {
+            min-height:
+                110px;
+
+            resize:
+                vertical;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color:
+                var(--primary);
+
+            background:
+                var(--card);
+        }
+
+        .main-btn {
+            width:
+                100%;
+
+            border:
+                none;
+
+            border-radius:
+                14px;
+
+            padding:
+                15px;
+
+            color:
+                white;
+
+            font-size:
+                16px;
+
+            font-weight:
+                900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--primary),
+                    var(--primary-2)
+                );
+
+            box-shadow:
+                0 10px 24px
+                rgba(37,99,235,.18);
+
+            transition:
+                .2s;
+        }
+
+        .main-btn:hover {
+            transform:
+                translateY(-2px);
+
+            filter:
+                brightness(1.04);
+        }
+
+
+        /* =========================
+           نتائج
+        ========================== */
+
+        .results {
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap:
+                14px;
+
+            margin-top:
+                22px;
+        }
+
+        .result-box {
+            padding:
+                18px;
+
+            border-radius:
+                16px;
 
             background:
                 var(--soft);
 
             border:
                 1px solid var(--border);
+        }
+
+        .result-box.full {
+            grid-column:
+                1 / -1;
+        }
+
+        .result-box span {
+            display:
+                block;
+
+            color:
+                var(--muted);
+
+            font-size:
+                12px;
+
+            margin-bottom:
+                5px;
+        }
+
+        .result-box strong {
+            display:
+                block;
+
+            color:
+                var(--primary);
+
+            font-size:
+                25px;
+        }
+
+        .result-box.big strong {
+            font-size:
+                34px;
+        }
+
+
+        /* =========================
+           أزرار الوضع
+        ========================== */
+
+        .mode-buttons {
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap:
+                10px;
+
+            margin-bottom:
+                20px;
+        }
+
+        .mode-btn {
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                12px;
+
+            padding:
+                13px;
+
+            background:
+                var(--bg);
 
             color:
                 var(--text);
 
-            font-size:
-                13px;
+            font-weight:
+                800;
         }
 
+        .mode-btn.active {
+            background:
+                var(--primary);
+
+            color:
+                white;
+
+            border-color:
+                var(--primary);
+        }
+
+
         /* =========================
-           FOOTER
+           الفاتورة
+        ========================== */
+
+        .invoice-items {
+            display:
+                grid;
+
+            gap:
+                12px;
+
+            margin:
+                18px 0;
+        }
+
+        .invoice-row {
+            display:
+                grid;
+
+            grid-template-columns:
+                2fr 1fr 1fr 1fr auto;
+
+            gap:
+                8px;
+
+            align-items:
+                center;
+        }
+
+        .invoice-row input {
+            width:
+                100%;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                10px;
+
+            padding:
+                11px;
+
+            background:
+                var(--bg);
+
+            color:
+                var(--text);
+
+            outline:
+                none;
+        }
+
+        .remove-item {
+            width:
+                38px;
+
+            height:
+                38px;
+
+            border:
+                none;
+
+            border-radius:
+                10px;
+
+            background:
+                rgba(220,38,38,.10);
+
+            color:
+                var(--danger);
+
+            font-size:
+                17px;
+        }
+
+        .invoice-actions {
+            display:
+                flex;
+
+            gap:
+                10px;
+
+            margin-top:
+                15px;
+        }
+
+        .secondary-btn {
+            flex:
+                1;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                var(--bg);
+
+            color:
+                var(--text);
+
+            border-radius:
+                12px;
+
+            padding:
+                12px;
+
+            font-weight:
+                800;
+        }
+
+
+        /* =========================
+           الفاتورة المطبوعة
+        ========================== */
+
+        .invoice-preview {
+            display:
+                none;
+
+            margin-top:
+                24px;
+
+            padding:
+                25px;
+
+            background:
+                white;
+
+            color:
+                #111;
+
+            border-radius:
+                8px;
+
+            border:
+                1px solid #ddd;
+        }
+
+        .invoice-preview.show {
+            display:
+                block;
+        }
+
+        .invoice-preview h3 {
+            margin-bottom:
+                10px;
+        }
+
+        .invoice-table {
+            width:
+                100%;
+
+            border-collapse:
+                collapse;
+
+            margin-top:
+                20px;
+        }
+
+        .invoice-table th,
+        .invoice-table td {
+            border:
+                1px solid #ddd;
+
+            padding:
+                9px;
+
+            text-align:
+                right;
+        }
+
+        .invoice-total {
+            text-align:
+                left;
+
+            font-weight:
+                900;
+
+            margin-top:
+                15px;
+        }
+
+
+        /* =========================
+           رسالة خطأ
+        ========================== */
+
+        .error {
+            display:
+                none;
+
+            margin-top:
+                15px;
+
+            padding:
+                12px;
+
+            border-radius:
+                11px;
+
+            background:
+                rgba(220,38,38,.10);
+
+            color:
+                var(--danger);
+
+            font-size:
+                13px;
+
+            text-align:
+                center;
+        }
+
+
+        /* =========================
+           Footer
         ========================== */
 
         footer {
@@ -746,8 +1216,9 @@
                 var(--primary);
         }
 
+
         /* =========================
-           MOBILE
+           Responsive
         ========================== */
 
         @media (max-width: 900px) {
@@ -759,7 +1230,7 @@
 
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 650px) {
 
             .nav {
                 padding:
@@ -774,14 +1245,13 @@
             .brand-icon {
                 width:
                     37px;
-
                 height:
                     37px;
             }
 
             .hero {
                 padding:
-                    55px 15px 30px;
+                    55px 15px 28px;
             }
 
             .hero h1 {
@@ -794,19 +1264,9 @@
                     15px;
             }
 
-            .section {
+            .tools-section {
                 padding:
-                    0 15px;
-            }
-
-            .section-header h2 {
-                font-size:
-                    23px;
-            }
-
-            .business-box {
-                padding:
-                    18px;
+                    0 15px 45px;
             }
 
             .tools-grid {
@@ -814,14 +1274,112 @@
                     1fr;
             }
 
-            .tool {
-                min-height:
+            .workspace {
+                padding:
+                    0 15px;
+            }
+
+            .workspace-card {
+                padding:
+                    20px 17px;
+            }
+
+            .fields,
+            .results {
+                grid-template-columns:
+                    1fr;
+            }
+
+            .field.full,
+            .result-box.full {
+                grid-column:
                     auto;
             }
 
-            .note {
+            .invoice-row {
+                grid-template-columns:
+                    1fr 1fr;
+
                 padding:
-                    0 15px;
+                    12px;
+
+                border:
+                    1px solid var(--border);
+
+                border-radius:
+                    12px;
+            }
+
+            .invoice-row input:first-child {
+                grid-column:
+                    1 / -1;
+            }
+
+            .remove-item {
+                width:
+                    100%;
+            }
+
+            .invoice-actions {
+                flex-direction:
+                    column;
+            }
+
+            .workspace-title h2 {
+                font-size:
+                    20px;
+            }
+
+        }
+
+        @media print {
+
+            body {
+                background:
+                    white !important;
+            }
+
+            .navbar,
+            .hero,
+            .tools-section,
+            .workspace-header,
+            .main-btn,
+            .mode-buttons,
+            .invoice-actions,
+            footer,
+            .error {
+                display:
+                    none !important;
+            }
+
+            .workspace {
+                display:
+                    block !important;
+
+                max-width:
+                    none;
+
+                margin:
+                    0;
+
+                padding:
+                    0;
+            }
+
+            .workspace-card {
+                box-shadow:
+                    none;
+
+                border:
+                    none;
+
+                padding:
+                    0;
+            }
+
+            .invoice-preview {
+                display:
+                    block !important;
             }
 
         }
@@ -830,17 +1388,16 @@
 
 </head>
 
+
 <body>
 
 
     <!-- الخلفية -->
 
     <div class="bg-shapes">
-
         <div class="shape one"></div>
         <div class="shape two"></div>
         <div class="shape three"></div>
-
     </div>
 
 
@@ -850,10 +1407,7 @@
 
         <div class="nav">
 
-            <a
-                href="shopcalc.html"
-                class="brand"
-            >
+            <div class="brand">
 
                 <div class="brand-icon">
                     🧮
@@ -863,10 +1417,10 @@
                     ShopCalc
                 </span>
 
-            </a>
+            </div>
 
 
-            <div class="actions">
+            <div class="nav-actions">
 
                 <a
                     href="index.html"
@@ -903,27 +1457,24 @@
             </div>
 
             <h1>
-
-                أدوات
                 <span>الحسابات التجارية</span>
-
+                في مكان واحد
             </h1>
 
             <p>
-
-                كل الحسابات الأساسية التي يحتاجها
-                صاحب المحل أو التاجر في مكان واحد.
-
+                ست أدوات عملية للتجار وأصحاب المحلات:
+                الربح، الخصم، VAT / IVA، سعر البيع،
+                المخزون، وإنشاء الفواتير.
             </p>
 
         </section>
 
 
-        <!-- القسم الوحيد حاليًا -->
+        <!-- الأدوات الستة -->
 
-        <section class="section">
+        <section class="tools-section">
 
-            <div class="section-header">
+            <div class="section-title">
 
                 <div class="section-line"></div>
 
@@ -934,180 +1485,167 @@
             </div>
 
 
-            <div class="business-box">
-
-                <p class="business-description">
-
-                    احسب الربح والخصومات والضرائب والأسعار
-                    والمخزون والفواتير بسرعة وبدون تعقيد.
-
-                </p>
+            <div class="tools-grid">
 
 
-                <div class="tools-grid">
+                <!-- الربح -->
+
+                <div
+                    class="tool-card"
+                    onclick="openTool('profit')"
+                >
+
+                    <div class="tool-icon">
+                        💰
+                    </div>
+
+                    <h3>
+                        حاسبة الربح
+                    </h3>
+
+                    <p>
+                        احسب تكلفة الشراء والمبيعات
+                        والربح وهامش الربح.
+                    </p>
+
+                    <span class="tool-open">
+                        فتح الحاسبة ←
+                    </span>
+
+                </div>
 
 
-                    <!-- 1 -->
+                <!-- الخصم -->
 
-                    <a
-                        href="profit-calculator.html"
-                        class="tool"
-                    >
+                <div
+                    class="tool-card"
+                    onclick="openTool('discount')"
+                >
 
-                        <div class="tool-icon">
-                            💰
-                        </div>
+                    <div class="tool-icon">
+                        🏷️
+                    </div>
 
-                        <h3>
-                            حاسبة الربح
-                        </h3>
+                    <h3>
+                        حاسبة الخصم
+                    </h3>
 
-                        <p>
-                            احسب تكلفة المنتجات والمبيعات
-                            والربح وهامش الربح.
-                        </p>
+                    <p>
+                        احسب قيمة الخصم والسعر النهائي
+                        بعد الخصم.
+                    </p>
 
-                        <span class="tool-link">
-                            ابدأ الحساب ←
-                        </span>
+                    <span class="tool-open">
+                        فتح الحاسبة ←
+                    </span>
 
-                    </a>
-
-
-                    <!-- 2 -->
-
-                    <a
-                        href="discount-calculator.html"
-                        class="tool"
-                    >
-
-                        <div class="tool-icon">
-                            🏷️
-                        </div>
-
-                        <h3>
-                            حاسبة الخصم
-                        </h3>
-
-                        <p>
-                            احسب قيمة الخصم والسعر النهائي
-                            بعد الخصم.
-                        </p>
-
-                        <span class="tool-link">
-                            احسب الخصم ←
-                        </span>
-
-                    </a>
+                </div>
 
 
-                    <!-- 3 -->
+                <!-- VAT -->
 
-                    <a
-                        href="vat-calculator.html"
-                        class="tool"
-                    >
+                <div
+                    class="tool-card"
+                    onclick="openTool('vat')"
+                >
 
-                        <div class="tool-icon">
-                            🧾
-                        </div>
+                    <div class="tool-icon">
+                        🧾
+                    </div>
 
-                        <h3>
-                            VAT / IVA
-                        </h3>
+                    <h3>
+                        VAT / IVA
+                    </h3>
 
-                        <p>
-                            أضف الضريبة إلى السعر أو
-                            استخرجها من السعر شامل الضريبة.
-                        </p>
+                    <p>
+                        أضف الضريبة إلى السعر أو
+                        استخرج الضريبة من سعر شامل.
+                    </p>
 
-                        <span class="tool-link">
-                            احسب الضريبة ←
-                        </span>
+                    <span class="tool-open">
+                        فتح الحاسبة ←
+                    </span>
 
-                    </a>
-
-
-                    <!-- 4 -->
-
-                    <a
-                        href="selling-price.html"
-                        class="tool"
-                    >
-
-                        <div class="tool-icon">
-                            💵
-                        </div>
-
-                        <h3>
-                            حاسبة سعر البيع
-                        </h3>
-
-                        <p>
-                            حدد سعر البيع المناسب بناءً
-                            على التكلفة والربح المطلوب.
-                        </p>
-
-                        <span class="tool-link">
-                            احسب السعر ←
-                        </span>
-
-                    </a>
+                </div>
 
 
-                    <!-- 5 -->
+                <!-- سعر البيع -->
 
-                    <a
-                        href="inventory-calculator.html"
-                        class="tool"
-                    >
+                <div
+                    class="tool-card"
+                    onclick="openTool('selling')"
+                >
 
-                        <div class="tool-icon">
-                            📦
-                        </div>
+                    <div class="tool-icon">
+                        💵
+                    </div>
 
-                        <h3>
-                            حاسبة المخزون
-                        </h3>
+                    <h3>
+                        حاسبة سعر البيع
+                    </h3>
 
-                        <p>
-                            احسب الكمية وقيمة المخزون
-                            وتكلفة البضاعة.
-                        </p>
+                    <p>
+                        احسب سعر البيع المناسب
+                        بناءً على التكلفة والربح المطلوب.
+                    </p>
 
-                        <span class="tool-link">
-                            ابدأ الحساب ←
-                        </span>
+                    <span class="tool-open">
+                        فتح الحاسبة ←
+                    </span>
 
-                    </a>
+                </div>
 
 
-                    <!-- 6 -->
+                <!-- المخزون -->
 
-                    <a
-                        href="invoice.html"
-                        class="tool"
-                    >
+                <div
+                    class="tool-card"
+                    onclick="openTool('inventory')"
+                >
 
-                        <div class="tool-icon">
-                            🧾
-                        </div>
+                    <div class="tool-icon">
+                        📦
+                    </div>
 
-                        <h3>
-                            إنشاء فاتورة
-                        </h3>
+                    <h3>
+                        حاسبة المخزون
+                    </h3>
 
-                        <p>
-                            أنشئ فاتورة تحتوي على المنتجات
-                            والكميات والأسعار والإجمالي.
-                        </p>
+                    <p>
+                        احسب الكمية المتبقية وقيمة
+                        المخزون وتكلفة البضاعة.
+                    </p>
 
-                        <span class="tool-link">
-                            إنشاء فاتورة ←
-                        </span>
+                    <span class="tool-open">
+                        فتح الحاسبة ←
+                    </span>
 
-                    </a>
+                </div>
 
+
+                <!-- الفاتورة -->
+
+                <div
+                    class="tool-card"
+                    onclick="openTool('invoice')"
+                >
+
+                    <div class="tool-icon">
+                        🧾
+                    </div>
+
+                    <h3>
+                        إنشاء فاتورة
+                    </h3>
+
+                    <p>
+                        أنشئ فاتورة بيع بسيطة
+                        واحسب الإجمالي تلقائيًا.
+                    </p>
+
+                    <span class="tool-open">
+                        فتح الفاتورة ←
+                    </span>
 
                 </div>
 
@@ -1116,17 +1654,861 @@
         </section>
 
 
-        <div class="note">
+        <!-- =========================
+             مساحة الأدوات
+        ========================== -->
 
-            <div class="note-box">
+        <section
+            class="workspace"
+            id="workspace"
+        >
 
-                💡
-                سيتم إضافة أقسام جديدة للمحاسبين
-                وأدوات مالية متقدمة لاحقًا.
+            <div class="workspace-card">
+
+                <div class="workspace-header">
+
+                    <div class="workspace-title">
+
+                        <div
+                            class="mini-icon"
+                            id="workspaceIcon"
+                        >
+                            🧮
+                        </div>
+
+                        <div>
+
+                            <h2 id="workspaceTitle">
+                                الأداة
+                            </h2>
+
+                            <p id="workspaceSubtitle">
+                                ShopCalc
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="close-tool"
+                        onclick="closeTool()"
+                        title="إغلاق"
+                    >
+                        ✕
+                    </button>
+
+                </div>
+
+
+                <!-- =====================
+                     الربح
+                ====================== -->
+
+                <div
+                    class="tool-panel"
+                    id="profitPanel"
+                    style="display:none;"
+                >
+
+                    <div class="fields">
+
+                        <div class="field">
+
+                            <label>
+                                سعر شراء الوحدة
+                            </label>
+
+                            <input
+                                type="number"
+                                id="profitPurchase"
+                                min="0"
+                                step="0.01"
+                                placeholder="مثال: 100"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                سعر بيع الوحدة
+                            </label>
+
+                            <input
+                                type="number"
+                                id="profitSelling"
+                                min="0"
+                                step="0.01"
+                                placeholder="مثال: 150"
+                            >
+
+                        </div>
+
+
+                        <div class="field full">
+
+                            <label>
+                                الكمية
+                            </label>
+
+                            <input
+                                type="number"
+                                id="profitQuantity"
+                                min="1"
+                                step="1"
+                                value="1"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="main-btn"
+                        onclick="calculateProfit()"
+                    >
+                        🧮 احسب الربح
+                    </button>
+
+
+                    <div
+                        class="error"
+                        id="profitError"
+                    ></div>
+
+
+                    <div
+                        class="results"
+                        id="profitResults"
+                        style="display:none;"
+                    >
+
+                        <div class="result-box">
+
+                            <span>
+                                إجمالي التكلفة
+                            </span>
+
+                            <strong id="profitTotalCost">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-box">
+
+                            <span>
+                                إجمالي المبيعات
+                            </span>
+
+                            <strong id="profitTotalSales">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-box big full">
+
+                            <span>
+                                إجمالي الربح
+                            </span>
+
+                            <strong id="profitTotalProfit">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-box">
+
+                            <span>
+                                ربح الوحدة
+                            </span>
+
+                            <strong id="profitUnitProfit">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-box">
+
+                            <span>
+                                هامش الربح على التكلفة
+                            </span>
+
+                            <strong id="profitMargin">
+                                0%
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================
+                     الخصم
+                ====================== -->
+
+                <div
+                    class="tool-panel"
+                    id="discountPanel"
+                    style="display:none;"
+                >
+
+                    <div class="fields">
+
+                        <div class="field">
+
+                            <label>
+                                السعر الأصلي
+                            </label>
+
+                            <input
+                                type="number"
+                                id="discountPrice"
+                                min="0"
+                                step="0.01"
+                                placeholder="مثال: 1000"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                نسبة الخصم %
+                            </label>
+
+                            <input
+                                type="number"
+                                id="discountPercent"
+                                min="0"
+                                max="100"
+                                step="0.01"
+                                placeholder="مثال: 20"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="main-btn"
+                        onclick="calculateDiscount()"
+                    >
+                        🏷️ احسب الخصم
+                    </button>
+
+
+                    <div
+                        class="error"
+                        id="discountError"
+                    ></div>
+
+
+                    <div
+                        class="results"
+                        id="discountResults"
+                        style="display:none;"
+                    >
+
+                        <div class="result-box">
+
+                            <span>
+                                السعر الأصلي
+                            </span>
+
+                            <strong id="discountOriginal">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-box">
+
+                            <span>
+                                قيمة الخصم
+                            </span>
+
+                            <strong id="discountValue">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-box big full">
+
+                            <span>
+                                السعر النهائي
+                            </span>
+
+                            <strong id="discountFinal">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================
+                     VAT
+                ====================== -->
+
+                <div
+                    class="tool-panel"
+                    id="vatPanel"
+                    style="display:none;"
+                >
+
+                    <div class="mode-buttons">
+
+                        <button
+                            class="mode-btn active"
+                            id="vatAddBtn"
+                            onclick="setVatMode('add')"
+                        >
+                            ➕ إضافة الضريبة
+                        </button>
+
+
+                        <button
+                            class="mode-btn"
+                            id="vatRemoveBtn"
+                            onclick="setVatMode('remove')"
+                        >
+                            ➖ استخراج الضريبة
+                        </button>
+
+                    </div>
+
+
+                    <div class="fields">
+
+                        <div class="field full">
+
+                            <label id="vatPriceLabel">
+                                السعر قبل الضريبة
+                            </label>
+
+                            <input
+                                type="number"
+                                id="vatPrice"
+                                min="0"
+                                step="0.01"
+                                placeholder="مثال: 1000"
+                            >
+
+                        </div>
+
+
+                        <div class="field full">
+
+                            <label>
+                                نسبة الضريبة %
+                            </label>
+
+                            <input
+                                type="number"
+                                id="vatRate"
+                                min="0"
+                                step="0.01"
+                                value="22"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="main-btn"
+                        onclick="calculateVAT()"
+                    >
+                        🧾 احسب الضريبة
+                    </button>
+
+
+                    <div
+                        class="error"
+                        id="vatError"
+                    ></div>
+
+
+                    <div
+                        class="results"
+                        id="vatResults"
+                        style="display:none;"
+                    >
+
+                        <div class="result-box">
+
+                            <span>
+                                السعر قبل الضريبة
+                            </span>
+
+                            <strong id="vatBase">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-box">
+
+                            <span>
+                                قيمة الضريبة
+                            </span>
+
+                            <strong id="vatValue">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-box big full">
+
+                            <span>
+                                السعر شامل الضريبة
+                            </span>
+
+                            <strong id="vatTotal">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================
+                     سعر البيع
+                ====================== -->
+
+                <div
+                    class="tool-panel"
+                    id="sellingPanel"
+                    style="display:none;"
+                >
+
+                    <div class="fields">
+
+                        <div class="field">
+
+                            <label>
+                                تكلفة الوحدة
+                            </label>
+
+                            <input
+                                type="number"
+                                id="sellingCost"
+                                min="0"
+                                step="0.01"
+                                placeholder="مثال: 100"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                هامش الربح %
+                            </label>
+
+                            <input
+                                type="number"
+                                id="sellingMargin"
+                                min="0"
+                                step="0.01"
+                                placeholder="مثال: 30"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="main-btn"
+                        onclick="calculateSellingPrice()"
+                    >
+                        💵 احسب سعر البيع
+                    </button>
+
+
+                    <div
+                        class="error"
+                        id="sellingError"
+                    ></div>
+
+
+                    <div
+                        class="results"
+                        id="sellingResults"
+                        style="display:none;"
+                    >
+
+                        <div class="result-box">
+
+                            <span>
+                                التكلفة
+                            </span>
+
+                            <strong id="sellingCostResult">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-box">
+
+                            <span>
+                                الربح
+                            </span>
+
+                            <strong id="sellingProfitResult">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-box big full">
+
+                            <span>
+                                سعر البيع
+                            </span>
+
+                            <strong id="sellingPriceResult">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================
+                     المخزون
+                ====================== -->
+
+                <div
+                    class="tool-panel"
+                    id="inventoryPanel"
+                    style="display:none;"
+                >
+
+                    <div class="fields">
+
+                        <div class="field">
+
+                            <label>
+                                الكمية الموجودة
+                            </label>
+
+                            <input
+                                type="number"
+                                id="inventoryQty"
+                                min="0"
+                                step="1"
+                                placeholder="مثال: 100"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                سعر تكلفة الوحدة
+                            </label>
+
+                            <input
+                                type="number"
+                                id="inventoryCost"
+                                min="0"
+                                step="0.01"
+                                placeholder="مثال: 50"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                الكمية المباعة
+                            </label>
+
+                            <input
+                                type="number"
+                                id="inventorySold"
+                                min="0"
+                                step="1"
+                                value="0"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="main-btn"
+                        onclick="calculateInventory()"
+                    >
+                        📦 احسب المخزون
+                    </button>
+
+
+                    <div
+                        class="error"
+                        id="inventoryError"
+                    ></div>
+
+
+                    <div
+                        class="results"
+                        id="inventoryResults"
+                        style="display:none;"
+                    >
+
+                        <div class="result-box">
+
+                            <span>
+                                الكمية المتبقية
+                            </span>
+
+                            <strong id="inventoryRemaining">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-box">
+
+                            <span>
+                                تكلفة البضاعة المباعة
+                            </span>
+
+                            <strong id="inventorySoldCost">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-box big full">
+
+                            <span>
+                                قيمة المخزون المتبقي
+                            </span>
+
+                            <strong id="inventoryValue">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =====================
+                     الفاتورة
+                ====================== -->
+
+                <div
+                    class="tool-panel"
+                    id="invoicePanel"
+                    style="display:none;"
+                >
+
+                    <div class="fields">
+
+                        <div class="field">
+
+                            <label>
+                                اسم العميل
+                            </label>
+
+                            <input
+                                type="text"
+                                id="customerName"
+                                placeholder="مثال: محمد أحمد"
+                            >
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label>
+                                اسم المحل
+                            </label>
+
+                            <input
+                                type="text"
+                                id="shopName"
+                                placeholder="مثال: ShopCalc Store"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="invoice-items" id="invoiceItems"></div>
+
+
+                    <div class="invoice-actions">
+
+                        <button
+                            class="secondary-btn"
+                            onclick="addInvoiceItem()"
+                        >
+                            ➕ إضافة منتج
+                        </button>
+
+                        <button
+                            class="secondary-btn"
+                            onclick="calculateInvoice()"
+                        >
+                            🧮 احسب الفاتورة
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="error"
+                        id="invoiceError"
+                    ></div>
+
+
+                    <div
+                        class="results"
+                        id="invoiceResults"
+                        style="display:none;"
+                    >
+
+                        <div class="result-box">
+
+                            <span>
+                                عدد المنتجات
+                            </span>
+
+                            <strong id="invoiceCount">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="result-box">
+
+                            <span>
+                                الإجمالي
+                            </span>
+
+                            <strong id="invoiceTotal">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="invoice-preview"
+                        id="invoicePreview"
+                    >
+
+                        <h3 id="previewShop">
+                            فاتورة بيع
+                        </h3>
+
+                        <p id="previewCustomer">
+                            العميل:
+                        </p>
+
+
+                        <table class="invoice-table">
+
+                            <thead>
+
+                                <tr>
+                                    <th>المنتج</th>
+                                    <th>الكمية</th>
+                                    <th>السعر</th>
+                                    <th>الإجمالي</th>
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="invoiceTableBody"></tbody>
+
+                        </table>
+
+
+                        <div
+                            class="invoice-total"
+                            id="previewTotal"
+                        >
+                            الإجمالي: 0
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="invoice-actions"
+                        id="printActions"
+                        style="display:none;"
+                    >
+
+                        <button
+                            class="main-btn"
+                            onclick="window.print()"
+                        >
+                            🖨️ طباعة الفاتورة
+                        </button>
+
+                    </div>
+
+                </div>
 
             </div>
 
-        </div>
+        </section>
 
     </main>
 
@@ -1152,16 +2534,1062 @@
 
     <script>
 
+        /* =========================
+           متغيرات عامة
+        ========================== */
+
+        let currentVatMode = "add";
+
+        let invoiceItemNumber = 0;
+
+
+        /* =========================
+           تنسيق الأرقام
+        ========================== */
+
+        function formatNumber(value) {
+
+            return new Intl.NumberFormat(
+                "ar-EG",
+                {
+                    maximumFractionDigits: 2
+                }
+            ).format(value);
+
+        }
+
+
+        function getNumber(id) {
+
+            return parseFloat(
+                document.getElementById(id).value
+            ) || 0;
+
+        }
+
+
+        /* =========================
+           فتح الأدوات
+        ========================== */
+
+        function openTool(tool) {
+
+            const workspace =
+                document.getElementById(
+                    "workspace"
+                );
+
+            const panels =
+                document.querySelectorAll(
+                    ".tool-panel"
+                );
+
+            panels.forEach(function(panel) {
+                panel.style.display = "none";
+            });
+
+
+            const titles = {
+
+                profit: {
+                    title: "حاسبة الربح",
+                    subtitle: "حساب الربح وهامش الربح",
+                    icon: "💰",
+                    panel: "profitPanel"
+                },
+
+                discount: {
+                    title: "حاسبة الخصم",
+                    subtitle: "حساب الخصم والسعر النهائي",
+                    icon: "🏷️",
+                    panel: "discountPanel"
+                },
+
+                vat: {
+                    title: "VAT / IVA",
+                    subtitle: "حساب الضريبة وإضافتها أو استخراجها",
+                    icon: "🧾",
+                    panel: "vatPanel"
+                },
+
+                selling: {
+                    title: "حاسبة سعر البيع",
+                    subtitle: "حساب سعر البيع من التكلفة والربح",
+                    icon: "💵",
+                    panel: "sellingPanel"
+                },
+
+                inventory: {
+                    title: "حاسبة المخزون",
+                    subtitle: "حساب الكمية وقيمة المخزون",
+                    icon: "📦",
+                    panel: "inventoryPanel"
+                },
+
+                invoice: {
+                    title: "إنشاء فاتورة",
+                    subtitle: "إنشاء فاتورة بيع داخل نفس الصفحة",
+                    icon: "🧾",
+                    panel: "invoicePanel"
+                }
+
+            };
+
+
+            const data =
+                titles[tool];
+
+
+            document.getElementById(
+                "workspaceTitle"
+            ).textContent =
+                data.title;
+
+
+            document.getElementById(
+                "workspaceSubtitle"
+            ).textContent =
+                data.subtitle;
+
+
+            document.getElementById(
+                "workspaceIcon"
+            ).textContent =
+                data.icon;
+
+
+            document.getElementById(
+                data.panel
+            ).style.display =
+                "block";
+
+
+            workspace.classList.add(
+                "active"
+            );
+
+
+            workspace.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+
+            if (tool === "invoice") {
+
+                if (
+                    document.querySelectorAll(
+                        ".invoice-row"
+                    ).length === 0
+                ) {
+
+                    addInvoiceItem();
+
+                }
+
+            }
+
+        }
+
+
+        function closeTool() {
+
+            document.getElementById(
+                "workspace"
+            ).classList.remove(
+                "active"
+            );
+
+        }
+
+
+        /* =========================
+           حاسبة الربح
+        ========================== */
+
+        function calculateProfit() {
+
+            const purchase =
+                getNumber("profitPurchase");
+
+            const selling =
+                getNumber("profitSelling");
+
+            const quantity =
+                getNumber("profitQuantity");
+
+
+            const error =
+                document.getElementById(
+                    "profitError"
+                );
+
+            const results =
+                document.getElementById(
+                    "profitResults"
+                );
+
+
+            if (
+                purchase <= 0 ||
+                selling <= 0 ||
+                quantity <= 0
+            ) {
+
+                error.textContent =
+                    "من فضلك أدخل القيم بشكل صحيح.";
+
+                error.style.display =
+                    "block";
+
+                results.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            const totalCost =
+                purchase * quantity;
+
+            const totalSales =
+                selling * quantity;
+
+            const unitProfit =
+                selling - purchase;
+
+            const totalProfit =
+                unitProfit * quantity;
+
+            const margin =
+                (unitProfit / purchase) * 100;
+
+
+            document.getElementById(
+                "profitTotalCost"
+            ).textContent =
+                formatNumber(totalCost);
+
+
+            document.getElementById(
+                "profitTotalSales"
+            ).textContent =
+                formatNumber(totalSales);
+
+
+            document.getElementById(
+                "profitTotalProfit"
+            ).textContent =
+                formatNumber(totalProfit);
+
+
+            document.getElementById(
+                "profitUnitProfit"
+            ).textContent =
+                formatNumber(unitProfit);
+
+
+            document.getElementById(
+                "profitMargin"
+            ).textContent =
+                formatNumber(margin) + "%";
+
+
+            error.style.display =
+                "none";
+
+            results.style.display =
+                "grid";
+
+        }
+
+
+        /* =========================
+           حاسبة الخصم
+        ========================== */
+
+        function calculateDiscount() {
+
+            const price =
+                getNumber("discountPrice");
+
+            const percent =
+                getNumber("discountPercent");
+
+
+            const error =
+                document.getElementById(
+                    "discountError"
+                );
+
+            const results =
+                document.getElementById(
+                    "discountResults"
+                );
+
+
+            if (price <= 0) {
+
+                error.textContent =
+                    "أدخل سعرًا أكبر من صفر.";
+
+                error.style.display =
+                    "block";
+
+                results.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            if (
+                percent < 0 ||
+                percent > 100
+            ) {
+
+                error.textContent =
+                    "نسبة الخصم يجب أن تكون بين 0% و100%.";
+
+                error.style.display =
+                    "block";
+
+                results.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            const value =
+                price * (percent / 100);
+
+            const finalPrice =
+                price - value;
+
+
+            document.getElementById(
+                "discountOriginal"
+            ).textContent =
+                formatNumber(price);
+
+
+            document.getElementById(
+                "discountValue"
+            ).textContent =
+                formatNumber(value);
+
+
+            document.getElementById(
+                "discountFinal"
+            ).textContent =
+                formatNumber(finalPrice);
+
+
+            error.style.display =
+                "none";
+
+            results.style.display =
+                "grid";
+
+        }
+
+
+        /* =========================
+           VAT / IVA
+        ========================== */
+
+        function setVatMode(mode) {
+
+            currentVatMode =
+                mode;
+
+
+            document.getElementById(
+                "vatAddBtn"
+            ).classList.toggle(
+                "active",
+                mode === "add"
+            );
+
+
+            document.getElementById(
+                "vatRemoveBtn"
+            ).classList.toggle(
+                "active",
+                mode === "remove"
+            );
+
+
+            document.getElementById(
+                "vatPriceLabel"
+            ).textContent =
+                mode === "add"
+                    ? "السعر قبل الضريبة"
+                    : "السعر شامل الضريبة";
+
+
+            document.getElementById(
+                "vatResults"
+            ).style.display =
+                "none";
+
+        }
+
+
+        function calculateVAT() {
+
+            const price =
+                getNumber("vatPrice");
+
+            const rate =
+                getNumber("vatRate");
+
+
+            const error =
+                document.getElementById(
+                    "vatError"
+                );
+
+            const results =
+                document.getElementById(
+                    "vatResults"
+                );
+
+
+            if (price <= 0) {
+
+                error.textContent =
+                    "أدخل سعرًا أكبر من صفر.";
+
+                error.style.display =
+                    "block";
+
+                results.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            if (rate < 0) {
+
+                error.textContent =
+                    "نسبة الضريبة لا يمكن أن تكون سالبة.";
+
+                error.style.display =
+                    "block";
+
+                results.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            let base;
+            let tax;
+            let total;
+
+
+            if (
+                currentVatMode === "add"
+            ) {
+
+                base =
+                    price;
+
+                tax =
+                    price * (rate / 100);
+
+                total =
+                    price + tax;
+
+            } else {
+
+                total =
+                    price;
+
+                base =
+                    price /
+                    (1 + rate / 100);
+
+                tax =
+                    total - base;
+
+            }
+
+
+            document.getElementById(
+                "vatBase"
+            ).textContent =
+                formatNumber(base);
+
+
+            document.getElementById(
+                "vatValue"
+            ).textContent =
+                formatNumber(tax);
+
+
+            document.getElementById(
+                "vatTotal"
+            ).textContent =
+                formatNumber(total);
+
+
+            error.style.display =
+                "none";
+
+            results.style.display =
+                "grid";
+
+        }
+
+
+        /* =========================
+           سعر البيع
+        ========================== */
+
+        function calculateSellingPrice() {
+
+            const cost =
+                getNumber("sellingCost");
+
+            const margin =
+                getNumber("sellingMargin");
+
+
+            const error =
+                document.getElementById(
+                    "sellingError"
+                );
+
+            const results =
+                document.getElementById(
+                    "sellingResults"
+                );
+
+
+            if (cost <= 0) {
+
+                error.textContent =
+                    "أدخل تكلفة أكبر من صفر.";
+
+                error.style.display =
+                    "block";
+
+                results.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            if (margin < 0) {
+
+                error.textContent =
+                    "هامش الربح لا يمكن أن يكون سالبًا.";
+
+                error.style.display =
+                    "block";
+
+                results.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            /*
+             سعر البيع هنا:
+             التكلفة + نسبة ربح على التكلفة
+            */
+
+            const profit =
+                cost * (margin / 100);
+
+            const sellingPrice =
+                cost + profit;
+
+
+            document.getElementById(
+                "sellingCostResult"
+            ).textContent =
+                formatNumber(cost);
+
+
+            document.getElementById(
+                "sellingProfitResult"
+            ).textContent =
+                formatNumber(profit);
+
+
+            document.getElementById(
+                "sellingPriceResult"
+            ).textContent =
+                formatNumber(sellingPrice);
+
+
+            error.style.display =
+                "none";
+
+            results.style.display =
+                "grid";
+
+        }
+
+
+        /* =========================
+           المخزون
+        ========================== */
+
+        function calculateInventory() {
+
+            const qty =
+                getNumber("inventoryQty");
+
+            const cost =
+                getNumber("inventoryCost");
+
+            const sold =
+                getNumber("inventorySold");
+
+
+            const error =
+                document.getElementById(
+                    "inventoryError"
+                );
+
+            const results =
+                document.getElementById(
+                    "inventoryResults"
+                );
+
+
+            if (qty < 0 || cost < 0 || sold < 0) {
+
+                error.textContent =
+                    "لا يمكن إدخال قيم سالبة.";
+
+                error.style.display =
+                    "block";
+
+                results.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            if (sold > qty) {
+
+                error.textContent =
+                    "الكمية المباعة لا يمكن أن تكون أكبر من الكمية الموجودة.";
+
+                error.style.display =
+                    "block";
+
+                results.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            const remaining =
+                qty - sold;
+
+            const soldCost =
+                sold * cost;
+
+            const inventoryValue =
+                remaining * cost;
+
+
+            document.getElementById(
+                "inventoryRemaining"
+            ).textContent =
+                formatNumber(remaining);
+
+
+            document.getElementById(
+                "inventorySoldCost"
+            ).textContent =
+                formatNumber(soldCost);
+
+
+            document.getElementById(
+                "inventoryValue"
+            ).textContent =
+                formatNumber(inventoryValue);
+
+
+            error.style.display =
+                "none";
+
+            results.style.display =
+                "grid";
+
+        }
+
+
+        /* =========================
+           الفواتير
+        ========================== */
+
+        function addInvoiceItem() {
+
+            invoiceItemNumber++;
+
+
+            const container =
+                document.getElementById(
+                    "invoiceItems"
+                );
+
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+
+            row.className =
+                "invoice-row";
+
+
+            row.innerHTML = `
+
+                <input
+                    type="text"
+                    class="item-name"
+                    placeholder="اسم المنتج"
+                >
+
+                <input
+                    type="number"
+                    class="item-qty"
+                    min="1"
+                    value="1"
+                    placeholder="الكمية"
+                >
+
+                <input
+                    type="number"
+                    class="item-price"
+                    min="0"
+                    step="0.01"
+                    placeholder="السعر"
+                >
+
+                <input
+                    type="text"
+                    class="item-total"
+                    value="0"
+                    readonly
+                >
+
+                <button
+                    type="button"
+                    class="remove-item"
+                    onclick="removeInvoiceItem(this)"
+                >
+                    ✕
+                </button>
+
+            `;
+
+
+            container.appendChild(
+                row
+            );
+
+
+            updateInvoiceRow(row);
+
+        }
+
+
+        function removeInvoiceItem(button) {
+
+            const row =
+                button.parentElement;
+
+
+            row.remove();
+
+
+            calculateInvoice();
+
+        }
+
+
+        function updateInvoiceRow(row) {
+
+            const qty =
+                parseFloat(
+                    row.querySelector(
+                        ".item-qty"
+                    ).value
+                ) || 0;
+
+
+            const price =
+                parseFloat(
+                    row.querySelector(
+                        ".item-price"
+                    ).value
+                ) || 0;
+
+
+            row.querySelector(
+                ".item-total"
+            ).value =
+                formatNumber(
+                    qty * price
+                );
+
+        }
+
+
+        function calculateInvoice() {
+
+            const rows =
+                document.querySelectorAll(
+                    ".invoice-row"
+                );
+
+
+            const error =
+                document.getElementById(
+                    "invoiceError"
+                );
+
+            const results =
+                document.getElementById(
+                    "invoiceResults"
+                );
+
+
+            if (rows.length === 0) {
+
+                error.textContent =
+                    "أضف منتجًا واحدًا على الأقل.";
+
+                error.style.display =
+                    "block";
+
+                results.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            let total =
+                0;
+
+            let validItems =
+                0;
+
+
+            const tableBody =
+                document.getElementById(
+                    "invoiceTableBody"
+                );
+
+
+            tableBody.innerHTML =
+                "";
+
+
+            rows.forEach(function(row) {
+
+                updateInvoiceRow(row);
+
+
+                const name =
+                    row.querySelector(
+                        ".item-name"
+                    ).value.trim();
+
+
+                const qty =
+                    parseFloat(
+                        row.querySelector(
+                            ".item-qty"
+                        ).value
+                    ) || 0;
+
+
+                const price =
+                    parseFloat(
+                        row.querySelector(
+                            ".item-price"
+                        ).value
+                    ) || 0;
+
+
+                if (
+                    name !== "" &&
+                    qty > 0 &&
+                    price >= 0
+                ) {
+
+                    const itemTotal =
+                        qty * price;
+
+
+                    total +=
+                        itemTotal;
+
+
+                    validItems++;
+
+
+                    const tr =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    tr.innerHTML = `
+
+                        <td>${escapeHtml(name)}</td>
+                        <td>${formatNumber(qty)}</td>
+                        <td>${formatNumber(price)}</td>
+                        <td>${formatNumber(itemTotal)}</td>
+
+                    `;
+
+
+                    tableBody.appendChild(
+                        tr
+                    );
+
+                }
+
+            });
+
+
+            if (validItems === 0) {
+
+                error.textContent =
+                    "أدخل بيانات صحيحة لمنتج واحد على الأقل.";
+
+                error.style.display =
+                    "block";
+
+                results.style.display =
+                    "none";
+
+                return;
+
+            }
+
+
+            error.style.display =
+                "none";
+
+
+            document.getElementById(
+                "invoiceCount"
+            ).textContent =
+                formatNumber(validItems);
+
+
+            document.getElementById(
+                "invoiceTotal"
+            ).textContent =
+                formatNumber(total);
+
+
+            document.getElementById(
+                "previewShop"
+            ).textContent =
+                document.getElementById(
+                    "shopName"
+                ).value.trim() ||
+                "فاتورة بيع";
+
+
+            document.getElementById(
+                "previewCustomer"
+            ).textContent =
+                "العميل: " +
+                (
+                    document.getElementById(
+                        "customerName"
+                    ).value.trim() ||
+                    "غير محدد"
+                );
+
+
+            document.getElementById(
+                "previewTotal"
+            ).textContent =
+                "الإجمالي: " +
+                formatNumber(total);
+
+
+            results.style.display =
+                "grid";
+
+
+            document.getElementById(
+                "invoicePreview"
+            ).classList.add(
+                "show"
+            );
+
+
+            document.getElementById(
+                "printActions"
+            ).style.display =
+                "flex";
+
+        }
+
+
+        function escapeHtml(text) {
+
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+
+        }
+
+
+        /* =========================
+           الوضع الليلي
+        ========================== */
+
         function toggleTheme() {
 
             document.body.classList.toggle(
                 "dark"
             );
 
+
             const isDark =
                 document.body.classList.contains(
                     "dark"
                 );
+
 
             localStorage.setItem(
                 "shopcalc-theme",
@@ -1170,23 +3598,26 @@
                     : "light"
             );
 
+
             document.getElementById(
                 "themeBtn"
             ).textContent =
                 isDark
                     ? "☀️"
                     : "🌙";
+
         }
 
 
         document.addEventListener(
             "DOMContentLoaded",
-            function () {
+            function() {
 
                 const savedTheme =
                     localStorage.getItem(
                         "shopcalc-theme"
                     );
+
 
                 if (
                     savedTheme === "dark"
@@ -1196,11 +3627,46 @@
                         "dark"
                     );
 
+
                     document.getElementById(
                         "themeBtn"
                     ).textContent =
                         "☀️";
+
                 }
+
+
+                /*
+                 تحديث إجمالي كل منتج في الفاتورة
+                 أثناء الكتابة
+                */
+
+                document.addEventListener(
+                    "input",
+                    function(event) {
+
+                        if (
+                            event.target.classList.contains(
+                                "item-qty"
+                            ) ||
+                            event.target.classList.contains(
+                                "item-price"
+                            )
+                        ) {
+
+                            const row =
+                                event.target.closest(
+                                    ".invoice-row"
+                                );
+
+                            if (row) {
+                                updateInvoiceRow(row);
+                            }
+
+                        }
+
+                    }
+                );
 
             }
         );
